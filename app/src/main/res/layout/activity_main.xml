@@ -24,31 +24,31 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
         </TableRow>
 
         <TableRow
@@ -59,31 +59,31 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/Ramka" />
+                android:src="@drawable/ramka" />
         </TableRow>
     </TableLayout>
 
