@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageAllyFirstPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageAllySecondPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllyFirstPick" />
+
+    <ImageView
+        android:id="@+id/imageAllyThirdPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllySecondPick" />
+
+    <ImageView
+        android:id="@+id/imageAllyFourthPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllyThirdPick" />
+
+    <ImageView
+        android:id="@+id/imageAllyFifthPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllyFourthPick" />
+
+    <ImageView
+        android:id="@+id/imageAllyFirstBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="75dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageAllySecondBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllyFirstBan" />
+
+    <ImageView
+        android:id="@+id/imageAllyThirdBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllySecondBan" />
+
+    <ImageView
+        android:id="@+id/imageAllyFourthBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllyThirdBan" />
+
+    <ImageView
+        android:id="@+id/imageAllyFifthBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllyFourthBan" />
+
+    <ImageView
+        android:id="@+id/imageAllySixthBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageAllyFifthBan" />
+
+    <ImageView
+        android:id="@+id/imageEnemyFirstPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageEnemySecondPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemyFirstPick" />
+
+    <ImageView
+        android:id="@+id/imageEnemyThirdPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemySecondPick" />
+
+    <ImageView
+        android:id="@+id/imageEnemyFourthPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemyThirdPick" />
+
+    <ImageView
+        android:id="@+id/imageEnemyFifthPick"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemyFourthPick" />
+
+    <ImageView
+        android:id="@+id/imageEnemyFirstBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageEnemySecondBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemyFirstBan" />
+
+    <ImageView
+        android:id="@+id/imageEnemyThirdBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemySecondBan" />
+
+    <ImageView
+        android:id="@+id/imageEnemyFourthBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemyThirdBan" />
+
+    <ImageView
+        android:id="@+id/imageEnemyFifthBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemyFourthBan" />
+
+    <ImageView
+        android:id="@+id/imageEnemySixthBan"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+
+        android:src="@drawable/ramka"
+        app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
+        app:layout_constraintTop_toBottomOf="@+id/imageEnemyFifthBan" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
