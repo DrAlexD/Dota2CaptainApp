@@ -10,9 +10,9 @@
         android:id="@+id/imageAllyFirstPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -22,9 +22,9 @@
         android:id="@+id/imageAllySecondPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -34,9 +34,9 @@
         android:id="@+id/imageAllyThirdPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -46,9 +46,9 @@
         android:id="@+id/imageAllyFourthPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,9 +58,9 @@
         android:id="@+id/imageAllyFifthPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -70,9 +70,9 @@
         android:id="@+id/imageAllyFirstBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="75dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
@@ -82,9 +82,9 @@
         android:id="@+id/imageAllySecondBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
@@ -94,9 +94,9 @@
         android:id="@+id/imageAllyThirdBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
@@ -106,9 +106,9 @@
         android:id="@+id/imageAllyFourthBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
@@ -118,9 +118,9 @@
         android:id="@+id/imageAllyFifthBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
@@ -130,9 +130,9 @@
         android:id="@+id/imageAllySixthBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintLeft_toRightOf="@+id/imageAllyFirstPick"
@@ -142,9 +142,9 @@
         android:id="@+id/imageEnemyFirstPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toRightOf="parent"
@@ -154,9 +154,9 @@
         android:id="@+id/imageEnemySecondPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toRightOf="parent"
@@ -166,9 +166,9 @@
         android:id="@+id/imageEnemyThirdPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toRightOf="parent"
@@ -178,9 +178,9 @@
         android:id="@+id/imageEnemyFourthPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toRightOf="parent"
@@ -190,9 +190,9 @@
         android:id="@+id/imageEnemyFifthPick"
         android:layout_width="110dp"
         android:layout_height="110dp"
-
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toRightOf="parent"
@@ -202,9 +202,9 @@
         android:id="@+id/imageEnemyFirstBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginTop="75dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
@@ -214,9 +214,9 @@
         android:id="@+id/imageEnemySecondBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginTop="8dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
@@ -226,9 +226,9 @@
         android:id="@+id/imageEnemyThirdBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginTop="8dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
@@ -238,9 +238,9 @@
         android:id="@+id/imageEnemyFourthBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginTop="8dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
@@ -250,9 +250,9 @@
         android:id="@+id/imageEnemyFifthBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginTop="8dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
@@ -262,9 +262,9 @@
         android:id="@+id/imageEnemySixthBan"
         android:layout_width="70dp"
         android:layout_height="70dp"
-
         android:layout_marginTop="8dp"
         android:layout_marginRight="10dp"
+        android:onClick="selectHero"
 
         android:src="@drawable/ramka"
         app:layout_constraintRight_toLeftOf="@+id/imageEnemyFirstPick"
