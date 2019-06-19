@@ -14,11 +14,11 @@ public class HeroInfoAdapter extends ArrayAdapter<HeroInfo> {
 
     private LayoutInflater inflater;
     private int layout;
-    private List<HeroInfo> heroes;
+    private List<HeroInfo> heroesInfo;
 
-    public HeroInfoAdapter(Context context, int resource, List<HeroInfo> heroes) {
-        super(context, resource, heroes);
-        this.heroes = heroes;
+    public HeroInfoAdapter(Context context, int resource, List<HeroInfo> heroesInfo) {
+        super(context, resource, heroesInfo);
+        this.heroesInfo = heroesInfo;
         this.layout = resource;
         this.inflater = LayoutInflater.from(context);
     }
@@ -33,11 +33,11 @@ public class HeroInfoAdapter extends ArrayAdapter<HeroInfo> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        HeroInfo hero = heroes.get(position);
+        HeroInfo heroInfo = heroesInfo.get(position);
 
-        viewHolder.heroImageView.setImageResource(hero.getHeroImage());
-        viewHolder.nameView.setText(hero.getName());
-        viewHolder.winRateDifView.setText(hero.getWinRateDif());
+        viewHolder.heroImageView.setImageResource(heroInfo.getHeroImage());
+        viewHolder.nameView.setText(heroInfo.getName());
+        viewHolder.winRateDifView.setText(heroInfo.getWinRateDif());
 
         return convertView;
     }

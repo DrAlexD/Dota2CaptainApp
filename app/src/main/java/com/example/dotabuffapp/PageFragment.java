@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 public class PageFragment extends Fragment {
 
-    private int pageNumber;
+    private int pageNumber = 1;
 
     public static PageFragment newInstance(int page) {
         PageFragment fragment = new PageFragment();

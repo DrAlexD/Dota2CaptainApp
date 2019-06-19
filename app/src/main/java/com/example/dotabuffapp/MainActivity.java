@@ -16,9 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new MyAdapter(this, getSupportFragmentManager()));
+        pager.setCurrentItem(1);
     }
 
-    public void selectHero(View view) {
+    public void selectHeroOrClear(View view) {
         Intent intent = new Intent(this, HeroSelectionActivity.class);
         startActivity(intent);
     }

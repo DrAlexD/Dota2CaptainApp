@@ -10,17 +10,17 @@ import java.util.List;
 
 public class HeroSelectionActivity extends AppCompatActivity {
 
-    private List<HeroInfo> heroes = new ArrayList();
+    private List<HeroInfo> heroesInfo = new ArrayList();
 
-    ListView heroesList;
+    ListView heroesInfoList;
 
     private void setInitialData() {
-        heroes.add(new HeroInfo("Abaddon", "Бразилиа", R.drawable.abaddon));
-        heroes.add(new HeroInfo("Alchemist", "Буэнос-Айрес", R.drawable.alchemist));
-        heroes.add(new HeroInfo("Anti-Mage", "Богота", R.drawable.anti_mage));
-        heroes.add(new HeroInfo("ArcWarden", "Монтевидео", R.drawable.arc_warden));
-        heroes.add(new HeroInfo("Ancient Apparition", "Сантьяго", R.drawable.ancient_apparition));
-        heroes.add(new HeroInfo("Axe", "Сантьяго", R.drawable.axe));
+        heroesInfo.add(new HeroInfo("Abaddon", "Бразилиа", R.drawable.abaddon));
+        heroesInfo.add(new HeroInfo("Alchemist", "Буэнос-Айрес", R.drawable.alchemist));
+        heroesInfo.add(new HeroInfo("Anti-Mage", "Богота", R.drawable.anti_mage));
+        heroesInfo.add(new HeroInfo("ArcWarden", "Монтевидео", R.drawable.arc_warden));
+        heroesInfo.add(new HeroInfo("Ancient Apparition", "Сантьяго", R.drawable.ancient_apparition));
+        heroesInfo.add(new HeroInfo("Axe", "Сантьяго", R.drawable.axe));
     }
 
     @Override
@@ -28,8 +28,8 @@ public class HeroSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hero_selection_activity);
         setInitialData();
-        heroesList = (ListView) findViewById(R.id.heroesList);
-        HeroInfoAdapter stateAdapter = new HeroInfoAdapter(this, R.layout.hero_info_item, heroes);
-        heroesList.setAdapter(stateAdapter);
+        heroesInfoList = (ListView) findViewById(R.id.heroesInfoList);
+        HeroInfoAdapter heroInfoAdapter = new HeroInfoAdapter(this, R.layout.hero_info_item, heroesInfo);
+        heroesInfoList.setAdapter(heroInfoAdapter);
     }
 }
