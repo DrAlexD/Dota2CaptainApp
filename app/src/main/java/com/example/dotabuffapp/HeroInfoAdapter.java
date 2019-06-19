@@ -4,49 +4,48 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class HeroInfoAdapter extends ArrayAdapter<HeroInfo> {
+import java.util.ArrayList;
+
+public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
-    private int layout;
-    private List<HeroInfo> heroesInfo;
+    private ArrayList<HeroInfo> heroesInfo;
 
-    public HeroInfoAdapter(Context context, int resource, List<HeroInfo> heroesInfo) {
-        super(context, resource, heroesInfo);
+    HeroInfoAdapter(Context context, ArrayList<HeroInfo> heroesInfo) {
         this.heroesInfo = heroesInfo;
-        this.layout = resource;
         this.inflater = LayoutInflater.from(context);
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
-        if (convertView == null) {
-            convertView = inflater.inflate(this.layout, parent, false);
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-
-        HeroInfo heroInfo = heroesInfo.get(position);
-
-        viewHolder.heroImageView.setImageResource(heroInfo.getHeroImage());
-        viewHolder.nameView.setText(heroInfo.getName());
-        viewHolder.winRateDifView.setText(heroInfo.getWinRateDif());
-
-        return convertView;
+    @Override
+    public HeroInfoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.hero_info_item, parent, false);
+        return new ViewHolder(view);
     }
 
-    private class ViewHolder {
+    @Override
+    public void onBindViewHolder(HeroInfoAdapter.ViewHolder holder, int position) {
+        HeroInfo heroInfo = heroesInfo.get(position);
+        holder.heroImageView.setImageResource(heroInfo.getHeroImage());
+        holder.nameView.setText(heroInfo.getName());
+        holder.winRateDifView.setText(heroInfo.getWinRateDif());
+    }
+
+    @Override
+    public int getItemCount() {
+        return heroesInfo.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView heroImageView;
         final TextView nameView, winRateDifView;
 
         ViewHolder(View view) {
+            super(view);
             heroImageView = (ImageView) view.findViewById(R.id.heroImage);
             nameView = (TextView) view.findViewById(R.id.name);
             winRateDifView = (TextView) view.findViewById(R.id.winRateDif);

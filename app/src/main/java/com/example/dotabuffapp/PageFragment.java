@@ -30,7 +30,12 @@ public class PageFragment extends Fragment {
     }
 
     static String getTitle(Context context, int position) {
-        return "Страница № " + String.valueOf(position + 1);
+        if (position == 0)
+            return "RecommendedPicks";
+        else if (position == 1)
+            return "PicksAndBans";
+        else
+            return "RecommendedBans";
     }
 
     @Override
