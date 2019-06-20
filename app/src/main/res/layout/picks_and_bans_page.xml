@@ -22,8 +22,8 @@
             android:layout_height="95dp"
 
             android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/abaddon" />
+            android:src="@drawable/abaddon"
+            android:tag="1" />
 
         <ImageView
             android:id="@+id/imageAllySecondPick"
@@ -32,8 +32,8 @@
             android:layout_marginTop="5dp"
 
             android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/ramka" />
+            android:src="@drawable/ramka"
+            android:tag="2" />
 
         <ImageView
             android:id="@+id/imageAllyThirdPick"
@@ -42,8 +42,8 @@
             android:layout_marginTop="5dp"
 
             android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/ramka" />
+            android:src="@drawable/ramka"
+            android:tag="3" />
 
         <ImageView
             android:id="@+id/imageAllyFourthPick"
@@ -52,8 +52,8 @@
             android:layout_marginTop="5dp"
 
             android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/ramka" />
+            android:src="@drawable/ramka"
+            android:tag="4" />
 
         <ImageView
             android:id="@+id/imageAllyFifthPick"
@@ -62,8 +62,8 @@
             android:layout_marginTop="5dp"
 
             android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/ramka" />
+            android:src="@drawable/ramka"
+            android:tag="5" />
     </LinearLayout>
 
     <LinearLayout

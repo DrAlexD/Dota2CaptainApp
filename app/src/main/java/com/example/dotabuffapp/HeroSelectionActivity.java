@@ -1,6 +1,8 @@
 package com.example.dotabuffapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +22,15 @@ public class HeroSelectionActivity extends AppCompatActivity {
         RecyclerView heroesInfoView = (RecyclerView) findViewById(R.id.heroesInfoList);
         HeroInfoAdapter heroInfoAdapter = new HeroInfoAdapter(this, heroesInfo);
         heroesInfoView.setAdapter(heroInfoAdapter);
+
+    }
+
+    public void getClickedHero(View view) {
+        System.out.println("fdsa " + view.getId());
+        Intent intent = new Intent();
+        intent.putExtra("ImageId", view.getId());
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     private void setInitialData() {

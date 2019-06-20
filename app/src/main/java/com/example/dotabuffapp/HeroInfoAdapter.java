@@ -40,7 +40,7 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
         return heroesInfo.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final ImageView heroImageView;
         final TextView nameView, winRateDifView;
 
@@ -49,6 +49,14 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
             heroImageView = (ImageView) view.findViewById(R.id.heroImage);
             nameView = (TextView) view.findViewById(R.id.name);
             winRateDifView = (TextView) view.findViewById(R.id.winRateDif);
+
+            view.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            if (getAdapterPosition() == RecyclerView.NO_POSITION) return;
+        }
+
     }
 }
