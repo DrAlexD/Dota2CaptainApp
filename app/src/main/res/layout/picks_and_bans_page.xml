@@ -22,7 +22,7 @@
             android:layout_height="95dp"
 
             android:onClick="selectHeroOrClear"
-            android:src="@drawable/abaddon"
+            android:src="@drawable/ramka"
             android:tag="1" />
 
         <ImageView
@@ -83,7 +83,7 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/alchemist" />
+            android:src="@drawable/ramka" />
 
         <ImageView
             android:id="@+id/imageAllySecondBan"
@@ -153,7 +153,7 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/abaddon" />
+            android:src="@drawable/ramka" />
 
         <ImageView
             android:id="@+id/imageEnemySecondPick"
@@ -213,7 +213,7 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/alchemist" />
+            android:src="@drawable/ramka" />
 
         <ImageView
             android:id="@+id/imageEnemySecondBan"

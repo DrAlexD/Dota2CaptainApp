@@ -23,9 +23,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void selectHeroOrClear(View view) {
+        //TODO пиздец с очисткой
         imageViewId = view.getId();
-        Intent intent = new Intent(this, HeroSelectionActivity.class);
-        startActivityForResult(intent, 1);
+        System.out.println("ТЕКУЩИЙ " + R.drawable.ramka);
+        System.out.println("РАМКА " + imageViewId);
+        if (imageViewId == R.drawable.ramka) {
+            Intent intent = new Intent(this, HeroSelectionActivity.class);
+            startActivityForResult(intent, 1);
+        } else {
+            imageViewId = R.drawable.ramka;
+        }
     }
 
     @Override
@@ -33,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 int imageRes = data.getIntExtra("ImageId", 0);
-                ImageView currentImage = (ImageView) findViewById(imageViewId);
+                ImageView currentImage = (ImageView) findViewById(imageViewId); // TODO зменить на добавление в первую свободную ячейку
                 currentImage.setImageResource(imageRes);
             }
         } else {
