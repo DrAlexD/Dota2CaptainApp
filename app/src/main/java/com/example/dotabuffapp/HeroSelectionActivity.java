@@ -7,11 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 public class HeroSelectionActivity extends AppCompatActivity {
-
-    private ArrayList<HeroInfo> heroesInfo = new ArrayList<>();
     private Intent intent;
 
     @Override
@@ -19,33 +15,53 @@ public class HeroSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hero_selection_activity);
 
-        setInitialData();
+        HeroPicker heroPicks;
+        HeroTier heroesTier;
+
+        Bundle arguments = getIntent().getExtras();
+        boolean isNullFlag;
+
         RecyclerView heroesInfoView = (RecyclerView) findViewById(R.id.heroesInfoList);
-        HeroInfoAdapter heroInfoAdapter = new HeroInfoAdapter(this, heroesInfo);
-        heroesInfoView.setAdapter(heroInfoAdapter);
-        heroesInfoView.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, heroesInfoView, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        intent = new Intent();
-                        intent.putExtra("ImageId", heroesInfo.get(position).getHeroImage());
-                        setResult(RESULT_OK, intent);
-                        finish();
-                    }
+        HeroInfoAdapter heroInfoAdapter;
+        if (arguments != null) {
+            int mode = (int) arguments.get("PickOrBan");
+            heroPicks = (HeroPicker) arguments.getSerializable("Heroes");
+            heroesTier = (HeroTier) arguments.getSerializable("HeroesTier");
 
-                    @Override
-                    public void onLongItemClick(View view, int position) {
-                    }
-                })
-        );
-    }
+            if (!heroPicks.isNull()) {
+                isNullFlag = false;
+                heroInfoAdapter = new HeroInfoAdapter(this, false, mode, heroPicks.getSortedHeroesWinDif(false), heroPicks.getSortedHeroesWinDif(true), heroesTier);
+            } else {
+                isNullFlag = true;
+                heroInfoAdapter = new HeroInfoAdapter(this, true, mode, null, null, heroesTier);
+            }
+            heroesInfoView.setAdapter(heroInfoAdapter);
+            heroesInfoView.addOnItemTouchListener(
+                    new RecyclerItemClickListener(this, heroesInfoView, new RecyclerItemClickListener.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            intent = new Intent();
+                            if (!isNullFlag && mode != 2) {
+                                if (mode == 0) {
+                                    intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(false).get(position).getHeroImage());
+                                    intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(false).get(position).getName());
+                                } else if (mode == 1) {
+                                    intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(true).get(position).getHeroImage());
+                                    intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(true).get(position).getName());
+                                }
+                            } else {
+                                intent.putExtra("ImageId", heroesTier.heroesTier.get(position).getValue().getKey());
+                                intent.putExtra("HeroName", heroesTier.heroesTier.get(position).getKey());
+                            }
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
 
-    private void setInitialData() {
-        heroesInfo.add(new HeroInfo("Abaddon", "Бразилиа", R.drawable.abaddon));
-        heroesInfo.add(new HeroInfo("Alchemist", "Буэнос-Айрес", R.drawable.alchemist));
-        heroesInfo.add(new HeroInfo("Anti-Mage", "Богота", R.drawable.anti_mage));
-        heroesInfo.add(new HeroInfo("ArcWarden", "Монтевидео", R.drawable.arc_warden));
-        heroesInfo.add(new HeroInfo("Ancient Apparition", "Сантьяго", R.drawable.ancient_apparition));
-        heroesInfo.add(new HeroInfo("Axe", "Сантьяго", R.drawable.axe));
+                        @Override
+                        public void onLongItemClick(View view, int position) {
+                        }
+                    })
+            );
+        }
     }
 }

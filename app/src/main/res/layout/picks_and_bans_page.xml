@@ -22,7 +22,7 @@
             android:layout_height="95dp"
 
             android:onClick="selectHeroOrClear"
-            android:src="@drawable/ramka"
+            android:src="@drawable/frame"
             android:tag="1" />
 
         <ImageView
@@ -32,7 +32,7 @@
             android:layout_marginTop="5dp"
 
             android:onClick="selectHeroOrClear"
-            android:src="@drawable/ramka"
+            android:src="@drawable/frame"
             android:tag="2" />
 
         <ImageView
@@ -42,7 +42,7 @@
             android:layout_marginTop="5dp"
 
             android:onClick="selectHeroOrClear"
-            android:src="@drawable/ramka"
+            android:src="@drawable/frame"
             android:tag="3" />
 
         <ImageView
@@ -52,7 +52,7 @@
             android:layout_marginTop="5dp"
 
             android:onClick="selectHeroOrClear"
-            android:src="@drawable/ramka"
+            android:src="@drawable/frame"
             android:tag="4" />
 
         <ImageView
@@ -62,7 +62,7 @@
             android:layout_marginTop="5dp"
 
             android:onClick="selectHeroOrClear"
-            android:src="@drawable/ramka"
+            android:src="@drawable/frame"
             android:tag="5" />
     </LinearLayout>
 
@@ -83,7 +83,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="6" />
 
         <ImageView
             android:id="@+id/imageAllySecondBan"
@@ -93,7 +94,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="7" />
 
         <ImageView
             android:id="@+id/imageAllyThirdBan"
@@ -103,7 +105,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="8" />
 
         <ImageView
             android:id="@+id/imageAllyFourthBan"
@@ -113,7 +116,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="9" />
 
         <ImageView
             android:id="@+id/imageAllyFifthBan"
@@ -123,7 +127,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="10" />
 
         <ImageView
             android:id="@+id/imageAllySixthBan"
@@ -133,7 +138,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="11" />
     </LinearLayout>
 
     <LinearLayout
@@ -153,7 +159,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="12" />
 
         <ImageView
             android:id="@+id/imageEnemySecondPick"
@@ -163,7 +170,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="13" />
 
         <ImageView
             android:id="@+id/imageEnemyThirdPick"
@@ -173,7 +181,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="14" />
 
         <ImageView
             android:id="@+id/imageEnemyFourthPick"
@@ -183,7 +192,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="15" />
 
         <ImageView
             android:id="@+id/imageEnemyFifthPick"
@@ -193,7 +203,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="16" />
     </LinearLayout>
 
     <LinearLayout
@@ -213,7 +224,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="17" />
 
         <ImageView
             android:id="@+id/imageEnemySecondBan"
@@ -223,7 +235,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="18" />
 
         <ImageView
             android:id="@+id/imageEnemyThirdBan"
@@ -233,7 +246,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="19" />
 
         <ImageView
             android:id="@+id/imageEnemyFourthBan"
@@ -243,7 +257,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="20" />
 
         <ImageView
             android:id="@+id/imageEnemyFifthBan"
@@ -253,7 +268,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="21" />
 
         <ImageView
             android:id="@+id/imageEnemySixthBan"
@@ -263,7 +279,8 @@
 
             android:onClick="selectHeroOrClear"
 
-            android:src="@drawable/ramka" />
+            android:src="@drawable/frame"
+            android:tag="22" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,22 +2,8 @@ package com.example.dotabuffapp;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.AbstractMap.SimpleEntry;
-import java.util.Map;
 
 public class PicksAndBans {
-    /*
-    public static void main(String[] args) {
-        PicksAndBans pab = new PicksAndBans();
-        HeroPicker heroPicks = new HeroPicker();
-
-        heroPicks.calc(false);
-        heroPicks.calc(true);
-
-        pab.writeInFile(heroPicks, false);
-        pab.writeInFile(heroPicks, true);
-    }
-*/
     private void writeInFile(HeroPicker heroPicks, boolean isAllyCounters) {
         try (FileWriter writer = new FileWriter("Z:/Programming/DotabuffApps/src/PicksAndBans.txt", isAllyCounters)) {
             if (isAllyCounters) {
@@ -32,9 +18,9 @@ public class PicksAndBans {
 
                 writer.append(pos.toString() + ")");
 
-                for (Map.Entry<String, SimpleEntry<Double, Double>> heroWinDif : heroPicks.getSortedHeroesWinDif(isAllyCounters).entrySet()) {
+                for (HeroInfo h : heroPicks.getSortedHeroesWinDif(isAllyCounters)) {
                     if (currentNumberOfHeroesForOnePos < 10) {
-                        String key = heroWinDif.getKey();
+                        String key = h.getName();
                         String newKey = key.replace(" ", "");
                         switch (key) {
                             case "Anti-Mage":
@@ -53,8 +39,8 @@ public class PicksAndBans {
 
                         try {
                             HeroPool.valueOf(newKey);
-                            double valueDif = Math.round(heroWinDif.getValue().getKey() * 100.0) / 100.0;
-                            double valueWinRate = Math.round(heroWinDif.getValue().getValue() * 100.0) / 100.0;
+                            double valueDif = Math.round(h.getWinRateDif() * 100.0) / 100.0;
+                            double valueWinRate = Math.round(h.getChangedWinRate() * 100.0) / 100.0;
 
                             if (Heroes.valueOf(newKey).pos.contains(pos.toString())) {
                                 if (valueDif >= -1.0) {

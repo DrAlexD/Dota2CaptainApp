@@ -1,15 +1,24 @@
 package com.example.dotabuffapp;
 
-public class HeroInfo {
+public class HeroInfo implements Comparable<HeroInfo> {
 
-    private String name;
-    private String winRateDif;
     private int heroImage;
+    private String name;
+    private double winRateDif;
+    private double changedWinRate;
 
-    public HeroInfo(String name, String winRateDif, int heroImage) {
-
+    public HeroInfo(int heroImage, String name, double winRateDif, double changedWinRate) {
+        this.heroImage = heroImage;
         this.name = name;
-        this.winRateDif = winRateDif;
+        this.winRateDif = (winRateDif * 100.0) / 100.0;
+        this.changedWinRate = (changedWinRate * 100.0) / 100.0;
+    }
+
+    public int getHeroImage() {
+        return this.heroImage;
+    }
+
+    public void setHeroImage(int heroImage) {
         this.heroImage = heroImage;
     }
 
@@ -21,19 +30,24 @@ public class HeroInfo {
         this.name = name;
     }
 
-    public String getWinRateDif() {
+    public double getWinRateDif() {
         return this.winRateDif;
     }
 
-    public void setWinRateDif(String winRateDif) {
+    public void setWinRateDif(double winRateDif) {
         this.winRateDif = winRateDif;
     }
 
-    public int getHeroImage() {
-        return this.heroImage;
+    public double getChangedWinRate() {
+        return this.changedWinRate;
     }
 
-    public void setHeroImage(int heroImage) {
-        this.heroImage = heroImage;
+    public void setChangedWinRate(double changedWinRate) {
+        this.changedWinRate = changedWinRate;
+    }
+
+    @Override
+    public int compareTo(HeroInfo heroInfo) {
+        return this.winRateDif > heroInfo.winRateDif ? this.winRateDif < heroInfo.winRateDif ? -1 : 0 : 1;
     }
 }
