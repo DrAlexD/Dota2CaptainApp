@@ -58,10 +58,11 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
                 holder.changedWinRateDifView.setText(((Double) heroInfo.getChangedWinRate()).toString());
             }
         } else {
-            holder.heroImageView.setImageResource(heroesTier.heroesTier.get(position).getValue().getKey());
-            holder.nameView.setText(heroesTier.heroesTier.get(position).getKey());
+            if (heroesTier.getHeroesTier().get(position).getValue().getKey() != null) //TODO убрать проверку на null после добавления всех аватарок
+                holder.heroImageView.setImageResource(heroesTier.getHeroesTier().get(position).getValue().getKey());
+            holder.nameView.setText(heroesTier.getHeroesTier().get(position).getKey());
             holder.winRateDifView.setText("");
-            holder.changedWinRateDifView.setText(heroesTier.heroesTier.get(position).getValue().getValue().getValue().toString());
+            holder.changedWinRateDifView.setText(heroesTier.getHeroesTier().get(position).getValue().getValue().getValue().toString());
         }
     }
 
@@ -74,7 +75,7 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
                 return allySortedHeroesWinDif.size();
             }
         }
-        return heroesTier.heroesTier.size();
+        return heroesTier.getHeroesTier().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

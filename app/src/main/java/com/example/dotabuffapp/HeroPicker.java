@@ -1,6 +1,8 @@
 package com.example.dotabuffapp;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,10 +24,12 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     private ArrayList<HeroInfo> enemySortedHeroesWinDif;
     private Double allySumWinDif; //насколько хороши союзные герои против вражеских
     private Double enemySumWinDif;
+    private transient Context context;
 
-    HeroPicker() {
+    HeroPicker(Context context) {
         allyHeroes = new ArrayList<>();
         enemyHeroes = new ArrayList<>();
+        this.context = context;
     }
 
     ArrayList<HeroInfo> getSortedHeroesWinDif(boolean isAllyCounters) {
@@ -55,6 +59,13 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     void setTier(HeroTier tiers) {
         this.tiers = tiers;
     }
+
+    @Override
+    protected void onPostExecute(Void unused) {
+        Toast.makeText(context, "Задача завершена", Toast.LENGTH_LONG)
+                .show();
+    }
+
 
     @Override
     protected Void doInBackground(Void... unused) {
@@ -118,7 +129,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                             //k++;
                         }
                         if (f) {
-                            for (SimpleEntry<String, SimpleEntry<Integer, SimpleEntry<String, Double>>> h : tiers.heroesTier) {
+                            for (SimpleEntry<String, SimpleEntry<Integer, SimpleEntry<String, Double>>> h : tiers.getHeroesTier()) {
                                 if (heroCounterName.equals(h.getKey())) {
                                     heroesWinDif.add(new HeroInfo(0, heroCounterName,
                                             heroCounterWinRateToDouble,

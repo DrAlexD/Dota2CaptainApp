@@ -50,10 +50,11 @@ public class HeroSelectionActivity extends AppCompatActivity {
                                     intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(true).get(position).getName());
                                 }
                             } else {
-                                intent.putExtra("ImageId", heroesTier.heroesTier.get(position).getValue().getKey());
-                                intent.putExtra("HeroName", heroesTier.heroesTier.get(position).getKey());
+                                intent.putExtra("ImageId", heroesTier.getHeroesTier().get(position).getValue().getKey());
+                                intent.putExtra("HeroName", heroesTier.getHeroesTier().get(position).getKey());
                             }
                             setResult(RESULT_OK, intent);
+                            //System.out.println("ПЕРЕДАЧА"+RESULT_OK);
                             finish();
                         }
 

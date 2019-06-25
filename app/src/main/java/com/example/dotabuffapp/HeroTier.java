@@ -1,6 +1,8 @@
 package com.example.dotabuffapp;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,7 +15,22 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 
 class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
-    ArrayList<SimpleEntry<String, SimpleEntry<Integer, SimpleEntry<String, Double>>>> heroesTier;
+    private ArrayList<SimpleEntry<String, SimpleEntry<Integer, SimpleEntry<String, Double>>>> heroesTier;
+    private transient Context context;
+
+    HeroTier(Context context) {
+        this.context = context;
+    }
+
+    ArrayList<SimpleEntry<String, SimpleEntry<Integer, SimpleEntry<String, Double>>>> getHeroesTier() {
+        return heroesTier;
+    }
+
+    @Override
+    protected void onPostExecute(Void unused) {
+        Toast.makeText(context, "Задача завершена", Toast.LENGTH_LONG)
+                .show();
+    }
 
     @Override
     protected Void doInBackground(Void... unused) {

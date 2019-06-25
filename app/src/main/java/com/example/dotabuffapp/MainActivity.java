@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends AppCompatActivity {
-    HeroPicker heroPicks = new HeroPicker();
-    HeroTier heroTier = new HeroTier();
+    HeroPicker heroPicks;
+    HeroTier heroTier;
     boolean[] isNotFrame = new boolean[22];
     int imageViewTagInt;
 
@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new MyAdapter(this, getSupportFragmentManager()));
         pager.setCurrentItem(1);
+
+        heroTier = new HeroTier(getApplicationContext());
+        heroPicks = new HeroPicker(getApplicationContext());
 
         heroTier.execute();
     }
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+                //System.out.println("КОД"+resultCode);
                 Bundle arguments = getIntent().getExtras();
                 int imageRes;
                 String heroName;
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 if (arguments != null) {
                     imageRes = (int) arguments.get("ImageId");
                     heroName = (String) arguments.get("HeroName");
-
+                    //System.out.println("ВНУТРИ"+imageRes);
                     if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
                         if (!isNotFrame[0]) {
                             currentImage = (ImageView) findViewById(R.id.imageAllyFirstPick);
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             currentImage = (ImageView) findViewById(R.id.imageAllyFifthPick);
                         }
+                        //System.out.println("ИЧЕЙКА"+currentImage);
                         heroPicks.addAllyHero(Heroes.valueOf(heroName));
                         heroPicks.execute();
                     } else if (imageViewTagInt >= 6 && imageViewTagInt <= 11) {
