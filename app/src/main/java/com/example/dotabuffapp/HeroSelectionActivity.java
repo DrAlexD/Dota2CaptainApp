@@ -28,9 +28,9 @@ public class HeroSelectionActivity extends AppCompatActivity {
             heroPicks = (HeroPicker) arguments.getSerializable("Heroes");
             heroesTier = (HeroTier) arguments.getSerializable("HeroesTier");
 
-            if (!heroPicks.isNull()) {
+            if (!heroPicks.isNullHeroes()) {
                 isNullFlag = false;
-                heroInfoAdapter = new HeroInfoAdapter(this, false, mode, heroPicks.getSortedHeroesWinDif(false), heroPicks.getSortedHeroesWinDif(true), heroesTier);
+                heroInfoAdapter = new HeroInfoAdapter(this, false, mode, heroPicks.getSortedHeroesWinDif(true), heroPicks.getSortedHeroesWinDif(false), heroesTier);
             } else {
                 isNullFlag = true;
                 heroInfoAdapter = new HeroInfoAdapter(this, true, mode, null, null, heroesTier);
@@ -54,7 +54,6 @@ public class HeroSelectionActivity extends AppCompatActivity {
                                 intent.putExtra("HeroName", heroesTier.getHeroesTier().get(position).getKey());
                             }
                             setResult(RESULT_OK, intent);
-                            //System.out.println("ПЕРЕДАЧА"+RESULT_OK);
                             finish();
                         }
 

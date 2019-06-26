@@ -36,8 +36,8 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         return (isAllyCounters) ? allySortedHeroesWinDif : enemySortedHeroesWinDif;
     }
 
-    boolean isNull() {
-        return allyHeroes.size() == 0 || enemyHeroes.size() == 0;
+    public boolean isNullHeroes() {
+        return allyHeroes.isEmpty() && enemyHeroes.isEmpty();
     }
 
     void addAllyHero(Heroes hero) {
@@ -46,6 +46,14 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
 
     void addEnemyHero(Heroes hero) {
         enemyHeroes.add(hero);
+    }
+
+    void addAllyHeroes(ArrayList<Heroes> heroes) {
+        allyHeroes.addAll(heroes);
+    }
+
+    void addEnemyHeroes(ArrayList<Heroes> heroes) {
+        enemyHeroes.addAll(heroes);
     }
 
     Double getAllySumWinDif() {
@@ -62,7 +70,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
 
     @Override
     protected void onPostExecute(Void unused) {
-        Toast.makeText(context, "Задача завершена", Toast.LENGTH_LONG)
+        Toast.makeText(context, "Пики обновлены", Toast.LENGTH_LONG)
                 .show();
     }
 

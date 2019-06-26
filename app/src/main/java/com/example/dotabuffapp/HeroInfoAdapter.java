@@ -58,8 +58,7 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
                 holder.changedWinRateDifView.setText(((Double) heroInfo.getChangedWinRate()).toString());
             }
         } else {
-            if (heroesTier.getHeroesTier().get(position).getValue().getKey() != null) //TODO убрать проверку на null после добавления всех аватарок
-                holder.heroImageView.setImageResource(heroesTier.getHeroesTier().get(position).getValue().getKey());
+            holder.heroImageView.setImageResource(heroesTier.getHeroesTier().get(position).getValue().getKey());
             holder.nameView.setText(heroesTier.getHeroesTier().get(position).getKey());
             holder.winRateDifView.setText("");
             holder.changedWinRateDifView.setText(heroesTier.getHeroesTier().get(position).getValue().getValue().getValue().toString());

@@ -28,7 +28,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
 
     @Override
     protected void onPostExecute(Void unused) {
-        Toast.makeText(context, "Задача завершена", Toast.LENGTH_LONG)
+        Toast.makeText(context, "Винрейты героев загружены", Toast.LENGTH_LONG)
                 .show();
     }
 
@@ -51,7 +51,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                 double heroWinRateToDouble =
                         Double.valueOf(heroWinRate.substring(0, heroWinRate.length() - 1));
 
-                Integer se = null;
+                Integer se = 0;
                 switch (heroName) {
                     case ("Abaddon"):
                         se = R.drawable.abaddon;

@@ -1,6 +1,8 @@
 package com.example.dotabuffapp;
 
-public class HeroInfo implements Comparable<HeroInfo> {
+import java.io.Serializable;
+
+public class HeroInfo implements Comparable<HeroInfo>, Serializable {
 
     private int heroImage;
     private String name;
