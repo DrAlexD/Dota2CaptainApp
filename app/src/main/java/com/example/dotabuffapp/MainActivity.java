@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public void selectHeroOrClear(View view) {
         String imageViewTagString = (String) view.getTag();
         imageViewTagInt = Integer.parseInt(imageViewTagString);
-        if (isNotFrame[imageViewTagInt]) {
+        if (isNotFrame[imageViewTagInt - 1]) {
             ImageView currentImage = (ImageView) view;
             currentImage.setImageResource(R.drawable.frame);
         } else {

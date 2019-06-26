@@ -19,7 +19,8 @@ public class HeroSelectionActivity extends AppCompatActivity {
         HeroTier heroesTier;
 
         Bundle arguments = getIntent().getExtras();
-        boolean isNullFlag;
+        boolean isNullAllyFlag;
+        boolean isNullEnemyFlag;
 
         RecyclerView heroesInfoView = (RecyclerView) findViewById(R.id.heroesInfoList);
         HeroInfoAdapter heroInfoAdapter;
@@ -28,27 +29,37 @@ public class HeroSelectionActivity extends AppCompatActivity {
             heroPicks = (HeroPicker) arguments.getSerializable("Heroes");
             heroesTier = (HeroTier) arguments.getSerializable("HeroesTier");
 
-            if (!heroPicks.isNullHeroes()) {
-                isNullFlag = false;
-                heroInfoAdapter = new HeroInfoAdapter(this, false, mode, heroPicks.getSortedHeroesWinDif(true), heroPicks.getSortedHeroesWinDif(false), heroesTier);
+            if (!heroPicks.isNullAllyHeroes() && !heroPicks.isNullEnemyHeroes()) {
+                isNullAllyFlag = false;
+                isNullEnemyFlag = false;
+                heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, heroPicks.getSortedHeroesWinDif(true), heroPicks.getSortedHeroesWinDif(false), heroesTier);
+            } else if (heroPicks.isNullAllyHeroes() && heroPicks.isNullEnemyHeroes()) {
+                isNullAllyFlag = true;
+                isNullEnemyFlag = true;
+                heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, null, null, heroesTier);
+            } else if (!heroPicks.isNullEnemyHeroes()) {
+                System.out.println("IN FIRST INIT" + heroPicks.getSortedHeroesWinDif(false).size());
+                isNullAllyFlag = true;
+                isNullEnemyFlag = false;
+                heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, null, heroPicks.getSortedHeroesWinDif(false), heroesTier);
             } else {
-                isNullFlag = true;
-                heroInfoAdapter = new HeroInfoAdapter(this, true, mode, null, null, heroesTier);
+                isNullAllyFlag = false;
+                isNullEnemyFlag = true;
+                heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, heroPicks.getSortedHeroesWinDif(true), null, heroesTier);
             }
+
             heroesInfoView.setAdapter(heroInfoAdapter);
             heroesInfoView.addOnItemTouchListener(
                     new RecyclerItemClickListener(this, heroesInfoView, new RecyclerItemClickListener.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
                             intent = new Intent();
-                            if (!isNullFlag && mode != 2) {
-                                if (mode == 0) {
-                                    intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(false).get(position).getHeroImage());
-                                    intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(false).get(position).getName());
-                                } else if (mode == 1) {
-                                    intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(true).get(position).getHeroImage());
-                                    intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(true).get(position).getName());
-                                }
+                            if (mode == 0 && !isNullEnemyFlag) {
+                                intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(false).get(position).getHeroImage());
+                                intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(false).get(position).getName());
+                            } else if (mode == 1 && !isNullAllyFlag) {
+                                intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(true).get(position).getHeroImage());
+                                intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(true).get(position).getName());
                             } else {
                                 intent.putExtra("ImageId", heroesTier.getHeroesTier().get(position).getValue().getKey());
                                 intent.putExtra("HeroName", heroesTier.getHeroesTier().get(position).getKey());

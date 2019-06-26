@@ -29,6 +29,8 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     HeroPicker(Context context) {
         allyHeroes = new ArrayList<>();
         enemyHeroes = new ArrayList<>();
+        allySortedHeroesWinDif = new ArrayList<>();
+        enemySortedHeroesWinDif = new ArrayList<>();
         this.context = context;
     }
 
@@ -36,8 +38,12 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         return (isAllyCounters) ? allySortedHeroesWinDif : enemySortedHeroesWinDif;
     }
 
-    public boolean isNullHeroes() {
-        return allyHeroes.isEmpty() && enemyHeroes.isEmpty();
+    public boolean isNullAllyHeroes() {
+        return allyHeroes.isEmpty();
+    }
+
+    public boolean isNullEnemyHeroes() {
+        return enemyHeroes.isEmpty();
     }
 
     void addAllyHero(Heroes hero) {
@@ -581,6 +587,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                 allySortedHeroesWinDif = heroesWinDif;
             else
                 enemySortedHeroesWinDif = heroesWinDif;
+            writeInFile(isAllyCounters);
             isAllyCounters = true;
         }
         return null;
@@ -589,7 +596,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     private void writeInFile(boolean isAllyCounters) {
         ArrayList<HeroInfo> sortedHeroesWinDif = (isAllyCounters) ? allySortedHeroesWinDif : enemySortedHeroesWinDif;
 
-        try (FileWriter writer = new FileWriter("C:/Users/alexa/AndroidStudioProjects/DotabuffApp/app/src/main/java/com/example/dotabuffapp/PicksAndBans.txt", true)) {
+        try (FileWriter writer = new FileWriter("C:/Users/alexa/AndroidStudioProjects/DotabuffApp/app/src/main/java/com/example/dotabuffapp/PicksAndBans.txt", false)) {
             for (HeroInfo heroWinDif : sortedHeroesWinDif) {
                 String key = heroWinDif.getName();
                 String newKey = key.replace(" ", "");
@@ -609,7 +616,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                 }
 
                 try {
-                    HeroPool.valueOf(newKey);
+                    //HeroPool.valueOf(newKey);
                     double valueDif = Math.round(heroWinDif.getWinRateDif() * 100.0) / 100.0;
                     double valueWinRate = Math.round(heroWinDif.getChangedWinRate() * 100.0) / 100.0;
 
