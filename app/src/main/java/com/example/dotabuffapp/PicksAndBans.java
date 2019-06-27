@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class PicksAndBans {
     private void writeInFile(HeroPicker heroPicks, boolean isAllyCounters) {
-        try (FileWriter writer = new FileWriter("Z:/Programming/DotabuffApps/src/PicksAndBans.txt", isAllyCounters)) {
+        try (FileWriter writer = new FileWriter("/storage/emulated/0/Documents/PicksAndBans.txt", isAllyCounters)) {
             if (isAllyCounters) {
                 writer.append("Bans (" + heroPicks.getEnemySumWinDif().toString() + ")\n");
             } else {

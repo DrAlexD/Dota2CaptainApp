@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     HeroPicker heroPicks;
     HeroTier heroTier;
     boolean[] isNotFrame = new boolean[22];
+    Heroes[] heroesPlaces = new Heroes[22];
     int imageViewTagInt;
     ArrayList<Heroes> allyHeroes;
     ArrayList<Heroes> enemyHeroes;
@@ -39,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         if (isNotFrame[imageViewTagInt - 1]) {
             ImageView currentImage = (ImageView) view;
             currentImage.setImageResource(R.drawable.frame);
+            isNotFrame[imageViewTagInt - 1] = false;
+            if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
+                allyHeroes.remove(heroesPlaces[imageViewTagInt]);
+            } else if (imageViewTagInt >= 12 && imageViewTagInt <= 16) {
+                enemyHeroes.remove(heroesPlaces[imageViewTagInt]);
+            }
         } else {
             Intent intent = new Intent(this, HeroSelectionActivity.class);
             heroPicks = new HeroPicker(getApplicationContext());
@@ -89,18 +96,23 @@ public class MainActivity extends AppCompatActivity {
                     if (!isNotFrame[0]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFirstPick);
                         isNotFrame[0] = true;
+                        heroesPlaces[0] = Heroes.valueOf(changedHeroName);
                     } else if (!isNotFrame[1]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllySecondPick);
                         isNotFrame[1] = true;
+                        heroesPlaces[1] = Heroes.valueOf(changedHeroName);
                     } else if (!isNotFrame[2]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyThirdPick);
                         isNotFrame[2] = true;
+                        heroesPlaces[2] = Heroes.valueOf(changedHeroName);
                     } else if (!isNotFrame[3]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFourthPick);
                         isNotFrame[3] = true;
+                        heroesPlaces[3] = Heroes.valueOf(changedHeroName);
                     } else {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFifthPick);
                         isNotFrame[4] = true;
+                        heroesPlaces[4] = Heroes.valueOf(changedHeroName);
                     }
 
                     allyHeroes.add(Heroes.valueOf(changedHeroName));
@@ -130,18 +142,23 @@ public class MainActivity extends AppCompatActivity {
                     if (!isNotFrame[11]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFirstPick);
                         isNotFrame[11] = true;
+                        heroesPlaces[11] = Heroes.valueOf(changedHeroName);
                     } else if (!isNotFrame[12]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemySecondPick);
                         isNotFrame[12] = true;
+                        heroesPlaces[12] = Heroes.valueOf(changedHeroName);
                     } else if (!isNotFrame[13]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyThirdPick);
                         isNotFrame[13] = true;
+                        heroesPlaces[13] = Heroes.valueOf(changedHeroName);
                     } else if (!isNotFrame[14]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFourthPick);
                         isNotFrame[14] = true;
+                        heroesPlaces[14] = Heroes.valueOf(changedHeroName);
                     } else {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFifthPick);
                         isNotFrame[15] = true;
+                        heroesPlaces[15] = Heroes.valueOf(changedHeroName);
                     }
                     enemyHeroes.add(Heroes.valueOf(changedHeroName));
                     heroPicks.addEnemyHero(Heroes.valueOf(changedHeroName));

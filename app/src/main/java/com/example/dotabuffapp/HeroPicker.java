@@ -224,10 +224,11 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     private void writeInFile(boolean isAllyCounters) {
         ArrayList<HeroInfo> sortedHeroesWinDif = (isAllyCounters) ? allySortedHeroesWinDif : enemySortedHeroesWinDif;
 
-        try (FileWriter writer = new FileWriter("C:/Users/alexa/AndroidStudioProjects/DotabuffApp/app/src/main/java/com/example/dotabuffapp/PicksAndBans.txt", false)) {
+        try (FileWriter writer = new FileWriter("/storage/emulated/0/Documents/PicksAndBans.txt", false)) {
             for (HeroInfo heroWinDif : sortedHeroesWinDif) {
                 String key = heroWinDif.getName();
                 String newKey = key.replace(" ", "");
+
                 switch (key) {
                     case "Anti-Mage":
                         newKey = "AntiMage";
