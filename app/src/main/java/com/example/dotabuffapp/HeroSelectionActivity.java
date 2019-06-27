@@ -55,14 +55,14 @@ public class HeroSelectionActivity extends AppCompatActivity {
                         public void onItemClick(View view, int position) {
                             intent = new Intent();
                             if (mode == 0 && !isNullEnemyFlag) {
-                                intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(false).get(position).getHeroImage());
+                                intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(false).get(position).getImage());
                                 intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(false).get(position).getName());
                             } else if (mode == 1 && !isNullAllyFlag) {
-                                intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(true).get(position).getHeroImage());
+                                intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(true).get(position).getImage());
                                 intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(true).get(position).getName());
                             } else {
-                                intent.putExtra("ImageId", heroesTier.getHeroesTier().get(position).getValue().getKey());
-                                intent.putExtra("HeroName", heroesTier.getHeroesTier().get(position).getKey());
+                                intent.putExtra("ImageId", heroesTier.getHeroesTier().get(position).getImage());
+                                intent.putExtra("HeroName", heroesTier.getHeroesTier().get(position).getName());
                             }
                             setResult(RESULT_OK, intent);
                             finish();

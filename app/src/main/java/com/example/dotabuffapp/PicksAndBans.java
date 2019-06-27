@@ -40,7 +40,7 @@ public class PicksAndBans {
                         try {
                             HeroPool.valueOf(newKey);
                             double valueDif = Math.round(h.getWinRateDif() * 100.0) / 100.0;
-                            double valueWinRate = Math.round(h.getChangedWinRate() * 100.0) / 100.0;
+                            double valueWinRate = Math.round(h.getNewWinRate() * 100.0) / 100.0;
 
                             if (Heroes.valueOf(newKey).pos.contains(pos.toString())) {
                                 if (valueDif >= -1.0) {

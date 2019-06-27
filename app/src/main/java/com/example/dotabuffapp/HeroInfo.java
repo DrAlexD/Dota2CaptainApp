@@ -3,49 +3,58 @@ package com.example.dotabuffapp;
 import java.io.Serializable;
 
 public class HeroInfo implements Comparable<HeroInfo>, Serializable {
-
-    private int heroImage;
+    private int image;
     private String name;
     private double winRateDif;
-    private double changedWinRate;
+    private String tier;
+    private double newWinRate;
 
-    public HeroInfo(int heroImage, String name, double winRateDif, double changedWinRate) {
-        this.heroImage = heroImage;
+    HeroInfo(int image, String name, double winRateDif, String tier, double newWinRate) {
+        this.image = image;
         this.name = name;
         this.winRateDif = (winRateDif * 100.0) / 100.0;
-        this.changedWinRate = (changedWinRate * 100.0) / 100.0;
+        this.tier = tier;
+        this.newWinRate = (newWinRate * 100.0) / 100.0;
     }
 
-    public int getHeroImage() {
-        return this.heroImage;
+    int getImage() {
+        return this.image;
     }
 
-    public void setHeroImage(int heroImage) {
-        this.heroImage = heroImage;
+    void setImage(int image) {
+        this.image = image;
     }
 
-    public String getName() {
+    String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public double getWinRateDif() {
+    double getWinRateDif() {
         return this.winRateDif;
     }
 
-    public void setWinRateDif(double winRateDif) {
+    void setWinRateDif(double winRateDif) {
         this.winRateDif = winRateDif;
     }
 
-    public double getChangedWinRate() {
-        return this.changedWinRate;
+    String getTier() {
+        return this.tier;
     }
 
-    public void setChangedWinRate(double changedWinRate) {
-        this.changedWinRate = changedWinRate;
+    void setTier(String tier) {
+        this.tier = tier;
+    }
+
+    double getNewWinRate() {
+        return this.newWinRate;
+    }
+
+    void setNewWinRate(double newWinRate) {
+        this.newWinRate = newWinRate;
     }
 
     @Override

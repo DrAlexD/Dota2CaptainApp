@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHolder> {
-
     private LayoutInflater inflater;
     private boolean isNullAllyFlag;
     private boolean isNullEnemyFlag;
     private int mode;
-    private ArrayList<HeroInfo> allySortedHeroesWinDif = new ArrayList<HeroInfo>(); //отсортированные контрпики союзных героев
-    private ArrayList<HeroInfo> enemySortedHeroesWinDif = new ArrayList<HeroInfo>();
+    private ArrayList<HeroInfo> allySortedHeroesWinDif = new ArrayList<>(); //отсортированные контрпики союзных героев
+    private ArrayList<HeroInfo> enemySortedHeroesWinDif = new ArrayList<>();
     private HeroTier heroesTier;
 
     HeroInfoAdapter(Context context, boolean isNullAllyFlag, boolean isNullEnemyFlag, int mode, ArrayList<HeroInfo> allySortedHeroesWinDif, ArrayList<HeroInfo> enemySortedHeroesWinDif, HeroTier heroesTier) {
@@ -50,21 +49,22 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
         HeroInfo heroInfo;
         if (mode == 0 && !isNullEnemyFlag) {
             heroInfo = enemySortedHeroesWinDif.get(position);
-            holder.heroImageView.setImageResource(heroInfo.getHeroImage());
+            holder.heroImageView.setImageResource(heroInfo.getImage());
             holder.nameView.setText(heroInfo.getName());
             holder.winRateDifView.setText(((Double) heroInfo.getWinRateDif()).toString() + "%");
-            holder.changedWinRateDifView.setText(((Double) heroInfo.getChangedWinRate()).toString() + "%");
+            holder.changedWinRateDifView.setText(((Double) heroInfo.getNewWinRate()).toString() + "%");
         } else if (mode == 1 && !isNullAllyFlag) {
             heroInfo = allySortedHeroesWinDif.get(position);
-            holder.heroImageView.setImageResource(heroInfo.getHeroImage());
+            holder.heroImageView.setImageResource(heroInfo.getImage());
             holder.nameView.setText(heroInfo.getName());
             holder.winRateDifView.setText(((Double) heroInfo.getWinRateDif()).toString() + "%");
-            holder.changedWinRateDifView.setText(((Double) heroInfo.getChangedWinRate()).toString() + "%");
+            holder.changedWinRateDifView.setText(((Double) heroInfo.getNewWinRate()).toString() + "%");
         } else {
-            holder.heroImageView.setImageResource(heroesTier.getHeroesTier().get(position).getValue().getKey());
-            holder.nameView.setText(heroesTier.getHeroesTier().get(position).getKey());
+            heroInfo = heroesTier.getHeroesTier().get(position);
+            holder.heroImageView.setImageResource(heroInfo.getImage());
+            holder.nameView.setText(heroInfo.getName());
             holder.winRateDifView.setText("      ");
-            holder.changedWinRateDifView.setText(heroesTier.getHeroesTier().get(position).getValue().getValue().getValue().toString() + "%");
+            holder.changedWinRateDifView.setText(((Double) heroInfo.getNewWinRate()).toString() + "%");
         }
     }
 
@@ -81,7 +81,7 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
         return heroesTier.getHeroesTier().size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView heroImageView;
         final TextView nameView, winRateDifView, changedWinRateDifView;
 
