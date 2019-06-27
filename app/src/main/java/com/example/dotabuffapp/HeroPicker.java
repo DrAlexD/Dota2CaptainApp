@@ -19,6 +19,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     private HeroTier tiers;
     private ArrayList<Heroes> allyHeroes; //союзные герои
     private ArrayList<Heroes> enemyHeroes;
+    private ArrayList<Heroes> banHeroes;
     private ArrayList<HeroInfo> allySortedHeroesWinDif; //отсортированные контрпики союзных героев
     private ArrayList<HeroInfo> enemySortedHeroesWinDif;
     private Double allySumWinDif; //насколько хороши союзные герои против вражеских
@@ -28,6 +29,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     HeroPicker(Context context) {
         allyHeroes = new ArrayList<>();
         enemyHeroes = new ArrayList<>();
+        banHeroes = new ArrayList<>();
         allySortedHeroesWinDif = new ArrayList<>();
         enemySortedHeroesWinDif = new ArrayList<>();
         allySumWinDif = 0.0;
@@ -37,6 +39,11 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
 
     ArrayList<HeroInfo> getSortedHeroesWinDif(boolean isAllyCounters) {
         return (isAllyCounters) ? allySortedHeroesWinDif : enemySortedHeroesWinDif;
+    }
+
+    void setSortedHeroesWinDif(ArrayList<HeroInfo> allySortedHeroesWinDif, ArrayList<HeroInfo> enemySortedHeroesWinDif) {
+        this.allySortedHeroesWinDif = allySortedHeroesWinDif;
+        this.enemySortedHeroesWinDif = enemySortedHeroesWinDif;
     }
 
     boolean isNullAllyHeroes() {
@@ -55,12 +62,20 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         enemyHeroes.add(hero);
     }
 
+    void addBanHero(Heroes hero) {
+        banHeroes.add(hero);
+    }
+
     void addAllyHeroes(ArrayList<Heroes> heroes) {
         allyHeroes.addAll(heroes);
     }
 
     void addEnemyHeroes(ArrayList<Heroes> heroes) {
         enemyHeroes.addAll(heroes);
+    }
+
+    void addBanHeroes(ArrayList<Heroes> heroes) {
+        banHeroes.addAll(heroes);
     }
 
     Double getAllySumWinDif() {
@@ -218,7 +233,51 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
             }
             isAllyCounters = true;
         }
+        deleteBanHeroes();
         return null;
+    }
+
+    void deleteBanHeroes() {
+        for (Heroes hero : banHeroes) {
+            String key = hero.toString();
+            String newKey = key.replaceAll("([a-z])([A-Z])", "$1 $2");
+            switch (key) {
+                case "AntiMage":
+                    newKey = "Anti-Mage";
+                    break;
+                case "KeeperOfTheLight":
+                    newKey = "Keeper of the Light";
+                    break;
+                case "QueenOfPain":
+                    newKey = "Queen of Pain";
+                    break;
+                case "NaturesProphet":
+                    newKey = "Nature's Prophet";
+                    break;
+            }
+
+            if (!isNullAllyHeroes()) {
+                int k = 0;
+                for (HeroInfo h : allySortedHeroesWinDif) {
+                    if (h.getName().equals(newKey)) {
+                        allySortedHeroesWinDif.remove(k);
+                        break;
+                    }
+                    k++;
+                }
+            }
+
+            if (!isNullEnemyHeroes()) {
+                int j = 0;
+                for (HeroInfo h : enemySortedHeroesWinDif) {
+                    if (h.getName().equals(newKey)) {
+                        enemySortedHeroesWinDif.remove(j);
+                        break;
+                    }
+                    j++;
+                }
+            }
+        }
     }
 
     private void writeInFile(boolean isAllyCounters) {

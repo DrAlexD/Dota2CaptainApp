@@ -38,7 +38,6 @@ public class HeroSelectionActivity extends AppCompatActivity {
                 isNullEnemyFlag = true;
                 heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, null, null, heroesTier);
             } else if (!heroPicks.isNullEnemyHeroes()) {
-                System.out.println("IN FIRST INIT" + heroPicks.getSortedHeroesWinDif(false).size());
                 isNullAllyFlag = true;
                 isNullEnemyFlag = false;
                 heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, null, heroPicks.getSortedHeroesWinDif(false), heroesTier);

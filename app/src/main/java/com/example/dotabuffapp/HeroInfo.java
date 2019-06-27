@@ -12,9 +12,9 @@ public class HeroInfo implements Comparable<HeroInfo>, Serializable {
     HeroInfo(int image, String name, double winRateDif, String tier, double newWinRate) {
         this.image = image;
         this.name = name;
-        this.winRateDif = (winRateDif * 100.0) / 100.0;
+        this.winRateDif = Math.round(winRateDif * 100.0) / 100.0;
         this.tier = tier;
-        this.newWinRate = (newWinRate * 100.0) / 100.0;
+        this.newWinRate = Math.round(newWinRate * 100.0) / 100.0;
     }
 
     int getImage() {
@@ -38,7 +38,7 @@ public class HeroInfo implements Comparable<HeroInfo>, Serializable {
     }
 
     void setWinRateDif(double winRateDif) {
-        this.winRateDif = winRateDif;
+        this.winRateDif = Math.round(winRateDif * 100.0) / 100.0;
     }
 
     String getTier() {
@@ -54,7 +54,7 @@ public class HeroInfo implements Comparable<HeroInfo>, Serializable {
     }
 
     void setNewWinRate(double newWinRate) {
-        this.newWinRate = newWinRate;
+        this.newWinRate = Math.round(newWinRate * 100.0) / 100.0;
     }
 
     @Override

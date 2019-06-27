@@ -12,12 +12,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     HeroPicker heroPicks;
-    HeroTier heroTier;
+    HeroTier heroTier; //TODO добавить изменение в тире
     boolean[] isNotFrame = new boolean[22];
     Heroes[] heroesPlaces = new Heroes[22];
     int imageViewTagInt;
+    boolean isFirstIn;
     ArrayList<Heroes> allyHeroes;
     ArrayList<Heroes> enemyHeroes;
+    ArrayList<Heroes> banHeroes;
+    ArrayList<HeroInfo> allySortedHeroesWinDif; //отсортированные контрпики союзных героев
+    ArrayList<HeroInfo> enemySortedHeroesWinDif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         heroTier = new HeroTier(getApplicationContext());
         allyHeroes = new ArrayList<>();
         enemyHeroes = new ArrayList<>();
+        banHeroes = new ArrayList<>();
         heroTier.execute();
     }
 
@@ -48,10 +53,17 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Intent intent = new Intent(this, HeroSelectionActivity.class);
+            if (isFirstIn) {
+                allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
+                enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
+            } else
+                isFirstIn = true;
             heroPicks = new HeroPicker(getApplicationContext());
             heroPicks.setTier(heroTier);
             heroPicks.addAllyHeroes(allyHeroes);
             heroPicks.addEnemyHeroes(enemyHeroes);
+            heroPicks.addBanHeroes(banHeroes);
+            heroPicks.setSortedHeroesWinDif(allySortedHeroesWinDif, enemySortedHeroesWinDif);
 
             intent.putExtra("HeroesTier", heroTier);
             intent.putExtra("Heroes", heroPicks);
@@ -138,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
                         currentImage = (ImageView) findViewById(R.id.imageAllySixthBan);
                         isNotFrame[10] = true;
                     }
+                    banHeroes.add(Heroes.valueOf(changedHeroName));
+                    heroPicks.addBanHero(Heroes.valueOf(changedHeroName));
+                    heroPicks.deleteBanHeroes();
                 } else if (imageViewTagInt >= 12 && imageViewTagInt <= 16) {
                     if (!isNotFrame[11]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFirstPick);
@@ -183,6 +198,9 @@ public class MainActivity extends AppCompatActivity {
                         currentImage = (ImageView) findViewById(R.id.imageEnemySixthBan);
                         isNotFrame[21] = true;
                     }
+                    banHeroes.add(Heroes.valueOf(changedHeroName));
+                    heroPicks.addBanHero(Heroes.valueOf(changedHeroName));
+                    heroPicks.deleteBanHeroes();
                 }
                 currentImage.setImageResource(imageRes);
             }
