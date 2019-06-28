@@ -12,18 +12,82 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
     private ArrayList<HeroInfo> heroesTier;
+    private ArrayList<HeroInfo> deletedHeroesTier;
     private transient Context context;
 
     HeroTier(Context context) {
         this.context = context;
         this.heroesTier = new ArrayList<>();
+        this.deletedHeroesTier = new ArrayList<>();
     }
 
     ArrayList<HeroInfo> getHeroesTier() {
         return heroesTier;
+    }
+
+    void deleteHero(Heroes hero) {
+        if (hero != null) {
+            int k = 0;
+            for (HeroInfo h : heroesTier) {
+                String key = h.getName();
+                String newKey = key.replaceAll(" ", "");
+                switch (key) {
+                    case "Anti-Mage":
+                        newKey = "AntiMage";
+                        break;
+                    case "Keeper of the Light":
+                        newKey = "KeeperOfTheLight";
+                        break;
+                    case "Queen of Pain":
+                        newKey = "QueenOfPain";
+                        break;
+                    case "Nature's Prophet":
+                        newKey = "NaturesProphet";
+                        break;
+                }
+
+                if (hero.toString().equals(newKey)) {
+                    deletedHeroesTier.add(heroesTier.remove(k));
+                    break;
+                }
+                k++;
+            }
+        }
+    }
+
+    void addHero(Heroes hero) {
+        int k = 0;
+        for (HeroInfo h : deletedHeroesTier) {
+            String key = h.getName();
+            String newKey = key.replaceAll(" ", "");
+            switch (key) {
+                case "Anti-Mage":
+                    newKey = "AntiMage";
+                    break;
+                case "Keeper of the Light":
+                    newKey = "KeeperOfTheLight";
+                    break;
+                case "Queen of Pain":
+                    newKey = "QueenOfPain";
+                    break;
+                case "Nature's Prophet":
+                    newKey = "NaturesProphet";
+                    break;
+            }
+
+            if (hero.toString().equals(newKey)) {
+                heroesTier.add(deletedHeroesTier.remove(k));
+                Collections.sort(heroesTier, (HeroInfo heroInfo1, HeroInfo heroInfo2) ->
+                        heroInfo2.getNewWinRate() > heroInfo1.getNewWinRate() ?
+                                heroInfo2.getNewWinRate() < heroInfo1.getNewWinRate() ? -1 : 0 : 1);
+                break;
+            }
+            k++;
+        }
     }
 
     @Override
@@ -405,23 +469,25 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                     */
                 }
                 if (heroWinRateToDouble > 55.0)
-                    this.heroesTier.add(new HeroInfo(se, heroName, 0.0, "S", heroWinRateToDouble));
+                    heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "S", heroWinRateToDouble));
                 else if (heroWinRateToDouble > 53.0)
-                    this.heroesTier.add(new HeroInfo(se, heroName, 0.0, "A", heroWinRateToDouble));
+                    heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "A", heroWinRateToDouble));
                 else if (heroWinRateToDouble > 51.0)
-                    this.heroesTier.add(new HeroInfo(se, heroName, 0.0, "B", heroWinRateToDouble));
+                    heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "B", heroWinRateToDouble));
                 else if (heroWinRateToDouble > 49.0)
-                    this.heroesTier.add(new HeroInfo(se, heroName, 0.0, "C", heroWinRateToDouble));
+                    heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "C", heroWinRateToDouble));
                 else if (heroWinRateToDouble > 47.0)
-                    this.heroesTier.add(new HeroInfo(se, heroName, 0.0, "D", heroWinRateToDouble));
+                    heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "D", heroWinRateToDouble));
                 else if (heroWinRateToDouble > 45.0)
-                    this.heroesTier.add(new HeroInfo(se, heroName, 0.0, "E", heroWinRateToDouble));
+                    heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "E", heroWinRateToDouble));
                 else
-                    this.heroesTier.add(new HeroInfo(se, heroName, 0.0, "F", heroWinRateToDouble));
+                    heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "F", heroWinRateToDouble));
             }
-        } catch (IOException e) {
+        } catch (
+                IOException e) {
             System.out.println(e.getMessage());
         }
+        Collections.sort(heroesTier); //TODO не сортирует?
         return null;
     }
 }

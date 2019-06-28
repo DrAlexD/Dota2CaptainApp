@@ -7,9 +7,9 @@ public class PicksAndBans {
     private void writeInFile(HeroPicker heroPicks, boolean isAllyCounters) {
         try (FileWriter writer = new FileWriter("/storage/emulated/0/Documents/PicksAndBans.txt", isAllyCounters)) {
             if (isAllyCounters) {
-                writer.append("Bans (" + heroPicks.getEnemySumWinDif().toString() + ")\n");
+                writer.append("Bans \n");
             } else {
-                writer.append("Picks (" + heroPicks.getAllySumWinDif().toString() + ")\n");
+                writer.append("Picks (" + heroPicks.getSumWinDif().toString() + ")\n");
             }
 
             for (Integer pos = 1; pos <= 5; pos++) {

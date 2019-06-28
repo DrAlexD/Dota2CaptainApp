@@ -9,7 +9,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,8 +21,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     private ArrayList<Heroes> banHeroes;
     private ArrayList<HeroInfo> allySortedHeroesWinDif; //отсортированные контрпики союзных героев
     private ArrayList<HeroInfo> enemySortedHeroesWinDif;
-    private Double allySumWinDif; //насколько хороши союзные герои против вражеских
-    private Double enemySumWinDif;
+    private Double sumWinDif; //насколько хороши союзные герои против вражеских
     private transient Context context;
 
     HeroPicker(Context context) {
@@ -32,8 +30,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         banHeroes = new ArrayList<>();
         allySortedHeroesWinDif = new ArrayList<>();
         enemySortedHeroesWinDif = new ArrayList<>();
-        allySumWinDif = 0.0;
-        enemySumWinDif = 0.0;
+        sumWinDif = 0.0;
         this.context = context;
     }
 
@@ -78,12 +75,8 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         banHeroes.addAll(heroes);
     }
 
-    Double getAllySumWinDif() {
-        return Math.round(allySumWinDif * 100.0) / 100.0;
-    }
-
-    Double getEnemySumWinDif() {
-        return Math.round(enemySumWinDif * 100.0) / 100.0;
+    Double getSumWinDif() {
+        return Math.round(sumWinDif * 100.0) / 100.0;
     }
 
     void setTier(HeroTier tiers) {
@@ -111,7 +104,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                     heroReadNames.add(hero.title);
                 }
                 for (String heroName : heroReadNames) {
-                    heroLinks.add("https://ru.dotabuff.com/heroes/" + heroName + "/counters?date=patch_7.22"); //week, month, patch_7.22
+                    heroLinks.add("https://ru.dotabuff.com/heroes/" + heroName + "/counters?date=month"); //week, month, patch_7.22
                 }
 
                 numberOfHeroes = heroReadNames.size();
@@ -184,7 +177,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                                 double oldWinRateDif = h.getWinRateDif();
                                 heroesWinDif.remove(k);
                                 if (!isAllyCounters)
-                                    allySumWinDif += oldWinRateDif;
+                                    sumWinDif += oldWinRateDif;
                                 break;
                             }
                             k++;
@@ -214,10 +207,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                         int k = 0;
                         for (HeroInfo h : heroesWinDif) {
                             if (h.getName().equals(newKey)) {
-                                double oldWinRateDif = h.getWinRateDif();
                                 heroesWinDif.remove(k);
-                                if (isAllyCounters)
-                                    enemySumWinDif += oldWinRateDif;
                                 break;
                             }
                             k++;
@@ -279,7 +269,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
             }
         }
     }
-
+/*
     private void writeInFile(boolean isAllyCounters) {
         ArrayList<HeroInfo> sortedHeroesWinDif = (isAllyCounters) ? allySortedHeroesWinDif : enemySortedHeroesWinDif;
 
@@ -323,4 +313,5 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
             System.out.println(e.getMessage());
         }
     }
+    */
 }
