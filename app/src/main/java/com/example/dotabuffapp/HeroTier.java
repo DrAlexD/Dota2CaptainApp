@@ -12,7 +12,6 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
     private ArrayList<HeroInfo> heroesTier;
@@ -27,6 +26,42 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
 
     ArrayList<HeroInfo> getHeroesTier() {
         return heroesTier;
+    }
+
+    static void quickSort(ArrayList<HeroInfo> array, int low, int high) {
+        if (array.size() == 0)
+            return;
+
+        if (low >= high)
+            return;
+
+        int middle = (low + high) / 2;
+        double opora = array.get(middle).getWinRateDif();
+
+        int i = low, j = high;
+        while (i <= j) {
+            while (array.get(i).getWinRateDif() > opora) {
+                i++;
+            }
+
+            while (array.get(j).getWinRateDif() < opora) {
+                j--;
+            }
+
+            if (i <= j) {//меняем местами
+                HeroInfo temp = array.get(i);
+                array.set(i, array.get(j));
+                array.set(j, temp);
+                i++;
+                j--;
+            }
+        }
+
+        if (low < j)
+            quickSort(array, low, j);
+
+        if (high > i)
+            quickSort(array, i, high);
     }
 
     void deleteHero(Heroes hero) {
@@ -81,9 +116,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
 
             if (hero.toString().equals(newKey)) {
                 heroesTier.add(deletedHeroesTier.remove(k));
-                Collections.sort(heroesTier, (HeroInfo heroInfo1, HeroInfo heroInfo2) ->
-                        heroInfo2.getNewWinRate() > heroInfo1.getNewWinRate() ?
-                                heroInfo2.getNewWinRate() < heroInfo1.getNewWinRate() ? -1 : 0 : 1);
+                quickSort(heroesTier, 0, heroesTier.size() - 1);
                 break;
             }
             k++;
@@ -483,11 +516,11 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                 else
                     heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "F", heroWinRateToDouble));
             }
+            quickSort(heroesTier, 0, heroesTier.size() - 1);
         } catch (
                 IOException e) {
             System.out.println(e.getMessage());
         }
-        Collections.sort(heroesTier); //TODO не сортирует?
         return null;
     }
 }

@@ -12,7 +12,6 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializable {
     private HeroTier tiers;
@@ -39,8 +38,8 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
     }
 
     void setSortedHeroesWinDif(ArrayList<HeroInfo> allySortedHeroesWinDif, ArrayList<HeroInfo> enemySortedHeroesWinDif) {
-        this.allySortedHeroesWinDif = allySortedHeroesWinDif;
-        this.enemySortedHeroesWinDif = enemySortedHeroesWinDif;
+        this.allySortedHeroesWinDif.addAll(allySortedHeroesWinDif);
+        this.enemySortedHeroesWinDif.addAll(enemySortedHeroesWinDif);
     }
 
     boolean isNullAllyHeroes() {
@@ -63,15 +62,15 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         banHeroes.add(hero);
     }
 
-    void addAllyHeroes(ArrayList<Heroes> heroes) {
+    void setAllyHeroes(ArrayList<Heroes> heroes) {
         allyHeroes.addAll(heroes);
     }
 
-    void addEnemyHeroes(ArrayList<Heroes> heroes) {
+    void setEnemyHeroes(ArrayList<Heroes> heroes) {
         enemyHeroes.addAll(heroes);
     }
 
-    void addBanHeroes(ArrayList<Heroes> heroes) {
+    void setBanHeroes(ArrayList<Heroes> heroes) {
         banHeroes.addAll(heroes);
     }
 
@@ -151,7 +150,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                     System.out.println(e.getMessage());
                 }
 
-                Collections.sort(heroesWinDif);
+                HeroTier.quickSort(heroesWinDif, 0, heroesWinDif.size() - 1);
 
                 for (Heroes hero : allyHeroes) {
                     String key = hero.toString();

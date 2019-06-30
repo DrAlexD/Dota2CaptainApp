@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     boolean[] isNotFrame = new boolean[22];
     Heroes[] heroesPlaces = new Heroes[22];
     int imageViewTagInt;
-    boolean isFirstIn;
+    boolean isNotFirstIn;
     ArrayList<Heroes> allyHeroes; //союзные герои
     ArrayList<Heroes> enemyHeroes;
     ArrayList<Heroes> banHeroes;
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         allyHeroes = new ArrayList<>();
         enemyHeroes = new ArrayList<>();
         banHeroes = new ArrayList<>();
+        allySortedHeroesWinDif = new ArrayList<>();
+        enemySortedHeroesWinDif = new ArrayList<>();
         heroTier.execute();
     }
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         String imageViewTagString = (String) view.getTag();
         imageViewTagInt = Integer.parseInt(imageViewTagString);
         if (isNotFrame[imageViewTagInt - 1]) {
+            //TODO починить удаление героев
             ImageView currentImage = (ImageView) view;
             currentImage.setImageResource(R.drawable.frame);
             isNotFrame[imageViewTagInt - 1] = false;
@@ -61,17 +64,19 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Intent intent = new Intent(this, HeroSelectionActivity.class);
-            if (isFirstIn) {
+            //TODO добавить проверку отсуствия пиков
+            if (isNotFirstIn) {
                 allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
                 enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
                 heroTier.deleteHero(lastAddedHero);
             } else
-                isFirstIn = true;
+                isNotFirstIn = true;
+
             heroPicks = new HeroPicker(getApplicationContext());
             heroPicks.setTier(heroTier);
-            heroPicks.addAllyHeroes(allyHeroes);
-            heroPicks.addEnemyHeroes(enemyHeroes);
-            heroPicks.addBanHeroes(banHeroes);
+            heroPicks.setAllyHeroes(allyHeroes);
+            heroPicks.setEnemyHeroes(enemyHeroes);
+            heroPicks.setBanHeroes(banHeroes);
             heroPicks.setSortedHeroesWinDif(allySortedHeroesWinDif, enemySortedHeroesWinDif);
 
             intent.putExtra("HeroesTier", heroTier);
@@ -232,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 currentImage.setImageResource(imageRes);
             }
-
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }

@@ -2,7 +2,7 @@ package com.example.dotabuffapp;
 
 import java.io.Serializable;
 
-public class HeroInfo implements Comparable<HeroInfo>, Serializable {
+public class HeroInfo implements Serializable {
     private int image;
     private String name;
     private double winRateDif;
@@ -58,7 +58,7 @@ public class HeroInfo implements Comparable<HeroInfo>, Serializable {
     }
 
     @Override
-    public int compareTo(HeroInfo heroInfo) {
-        return this.winRateDif > heroInfo.winRateDif ? this.winRateDif < heroInfo.winRateDif ? -1 : 0 : 1;
+    public String toString() {
+        return this.name;
     }
 }
