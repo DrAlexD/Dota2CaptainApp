@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 public class PageFragment extends Fragment {
 
-    private int pageNumber = 1;
+    private int pageNumber;
 
     public static PageFragment newInstance(int page) {
         PageFragment fragment = new PageFragment();
@@ -41,10 +41,14 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (pageNumber == 1) {
-            View result = inflater.inflate(R.layout.picks_and_bans_page, container, false);
-            return result;
+        View result;
+        if (pageNumber == 0) {
+            result = inflater.inflate(R.layout.recommended_picks_page, container, false);
+        } else if (pageNumber == 1) {
+            result = inflater.inflate(R.layout.picks_and_bans_page, container, false);
+        } else {
+            result = inflater.inflate(R.layout.recommended_bans_page, container, false);
         }
-        return null;
+        return result;
     }
 }

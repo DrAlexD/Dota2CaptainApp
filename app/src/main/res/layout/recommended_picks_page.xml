@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/firstPosPickHeroes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/firstFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="3dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="1" />
+
+        <ImageView
+            android:id="@+id/secondFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="2" />
+
+        <ImageView
+            android:id="@+id/thirdFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="3" />
+
+        <ImageView
+            android:id="@+id/fourthFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="4" />
+
+        <ImageView
+            android:id="@+id/fifthFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="5" />
+
+        <ImageView
+            android:id="@+id/sixthFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="6" />
+
+        <ImageView
+            android:id="@+id/seventhFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="7" />
+
+        <ImageView
+            android:id="@+id/eighthFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="8" />
+
+        <ImageView
+            android:id="@+id/ninthFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="9" />
+
+        <ImageView
+            android:id="@+id/tenthFirstPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondPosPickHeroes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/firstPosPickHeroes"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/firstSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="3dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="11" />
+
+        <ImageView
+            android:id="@+id/secondSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="12" />
+
+        <ImageView
+            android:id="@+id/thirdSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="13" />
+
+        <ImageView
+            android:id="@+id/fourthSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="14" />
+
+        <ImageView
+            android:id="@+id/fifthSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="15" />
+
+        <ImageView
+            android:id="@+id/sixthSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="16" />
+
+        <ImageView
+            android:id="@+id/seventhSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="17" />
+
+        <ImageView
+            android:id="@+id/eighthSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="18" />
+
+        <ImageView
+            android:id="@+id/ninthSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="19" />
+
+        <ImageView
+            android:id="@+id/tenthSecondPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/thirdPosPickHeroes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/secondPosPickHeroes"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/firstThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="3dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="21" />
+
+        <ImageView
+            android:id="@+id/secondThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="22" />
+
+        <ImageView
+            android:id="@+id/thirdThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="23" />
+
+        <ImageView
+            android:id="@+id/fourthThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="24" />
+
+        <ImageView
+            android:id="@+id/fifthThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="25" />
+
+        <ImageView
+            android:id="@+id/sixthThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="26" />
+
+        <ImageView
+            android:id="@+id/seventhThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="27" />
+
+        <ImageView
+            android:id="@+id/eighthThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="28" />
+
+        <ImageView
+            android:id="@+id/ninthThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="29" />
+
+        <ImageView
+            android:id="@+id/tenthThirdPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="30" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fourthPosPickHeroes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/thirdPosPickHeroes"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/firstFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="3dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="31" />
+
+        <ImageView
+            android:id="@+id/secondFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="32" />
+
+        <ImageView
+            android:id="@+id/thirdFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="33" />
+
+        <ImageView
+            android:id="@+id/fourthFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="34" />
+
+        <ImageView
+            android:id="@+id/fifthFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="35" />
+
+        <ImageView
+            android:id="@+id/sixthFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="36" />
+
+        <ImageView
+            android:id="@+id/seventhFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="37" />
+
+        <ImageView
+            android:id="@+id/eighthFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="38" />
+
+        <ImageView
+            android:id="@+id/ninthFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="39" />
+
+        <ImageView
+            android:id="@+id/tenthFourthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="40" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fifthPosPickHeroes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/fourthPosPickHeroes"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/firstFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="3dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="41" />
+
+        <ImageView
+            android:id="@+id/secondFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="42" />
+
+        <ImageView
+            android:id="@+id/thirdFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="43" />
+
+        <ImageView
+            android:id="@+id/fourthFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="44" />
+
+        <ImageView
+            android:id="@+id/fifthFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="45" />
+
+        <ImageView
+            android:id="@+id/sixthFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="46" />
+
+        <ImageView
+            android:id="@+id/seventhFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="47" />
+
+        <ImageView
+            android:id="@+id/eighthFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="48" />
+
+        <ImageView
+            android:id="@+id/ninthFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="49" />
+
+        <ImageView
+            android:id="@+id/tenthFifthPosPickHero"
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+
+
+            android:src="@drawable/abaddon"
+            android:tag="50" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
