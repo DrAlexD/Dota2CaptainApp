@@ -48,7 +48,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                 j--;
             }
 
-            if (i <= j) {//меняем местами
+            if (i <= j) {
                 HeroInfo temp = array.get(i);
                 array.set(i, array.get(j));
                 array.set(j, temp);

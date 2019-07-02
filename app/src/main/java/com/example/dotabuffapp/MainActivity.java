@@ -16,13 +16,12 @@ public class MainActivity extends AppCompatActivity {
     boolean[] isNotFrame = new boolean[22];
     Heroes[] heroesPlaces = new Heroes[22];
     int imageViewTagInt;
-    boolean isNotFirstIn;
+    boolean firstIn;
     ArrayList<Heroes> allyHeroes; //союзные герои
     ArrayList<Heroes> enemyHeroes;
     ArrayList<Heroes> banHeroes;
     ArrayList<HeroInfo> allySortedHeroesWinDif; //отсортированные контрпики союзных героев
     ArrayList<HeroInfo> enemySortedHeroesWinDif;
-    Heroes lastAddedHero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,32 +44,31 @@ public class MainActivity extends AppCompatActivity {
     public void selectHeroOrClear(View view) {
         String imageViewTagString = (String) view.getTag();
         imageViewTagInt = Integer.parseInt(imageViewTagString);
+        Heroes imageViewHero = heroesPlaces[imageViewTagInt - 1];
         if (isNotFrame[imageViewTagInt - 1]) {
-            //TODO починить удаление героев
+            heroTier.addHero(imageViewHero);
+            if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
+                allyHeroes.remove(imageViewHero);
+                heroPicks.deleteAllyHero(imageViewHero);
+            } else if (imageViewTagInt >= 12 && imageViewTagInt <= 16) {
+                enemyHeroes.remove(imageViewHero);
+                heroPicks.deleteEnemyHero(imageViewHero);
+            } else {
+                banHeroes.remove(imageViewHero);
+                heroPicks.deleteBanHero(imageViewHero);
+            }
             ImageView currentImage = (ImageView) view;
             currentImage.setImageResource(R.drawable.frame);
             isNotFrame[imageViewTagInt - 1] = false;
-            if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
-                allyHeroes.remove(heroesPlaces[imageViewTagInt]);
-                lastAddedHero = null;
-            } else if (imageViewTagInt >= 12 && imageViewTagInt <= 16) {
-                enemyHeroes.remove(heroesPlaces[imageViewTagInt]);
-                lastAddedHero = null;
-            } else {
-                banHeroes.remove(heroesPlaces[imageViewTagInt]);
-                heroTier.addHero(heroesPlaces[imageViewTagInt]);
-
-                lastAddedHero = null;
-            }
+            heroesPlaces[imageViewTagInt - 1] = null;
+            heroPicks.execute();
         } else {
             Intent intent = new Intent(this, HeroSelectionActivity.class);
-            //TODO добавить проверку отсуствия пиков
-            if (isNotFirstIn) {
+            if (firstIn) {
                 allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
                 enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
-                heroTier.deleteHero(lastAddedHero);
             } else
-                isNotFirstIn = true;
+                firstIn = true;
 
             heroPicks = new HeroPicker(getApplicationContext());
             heroPicks.setTier(heroTier);
@@ -118,123 +116,121 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
+                Heroes currentHero = Heroes.valueOf(changedHeroName);
                 if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
                     if (!isNotFrame[0]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFirstPick);
                         isNotFrame[0] = true;
-                        heroesPlaces[0] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[0] = currentHero;
                     } else if (!isNotFrame[1]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllySecondPick);
                         isNotFrame[1] = true;
-                        heroesPlaces[1] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[1] = currentHero;
                     } else if (!isNotFrame[2]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyThirdPick);
                         isNotFrame[2] = true;
-                        heroesPlaces[2] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[2] = currentHero;
                     } else if (!isNotFrame[3]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFourthPick);
                         isNotFrame[3] = true;
-                        heroesPlaces[3] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[3] = currentHero;
                     } else {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFifthPick);
                         isNotFrame[4] = true;
-                        heroesPlaces[4] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[4] = currentHero;
                     }
 
-                    lastAddedHero = Heroes.valueOf(changedHeroName);
-                    allyHeroes.add(Heroes.valueOf(changedHeroName));
-                    heroPicks.addAllyHero(Heroes.valueOf(changedHeroName));
+                    allyHeroes.add(currentHero);
+                    heroPicks.addAllyHero(currentHero);
                     heroPicks.execute();
                 } else if (imageViewTagInt >= 6 && imageViewTagInt <= 11) {
                     if (!isNotFrame[5]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFirstBan);
                         isNotFrame[5] = true;
-                        heroesPlaces[5] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[5] = currentHero;
                     } else if (!isNotFrame[6]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllySecondBan);
                         isNotFrame[6] = true;
-                        heroesPlaces[6] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[6] = currentHero;
                     } else if (!isNotFrame[7]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyThirdBan);
                         isNotFrame[7] = true;
-                        heroesPlaces[7] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[7] = currentHero;
                     } else if (!isNotFrame[8]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFourthBan);
                         isNotFrame[8] = true;
-                        heroesPlaces[8] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[8] = currentHero;
                     } else if (!isNotFrame[9]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFifthBan);
                         isNotFrame[9] = true;
-                        heroesPlaces[9] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[9] = currentHero;
                     } else {
                         currentImage = (ImageView) findViewById(R.id.imageAllySixthBan);
                         isNotFrame[10] = true;
-                        heroesPlaces[10] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[10] = currentHero;
                     }
 
-                    lastAddedHero = Heroes.valueOf(changedHeroName);
-                    banHeroes.add(Heroes.valueOf(changedHeroName));
-                    heroPicks.addBanHero(Heroes.valueOf(changedHeroName));
-                    heroPicks.deleteBanHeroes();
+                    banHeroes.add(currentHero);
+                    heroPicks.addBanHero(currentHero);
+                    heroPicks.deleteBanHeroFromLists(currentHero);
                 } else if (imageViewTagInt >= 12 && imageViewTagInt <= 16) {
                     if (!isNotFrame[11]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFirstPick);
                         isNotFrame[11] = true;
-                        heroesPlaces[11] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[11] = currentHero;
                     } else if (!isNotFrame[12]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemySecondPick);
                         isNotFrame[12] = true;
-                        heroesPlaces[12] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[12] = currentHero;
                     } else if (!isNotFrame[13]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyThirdPick);
                         isNotFrame[13] = true;
-                        heroesPlaces[13] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[13] = currentHero;
                     } else if (!isNotFrame[14]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFourthPick);
                         isNotFrame[14] = true;
-                        heroesPlaces[14] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[14] = currentHero;
                     } else {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFifthPick);
                         isNotFrame[15] = true;
-                        heroesPlaces[15] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[15] = currentHero;
                     }
 
-                    lastAddedHero = Heroes.valueOf(changedHeroName);
-                    enemyHeroes.add(Heroes.valueOf(changedHeroName));
-                    heroPicks.addEnemyHero(Heroes.valueOf(changedHeroName));
+                    enemyHeroes.add(currentHero);
+                    heroPicks.addEnemyHero(currentHero);
                     heroPicks.execute();
                 } else {
                     if (!isNotFrame[16]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFirstBan);
                         isNotFrame[16] = true;
-                        heroesPlaces[16] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[16] = currentHero;
                     } else if (!isNotFrame[17]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemySecondBan);
                         isNotFrame[17] = true;
-                        heroesPlaces[17] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[17] = currentHero;
                     } else if (!isNotFrame[18]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyThirdBan);
                         isNotFrame[18] = true;
-                        heroesPlaces[18] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[18] = currentHero;
                     } else if (!isNotFrame[19]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFourthBan);
                         isNotFrame[19] = true;
-                        heroesPlaces[19] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[19] = currentHero;
                     } else if (!isNotFrame[20]) {
                         currentImage = (ImageView) findViewById(R.id.imageEnemyFifthBan);
                         isNotFrame[20] = true;
-                        heroesPlaces[20] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[20] = currentHero;
                     } else {
                         currentImage = (ImageView) findViewById(R.id.imageEnemySixthBan);
                         isNotFrame[21] = true;
-                        heroesPlaces[21] = Heroes.valueOf(changedHeroName);
+                        heroesPlaces[21] = currentHero;
                     }
 
-                    lastAddedHero = Heroes.valueOf(changedHeroName);
-                    banHeroes.add(Heroes.valueOf(changedHeroName));
-                    heroPicks.addBanHero(Heroes.valueOf(changedHeroName));
-                    heroPicks.deleteBanHeroes();
+                    banHeroes.add(currentHero);
+                    heroPicks.addBanHero(currentHero);
+                    heroPicks.deleteBanHeroFromLists(currentHero);
                 }
+                heroTier.deleteHero(currentHero);
                 currentImage.setImageResource(imageRes);
             }
         } else {

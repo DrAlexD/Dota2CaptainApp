@@ -54,12 +54,100 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         allyHeroes.add(hero);
     }
 
+    void deleteAllyHero(Heroes currentHero) {
+        String key = currentHero.toString();
+        String newKey = key.replaceAll("([a-z])([A-Z])", "$1 $2");
+        switch (key) {
+            case "AntiMage":
+                newKey = "Anti-Mage";
+                break;
+            case "KeeperOfTheLight":
+                newKey = "Keeper of the Light";
+                break;
+            case "QueenOfPain":
+                newKey = "Queen of Pain";
+                break;
+            case "NaturesProphet":
+                newKey = "Nature's Prophet";
+                break;
+        }
+
+        if (!isNullAllyHeroes()) {
+            int k = 0;
+            for (Heroes h : allyHeroes) {
+                if (h.toString().equals(newKey)) {
+                    allyHeroes.remove(k);
+                    break;
+                }
+                k++;
+            }
+        }
+    }
+
     void addEnemyHero(Heroes hero) {
         enemyHeroes.add(hero);
     }
 
+    void deleteEnemyHero(Heroes currentHero) {
+        String key = currentHero.toString();
+        String newKey = key.replaceAll("([a-z])([A-Z])", "$1 $2");
+        switch (key) {
+            case "AntiMage":
+                newKey = "Anti-Mage";
+                break;
+            case "KeeperOfTheLight":
+                newKey = "Keeper of the Light";
+                break;
+            case "QueenOfPain":
+                newKey = "Queen of Pain";
+                break;
+            case "NaturesProphet":
+                newKey = "Nature's Prophet";
+                break;
+        }
+
+        if (!isNullEnemyHeroes()) {
+            int k = 0;
+            for (Heroes h : enemyHeroes) {
+                if (h.toString().equals(newKey)) {
+                    enemyHeroes.remove(k);
+                    break;
+                }
+                k++;
+            }
+        }
+    }
+
     void addBanHero(Heroes hero) {
         banHeroes.add(hero);
+    }
+
+    void deleteBanHero(Heroes currentHero) {
+        String key = currentHero.toString();
+        String newKey = key.replaceAll("([a-z])([A-Z])", "$1 $2");
+        switch (key) {
+            case "AntiMage":
+                newKey = "Anti-Mage";
+                break;
+            case "KeeperOfTheLight":
+                newKey = "Keeper of the Light";
+                break;
+            case "QueenOfPain":
+                newKey = "Queen of Pain";
+                break;
+            case "NaturesProphet":
+                newKey = "Nature's Prophet";
+                break;
+        }
+
+        int k = 0;
+        for (Heroes h : banHeroes) {
+            if (h.toString().equals(newKey)) {
+                banHeroes.remove(k);
+                break;
+            }
+            k++;
+        }
     }
 
     void setAllyHeroes(ArrayList<Heroes> heroes) {
@@ -265,6 +353,47 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                     }
                     j++;
                 }
+            }
+        }
+    }
+
+    void deleteBanHeroFromLists(Heroes currentHero) {
+        String key = currentHero.toString();
+        String newKey = key.replaceAll("([a-z])([A-Z])", "$1 $2");
+        switch (key) {
+            case "AntiMage":
+                newKey = "Anti-Mage";
+                break;
+            case "KeeperOfTheLight":
+                newKey = "Keeper of the Light";
+                break;
+            case "QueenOfPain":
+                newKey = "Queen of Pain";
+                break;
+            case "NaturesProphet":
+                newKey = "Nature's Prophet";
+                break;
+        }
+
+        if (!isNullAllyHeroes()) {
+            int k = 0;
+            for (HeroInfo h : allySortedHeroesWinDif) {
+                if (h.getName().equals(newKey)) {
+                    allySortedHeroesWinDif.remove(k);
+                    break;
+                }
+                k++;
+            }
+        }
+
+        if (!isNullEnemyHeroes()) {
+            int j = 0;
+            for (HeroInfo h : enemySortedHeroesWinDif) {
+                if (h.getName().equals(newKey)) {
+                    enemySortedHeroesWinDif.remove(j);
+                    break;
+                }
+                j++;
             }
         }
     }
