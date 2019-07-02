@@ -165,7 +165,6 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                     case ("Axe"):
                         se = R.drawable.axe;
                         break;
-                        /*
                     case ("Bane"):
                         se = R.drawable.bane;
                         break;
@@ -291,7 +290,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                         break;
                     case ("Lifestealer"):
                         se = R.drawable.lifestealer;
-                        break;
+                        break;/*
                     case ("Lina"):
                         se = R.drawable.lina;
                         break;

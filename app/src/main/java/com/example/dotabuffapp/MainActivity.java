@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             } else
                 firstIn = true;
 
-            heroPicks = new HeroPicker(getApplicationContext(), getCurrentFocus());
+            heroPicks = new HeroPicker(getApplicationContext(), this);
             heroPicks.setTier(heroTier);
             heroPicks.setAllyHeroes(allyHeroes);
             heroPicks.setEnemyHeroes(enemyHeroes);
