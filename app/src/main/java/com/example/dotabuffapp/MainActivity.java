@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AsyncResponse, Serializable {
     HeroPicker heroPicks;
     HeroTier heroTier;
     boolean[] isNotFrame = new boolean[22];
@@ -70,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
             } else
                 firstIn = true;
 
-            heroPicks = new HeroPicker(getApplicationContext(), this);
+            heroPicks = new HeroPicker();
+            heroPicks.delegate = this;
             heroPicks.setTier(heroTier);
             heroPicks.setAllyHeroes(allyHeroes);
             heroPicks.setEnemyHeroes(enemyHeroes);
@@ -236,5 +239,318 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    public void processFinish() {
+        for (Integer pos = 1; pos <= 5; pos++) {
+            int currentNumberOfHeroesForOnePos = 1;
+
+            for (HeroInfo h : allySortedHeroesWinDif) {
+                if (currentNumberOfHeroesForOnePos <= 10) {
+                    String key = h.getName();
+                    String newKey = key.replace(" ", "");
+                    switch (key) {
+                        case "Anti-Mage":
+                            newKey = "AntiMage";
+                            break;
+                        case "Keeper of the Light":
+                            newKey = "KeeperOfTheLight";
+                            break;
+                        case "Queen of Pain":
+                            newKey = "QueenOfPain";
+                            break;
+                        case "Nature's Prophet":
+                            newKey = "NaturesProphet";
+                            break;
+                    }
+
+                    try {
+                        //HeroPool.valueOf(newKey);
+                        double valueDif = h.getWinRateDif();
+                        double valueWinRate = h.getNewWinRate();
+
+                        if (Heroes.valueOf(newKey).pos.contains(pos.toString())) {
+                            if (valueDif >= -1.0) {
+                                ImageView currentImage;
+                                if (pos.toString().equals("1")) {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstFirstPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondFirstPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdFirstPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthFirstPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthFirstPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthFirstPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhFirstPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthFirstPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthFirstPosBanHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthFirstPosBanHero);
+                                    }
+                                } else if (pos.toString().equals("2")) {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstSecondPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondSecondPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdSecondPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthSecondPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthSecondPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthSecondPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhSecondPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthSecondPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthSecondPosBanHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthSecondPosBanHero);
+                                    }
+                                } else if (pos.toString().equals("3")) {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstThirdPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondThirdPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdThirdPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthThirdPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthThirdPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthThirdPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhThirdPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthThirdPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthThirdPosBanHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthThirdPosBanHero);
+                                    }
+                                } else if (pos.toString().equals("4")) {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstFourthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondFourthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdFourthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthFourthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthFourthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthFourthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhFourthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthFourthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthFourthPosBanHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthFourthPosBanHero);
+                                    }
+                                } else {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstFifthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondFifthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdFifthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthFifthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthFifthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthFifthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhFifthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthFifthPosBanHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthFifthPosBanHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthFifthPosBanHero);
+                                    }
+                                }
+                                currentImage.setImageResource(h.getImage());
+                                currentNumberOfHeroesForOnePos++;
+                            } else
+                                break;
+                        }
+                    } catch (IllegalArgumentException e) {
+                        //
+                    }
+                } else
+                    break;
+            }
+        }
+
+        for (Integer pos = 1; pos <= 5; pos++) {
+            int currentNumberOfHeroesForOnePos = 1;
+
+            for (HeroInfo h : allySortedHeroesWinDif) {
+                if (currentNumberOfHeroesForOnePos <= 10) {
+                    String key = h.getName();
+                    String newKey = key.replace(" ", "");
+                    switch (key) {
+                        case "Anti-Mage":
+                            newKey = "AntiMage";
+                            break;
+                        case "Keeper of the Light":
+                            newKey = "KeeperOfTheLight";
+                            break;
+                        case "Queen of Pain":
+                            newKey = "QueenOfPain";
+                            break;
+                        case "Nature's Prophet":
+                            newKey = "NaturesProphet";
+                            break;
+                    }
+
+                    try {
+                        //HeroPool.valueOf(newKey);
+                        double valueDif = h.getWinRateDif();
+                        double valueWinRate = h.getNewWinRate();
+
+                        if (Heroes.valueOf(newKey).pos.contains(pos.toString())) {
+                            if (valueDif >= -1.0) {
+                                ImageView currentImage;
+                                if (pos.toString().equals("1")) {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstFirstPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondFirstPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdFirstPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthFirstPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthFirstPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthFirstPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhFirstPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthFirstPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthFirstPosPickHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthFirstPosPickHero);
+                                    }
+                                } else if (pos.toString().equals("2")) {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstSecondPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondSecondPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdSecondPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthSecondPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthSecondPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthSecondPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhSecondPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthSecondPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthSecondPosPickHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthSecondPosPickHero);
+                                    }
+                                } else if (pos.toString().equals("3")) {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstThirdPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondThirdPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdThirdPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthThirdPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthThirdPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthThirdPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhThirdPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthThirdPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthThirdPosPickHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthThirdPosPickHero);
+                                    }
+                                } else if (pos.toString().equals("4")) {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstFourthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondFourthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdFourthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthFourthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthFourthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthFourthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhFourthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthFourthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthFourthPosPickHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthFourthPosPickHero);
+                                    }
+                                } else {
+                                    if (currentNumberOfHeroesForOnePos == 1) {
+                                        currentImage = (ImageView) findViewById(R.id.firstFifthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 2) {
+                                        currentImage = (ImageView) findViewById(R.id.secondFifthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 3) {
+                                        currentImage = (ImageView) findViewById(R.id.thirdFifthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 4) {
+                                        currentImage = (ImageView) findViewById(R.id.fourthFifthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 5) {
+                                        currentImage = (ImageView) findViewById(R.id.fifthFifthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 6) {
+                                        currentImage = (ImageView) findViewById(R.id.sixthFifthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 7) {
+                                        currentImage = (ImageView) findViewById(R.id.seventhFifthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 8) {
+                                        currentImage = (ImageView) findViewById(R.id.eighthFifthPosPickHero);
+                                    } else if (currentNumberOfHeroesForOnePos == 9) {
+                                        currentImage = (ImageView) findViewById(R.id.ninthFifthPosPickHero);
+                                    } else {
+                                        currentImage = (ImageView) findViewById(R.id.tenthFifthPosPickHero);
+                                    }
+                                }
+                                currentImage.setImageResource(h.getImage());
+                                currentNumberOfHeroesForOnePos++;
+                            } else
+                                break;
+                        }
+                    } catch (IllegalArgumentException e) {
+                        //
+                    }
+                } else
+                    break;
+            }
+        }
+
+        Toast.makeText(this, "Пики обновлены", Toast.LENGTH_SHORT).show();
     }
 }
