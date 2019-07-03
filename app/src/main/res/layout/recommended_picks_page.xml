@@ -30,7 +30,8 @@
             android:layout_marginTop="3dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="1" />
 
         <ImageView
@@ -39,7 +40,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="2" />
 
         <ImageView
@@ -48,7 +50,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="3" />
 
         <ImageView
@@ -57,7 +60,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="4" />
 
         <ImageView
@@ -66,7 +70,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="5" />
 
         <ImageView
@@ -75,7 +80,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="6" />
 
         <ImageView
@@ -84,7 +90,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="7" />
 
         <ImageView
@@ -93,7 +100,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="8" />
 
         <ImageView
@@ -102,7 +110,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="9" />
 
         <ImageView
@@ -111,7 +120,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="10" />
     </LinearLayout>
 
@@ -139,7 +149,8 @@
             android:layout_marginTop="3dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="11" />
 
         <ImageView
@@ -148,7 +159,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="12" />
 
         <ImageView
@@ -157,7 +169,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="13" />
 
         <ImageView
@@ -166,7 +179,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="14" />
 
         <ImageView
@@ -175,7 +189,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="15" />
 
         <ImageView
@@ -184,7 +199,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="16" />
 
         <ImageView
@@ -193,7 +209,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="17" />
 
         <ImageView
@@ -202,7 +219,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="18" />
 
         <ImageView
@@ -211,7 +229,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="19" />
 
         <ImageView
@@ -220,7 +239,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="20" />
     </LinearLayout>
 
@@ -248,7 +268,8 @@
             android:layout_marginTop="3dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="21" />
 
         <ImageView
@@ -257,7 +278,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="22" />
 
         <ImageView
@@ -266,7 +288,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="23" />
 
         <ImageView
@@ -275,7 +298,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="24" />
 
         <ImageView
@@ -284,7 +308,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="25" />
 
         <ImageView
@@ -293,7 +318,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="26" />
 
         <ImageView
@@ -302,7 +328,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="27" />
 
         <ImageView
@@ -311,7 +338,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="28" />
 
         <ImageView
@@ -320,7 +348,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="29" />
 
         <ImageView
@@ -329,7 +358,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="30" />
     </LinearLayout>
 
@@ -357,7 +387,8 @@
             android:layout_marginTop="3dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="31" />
 
         <ImageView
@@ -366,7 +397,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="32" />
 
         <ImageView
@@ -375,7 +407,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="33" />
 
         <ImageView
@@ -384,7 +417,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="34" />
 
         <ImageView
@@ -393,7 +427,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="35" />
 
         <ImageView
@@ -402,7 +437,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="36" />
 
         <ImageView
@@ -411,7 +447,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="37" />
 
         <ImageView
@@ -420,7 +457,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="38" />
 
         <ImageView
@@ -429,7 +467,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="39" />
 
         <ImageView
@@ -438,7 +477,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="40" />
     </LinearLayout>
 
@@ -466,7 +506,8 @@
             android:layout_marginTop="3dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="41" />
 
         <ImageView
@@ -475,7 +516,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="42" />
 
         <ImageView
@@ -484,7 +526,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="43" />
 
         <ImageView
@@ -493,7 +536,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="44" />
 
         <ImageView
@@ -502,7 +546,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="45" />
 
         <ImageView
@@ -511,7 +556,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="46" />
 
         <ImageView
@@ -520,7 +566,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="47" />
 
         <ImageView
@@ -529,7 +576,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="48" />
 
         <ImageView
@@ -538,7 +586,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="49" />
 
         <ImageView
@@ -547,7 +596,8 @@
             android:layout_height="48dp"
 
 
-            android:src="@drawable/abaddon"
+            android:onClick="selectPickHeroWithPos"
+            android:src="@drawable/frame"
             android:tag="50" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
