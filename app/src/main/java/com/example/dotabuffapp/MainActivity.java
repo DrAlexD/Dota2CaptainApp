@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new MyAdapter(this, getSupportFragmentManager()));
         pager.setCurrentItem(1);
+        pager.setOffscreenPageLimit(2);
 
         heroTier = new HeroTier(getApplicationContext());
         allyHeroes = new ArrayList<>();
@@ -90,6 +91,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                 intent.putExtra("PickOrBan", 2);
             startActivityForResult(intent, 1);
         }
+    }
+
+    public void selectPickHeroWithPos(View view) {
+    }
+
+    public void selectBanHeroWithPos(View view) {
     }
 
     @Override
@@ -246,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         for (Integer pos = 1; pos <= 5; pos++) {
             int currentNumberOfHeroesForOnePos = 1;
 
-            for (HeroInfo h : allySortedHeroesWinDif) {
+            for (HeroInfo h : heroPicks.getSortedHeroesWinDif(true)) {
                 if (currentNumberOfHeroesForOnePos <= 10) {
                     String key = h.getName();
                     String newKey = key.replace(" ", "");
@@ -400,7 +407,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         for (Integer pos = 1; pos <= 5; pos++) {
             int currentNumberOfHeroesForOnePos = 1;
 
-            for (HeroInfo h : allySortedHeroesWinDif) {
+            for (HeroInfo h : heroPicks.getSortedHeroesWinDif(false)) {
                 if (currentNumberOfHeroesForOnePos <= 10) {
                     String key = h.getName();
                     String newKey = key.replace(" ", "");
