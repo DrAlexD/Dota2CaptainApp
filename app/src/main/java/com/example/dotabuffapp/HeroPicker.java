@@ -116,10 +116,6 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         }
     }
 
-    void addBanHero(Heroes hero) {
-        banHeroes.add(hero);
-    }
-
     void deleteBanHero(Heroes currentHero) {
         String key = currentHero.toString();
         String newKey = key.replaceAll("([a-z])([A-Z])", "$1 $2");
@@ -277,7 +273,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                     System.out.println(e.getMessage());
                 }
 
-                HeroTier.quickSort(heroesWinDif, 0, heroesWinDif.size() - 1);
+                HeroTier.quickSort(heroesWinDif, 0, heroesWinDif.size() - 1, true);
 
                 for (Heroes hero : allyHeroes) {
                     String key = hero.toString();
@@ -345,7 +341,6 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                     allySortedHeroesWinDif = heroesWinDif;
                 else
                     enemySortedHeroesWinDif = heroesWinDif;
-                //writeInFile(isAllyCounters);
             }
             isAllyCounters = true;
         }
@@ -395,49 +390,4 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
             }
         }
     }
-/*
-    private void writeInFile(boolean isAllyCounters) {
-        ArrayList<HeroInfo> sortedHeroesWinDif = (isAllyCounters) ? allySortedHeroesWinDif : enemySortedHeroesWinDif;
-
-        try (FileWriter writer = new FileWriter("/storage/emulated/0/Documents/PicksAndBans.txt", false)) {
-            for (HeroInfo heroWinDif : sortedHeroesWinDif) {
-                String key = heroWinDif.getName();
-                String newKey = key.replace(" ", "");
-
-                switch (key) {
-                    case "Anti-Mage":
-                        newKey = "AntiMage";
-                        break;
-                    case "Keeper of the Light":
-                        newKey = "KeeperOfTheLight";
-                        break;
-                    case "Queen of Pain":
-                        newKey = "QueenOfPain";
-                        break;
-                    case "Nature's Prophet":
-                        newKey = "NaturesProphet";
-                        break;
-                }
-
-                try {
-                    //HeroPool.valueOf(newKey);
-                    double valueDif = Math.round(heroWinDif.getWinRateDif() * 100.0) / 100.0;
-                    double valueWinRate = Math.round(heroWinDif.getNewWinRate() * 100.0) / 100.0;
-
-                    if (valueDif > 0) {
-                        writer.append(Heroes.valueOf(newKey).pos + "|" + key + "|" + heroWinDif.getTier() + "| +" + valueDif + "% | " + valueWinRate + "%\n");
-                    } else {
-                        writer.append(Heroes.valueOf(newKey).pos + "|" + key + "|" + heroWinDif.getTier() + "| " + valueDif + "% | " + valueWinRate + "%\n");
-                    }
-                } catch (IllegalArgumentException e) {
-                    //
-                }
-            }
-
-            writer.append("\n\n");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    */
 }

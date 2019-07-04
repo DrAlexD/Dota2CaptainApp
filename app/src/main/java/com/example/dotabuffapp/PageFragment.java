@@ -12,7 +12,7 @@ public class PageFragment extends Fragment {
 
     private int pageNumber;
 
-    public static PageFragment newInstance(int page) {
+    static PageFragment newInstance(int page) {
         PageFragment fragment = new PageFragment();
         Bundle args = new Bundle();
         args.putInt("num", page);

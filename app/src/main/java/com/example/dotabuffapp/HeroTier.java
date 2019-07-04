@@ -28,7 +28,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
         return heroesTier;
     }
 
-    static void quickSort(ArrayList<HeroInfo> array, int low, int high) {
+    static void quickSort(ArrayList<HeroInfo> array, int low, int high, boolean isSortByWinRateDif) {
         if (array.size() == 0)
             return;
 
@@ -36,16 +36,34 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
             return;
 
         int middle = (low + high) / 2;
-        double opora = array.get(middle).getWinRateDif();
-
+        double oporaDouble = 0.0;
+        String oporaString = "";
+        if (isSortByWinRateDif) {
+            oporaDouble = array.get(middle).getWinRateDif();
+        } else {
+            oporaString = array.get(middle).getName();
+        }
         int i = low, j = high;
         while (i <= j) {
-            while (array.get(i).getWinRateDif() > opora) {
-                i++;
+            if (isSortByWinRateDif) {
+                while (array.get(i).getWinRateDif() > oporaDouble) {
+                    i++;
+                }
+            } else {
+                while (array.get(i).getName().compareToIgnoreCase(oporaString) < 0) {
+                    i++;
+                }
             }
 
-            while (array.get(j).getWinRateDif() < opora) {
-                j--;
+
+            if (isSortByWinRateDif) {
+                while (array.get(j).getWinRateDif() < oporaDouble) {
+                    j--;
+                }
+            } else {
+                while (array.get(j).getName().compareToIgnoreCase(oporaString) > 0) {
+                    j--;
+                }
             }
 
             if (i <= j) {
@@ -58,10 +76,10 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
         }
 
         if (low < j)
-            quickSort(array, low, j);
+            quickSort(array, low, j, isSortByWinRateDif);
 
         if (high > i)
-            quickSort(array, i, high);
+            quickSort(array, i, high, isSortByWinRateDif);
     }
 
     void deleteHero(Heroes hero) {
@@ -116,7 +134,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
 
             if (hero.toString().equals(newKey)) {
                 heroesTier.add(deletedHeroesTier.remove(k));
-                quickSort(heroesTier, 0, heroesTier.size() - 1);
+                quickSort(heroesTier, 0, heroesTier.size() - 1, false);
                 break;
             }
             k++;
@@ -290,7 +308,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                         break;
                     case ("Lifestealer"):
                         se = R.drawable.lifestealer;
-                        break;/*
+                        break;
                     case ("Lina"):
                         se = R.drawable.lina;
                         break;
@@ -498,7 +516,9 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                     case ("Zeus"):
                         se = R.drawable.zeus;
                         break;
-                    */
+                    default:
+                        se = R.drawable.frame;
+                        break;
                 }
                 if (heroWinRateToDouble > 55.0)
                     heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "S", heroWinRateToDouble));
@@ -515,7 +535,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                 else
                     heroesTier.add(new HeroInfo(se, heroName, heroWinRateToDouble, "F", heroWinRateToDouble));
             }
-            quickSort(heroesTier, 0, heroesTier.size() - 1);
+            quickSort(heroesTier, 0, heroesTier.size() - 1, false);
         } catch (
                 IOException e) {
             System.out.println(e.getMessage());
