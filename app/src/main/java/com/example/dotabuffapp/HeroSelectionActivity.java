@@ -3,12 +3,17 @@ package com.example.dotabuffapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class HeroSelectionActivity extends AppCompatActivity {
     private Intent intent;
+    private HeroInfoAdapter heroInfoAdapter;
+    private String lastSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +28,8 @@ public class HeroSelectionActivity extends AppCompatActivity {
         boolean isNullEnemyFlag;
 
         RecyclerView heroesInfoView = (RecyclerView) findViewById(R.id.heroesInfoList);
-        HeroInfoAdapter heroInfoAdapter;
+        SearchView searchView = (SearchView) findViewById(R.id.autocomplete);
+
         if (arguments != null) {
             int mode = (int) arguments.get("PickOrBan");
             heroPicks = (HeroPicker) arguments.getSerializable("Heroes");
@@ -52,17 +58,29 @@ public class HeroSelectionActivity extends AppCompatActivity {
                     new RecyclerItemClickListener(this, heroesInfoView, new RecyclerItemClickListener.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
+                            ArrayList<HeroInfo> currentList = new ArrayList<>();
                             intent = new Intent();
                             if (mode == 0 && !isNullEnemyFlag) {
-                                intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(false).get(position).getImage());
-                                intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(false).get(position).getName());
+                                for (HeroInfo h : heroPicks.getSortedHeroesWinDif(false)) {
+                                    if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
+                                        currentList.add(h);
+                                    }
+                                }
                             } else if (mode == 1 && !isNullAllyFlag) {
-                                intent.putExtra("ImageId", heroPicks.getSortedHeroesWinDif(true).get(position).getImage());
-                                intent.putExtra("HeroName", heroPicks.getSortedHeroesWinDif(true).get(position).getName());
+                                for (HeroInfo h : heroPicks.getSortedHeroesWinDif(true)) {
+                                    if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
+                                        currentList.add(h);
+                                    }
+                                }
                             } else {
-                                intent.putExtra("ImageId", heroesTier.getHeroesTier().get(position).getImage());
-                                intent.putExtra("HeroName", heroesTier.getHeroesTier().get(position).getName());
+                                for (HeroInfo h : heroesTier.getHeroesTier()) {
+                                    if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
+                                        currentList.add(h);
+                                    }
+                                }
                             }
+                            intent.putExtra("ImageId", currentList.get(position).getImage());
+                            intent.putExtra("HeroName", currentList.get(position).getName());
                             setResult(RESULT_OK, intent);
                             finish();
                         }
@@ -72,6 +90,20 @@ public class HeroSelectionActivity extends AppCompatActivity {
                         }
                     })
             );
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    lastSearch = newText;
+                    heroInfoAdapter.getFilter().filter(newText);
+                    return true;
+                }
+            });
         }
     }
 }

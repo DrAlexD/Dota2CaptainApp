@@ -364,7 +364,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
     }
 
     @Override
-    public void processFinish() {//TODO добавить параметры
+    public void processFinish() {
         for (Integer pos = 1; pos <= 5; pos++) {
             int currentNumberOfHeroesForOnePos = 1;
 

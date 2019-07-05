@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHolder> {
+public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHolder> implements Filterable {
     private LayoutInflater inflater;
     private boolean isNullAllyFlag;
     private boolean isNullEnemyFlag;
     private int mode;
     private ArrayList<HeroInfo> allySortedHeroesWinDif = new ArrayList<>(); //отсортированные контрпики союзных героев
     private ArrayList<HeroInfo> enemySortedHeroesWinDif = new ArrayList<>();
-    private HeroTier heroesTier;
+    private ArrayList<HeroInfo> items = new ArrayList<>();
+    private ArrayList<HeroInfo> orig;
 
     HeroInfoAdapter(Context context, boolean isNullAllyFlag, boolean isNullEnemyFlag, int mode, ArrayList<HeroInfo> allySortedHeroesWinDif, ArrayList<HeroInfo> enemySortedHeroesWinDif, HeroTier heroesTier) {
         this.isNullAllyFlag = isNullAllyFlag;
@@ -31,8 +34,47 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
         } else if (mode == 1 && !isNullAllyFlag) {
             this.allySortedHeroesWinDif = allySortedHeroesWinDif;
         } else {
-            this.heroesTier = heroesTier;
+            this.items = heroesTier.getHeroesTier();
         }
+    }
+
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults oReturn = new FilterResults();
+                ArrayList<HeroInfo> results = new ArrayList<>();
+                if (orig == null) {
+                    if (mode == 0 && !isNullEnemyFlag) {
+                        orig = enemySortedHeroesWinDif;
+                    } else if (mode == 1 && !isNullAllyFlag) {
+                        orig = allySortedHeroesWinDif;
+                    } else {
+                        orig = items;
+                    }
+                }
+                if (orig != null && orig.size() > 0) {
+                    for (HeroInfo g : orig) {
+                        if (g.getName().toLowerCase().contains(constraint.toString().toLowerCase()))
+                            results.add(g);
+                    }
+                }
+                oReturn.values = results;
+                return oReturn;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                if (mode == 0 && !isNullEnemyFlag) {
+                    enemySortedHeroesWinDif = (ArrayList<HeroInfo>) results.values;
+                } else if (mode == 1 && !isNullAllyFlag) {
+                    allySortedHeroesWinDif = (ArrayList<HeroInfo>) results.values;
+                } else {
+                    items = (ArrayList<HeroInfo>) results.values;
+                }
+                notifyDataSetChanged();
+            }
+        };
     }
 
     @Override
@@ -56,7 +98,7 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
                 preStr = "+";
             holder.winRateDifView.setText(preStr + ((Double) heroInfo.getWinRateDif()).toString() + "%");
         } else {
-            heroInfo = heroesTier.getHeroesTier().get(position);
+            heroInfo = items.get(position);
             holder.winRateDifView.setText("    ");
         }
         holder.tierView.setText(heroInfo.getTier());
@@ -72,7 +114,7 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
         } else if (mode == 1 && !isNullAllyFlag) {
             return allySortedHeroesWinDif.size();
         }
-        return heroesTier.getHeroesTier().size();
+        return items.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
