@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class HeroSelectionActivity extends AppCompatActivity {
     private Intent intent;
     private HeroInfoAdapter heroInfoAdapter;
-    private String lastSearch;
+    private String lastSearch = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,23 +61,32 @@ public class HeroSelectionActivity extends AppCompatActivity {
                             ArrayList<HeroInfo> currentList = new ArrayList<>();
                             intent = new Intent();
                             if (mode == 0 && !isNullEnemyFlag) {
-                                for (HeroInfo h : heroPicks.getSortedHeroesWinDif(false)) {
-                                    if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
-                                        currentList.add(h);
+                                if (!lastSearch.equals("")) {
+                                    for (HeroInfo h : heroPicks.getSortedHeroesWinDif(false)) {
+                                        if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
+                                            currentList.add(h);
+                                        }
                                     }
-                                }
+                                } else
+                                    currentList = heroPicks.getSortedHeroesWinDif(false);
                             } else if (mode == 1 && !isNullAllyFlag) {
-                                for (HeroInfo h : heroPicks.getSortedHeroesWinDif(true)) {
-                                    if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
-                                        currentList.add(h);
+                                if (!lastSearch.equals("")) {
+                                    for (HeroInfo h : heroPicks.getSortedHeroesWinDif(true)) {
+                                        if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
+                                            currentList.add(h);
+                                        }
                                     }
-                                }
+                                } else
+                                    currentList = heroPicks.getSortedHeroesWinDif(true);
                             } else {
-                                for (HeroInfo h : heroesTier.getHeroesTier()) {
-                                    if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
-                                        currentList.add(h);
+                                if (!lastSearch.equals("")) {
+                                    for (HeroInfo h : heroesTier.getHeroesTier()) {
+                                        if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
+                                            currentList.add(h);
+                                        }
                                     }
-                                }
+                                } else
+                                    currentList = heroesTier.getHeroesTier();
                             }
                             intent.putExtra("ImageId", currentList.get(position).getImage());
                             intent.putExtra("HeroName", currentList.get(position).getName());

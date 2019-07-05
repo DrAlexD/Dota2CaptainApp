@@ -53,11 +53,13 @@ public class HeroInfoAdapter extends RecyclerView.Adapter<HeroInfoAdapter.ViewHo
                         orig = items;
                     }
                 }
-                if (orig != null && orig.size() > 0) {
+                if (!constraint.toString().equals("")) {
                     for (HeroInfo g : orig) {
                         if (g.getName().toLowerCase().contains(constraint.toString().toLowerCase()))
                             results.add(g);
                     }
+                } else {
+                    results = orig;
                 }
                 oReturn.values = results;
                 return oReturn;
