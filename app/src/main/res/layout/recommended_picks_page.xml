@@ -26,52 +26,52 @@
 
         <ImageView
             android:id="@+id/firstFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="1" />
 
         <ImageView
             android:id="@+id/secondFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="2" />
 
         <ImageView
             android:id="@+id/thirdFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="3" />
 
         <ImageView
             android:id="@+id/fourthFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="4" />
 
         <ImageView
             android:id="@+id/fifthFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="5" />
 
         <ImageView
             android:id="@+id/sixthFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="6" />
 
         <ImageView
             android:id="@+id/seventhFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="7" />
 
         <ImageView
             android:id="@+id/eighthFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="8" />
 
         <ImageView
             android:id="@+id/ninthFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="9" />
 
         <ImageView
             android:id="@+id/tenthFirstPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="10" />
     </LinearLayout>
 
@@ -95,52 +95,52 @@
 
         <ImageView
             android:id="@+id/firstSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="11" />
 
         <ImageView
             android:id="@+id/secondSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="12" />
 
         <ImageView
             android:id="@+id/thirdSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="13" />
 
         <ImageView
             android:id="@+id/fourthSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="14" />
 
         <ImageView
             android:id="@+id/fifthSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="15" />
 
         <ImageView
             android:id="@+id/sixthSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="16" />
 
         <ImageView
             android:id="@+id/seventhSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="17" />
 
         <ImageView
             android:id="@+id/eighthSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="18" />
 
         <ImageView
             android:id="@+id/ninthSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="19" />
 
         <ImageView
             android:id="@+id/tenthSecondPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="20" />
     </LinearLayout>
 
@@ -164,52 +164,52 @@
 
         <ImageView
             android:id="@+id/firstThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="21" />
 
         <ImageView
             android:id="@+id/secondThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="22" />
 
         <ImageView
             android:id="@+id/thirdThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="23" />
 
         <ImageView
             android:id="@+id/fourthThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="24" />
 
         <ImageView
             android:id="@+id/fifthThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="25" />
 
         <ImageView
             android:id="@+id/sixthThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="26" />
 
         <ImageView
             android:id="@+id/seventhThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="27" />
 
         <ImageView
             android:id="@+id/eighthThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="28" />
 
         <ImageView
             android:id="@+id/ninthThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="29" />
 
         <ImageView
             android:id="@+id/tenthThirdPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="30" />
     </LinearLayout>
 
@@ -233,52 +233,52 @@
 
         <ImageView
             android:id="@+id/firstFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="31" />
 
         <ImageView
             android:id="@+id/secondFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="32" />
 
         <ImageView
             android:id="@+id/thirdFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="33" />
 
         <ImageView
             android:id="@+id/fourthFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="34" />
 
         <ImageView
             android:id="@+id/fifthFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="35" />
 
         <ImageView
             android:id="@+id/sixthFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="36" />
 
         <ImageView
             android:id="@+id/seventhFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="37" />
 
         <ImageView
             android:id="@+id/eighthFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="38" />
 
         <ImageView
             android:id="@+id/ninthFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="39" />
 
         <ImageView
             android:id="@+id/tenthFourthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="40" />
     </LinearLayout>
 
@@ -302,52 +302,52 @@
 
         <ImageView
             android:id="@+id/firstFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="41" />
 
         <ImageView
             android:id="@+id/secondFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="42" />
 
         <ImageView
             android:id="@+id/thirdFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="43" />
 
         <ImageView
             android:id="@+id/fourthFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="44" />
 
         <ImageView
             android:id="@+id/fifthFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="45" />
 
         <ImageView
             android:id="@+id/sixthFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="46" />
 
         <ImageView
             android:id="@+id/seventhFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="47" />
 
         <ImageView
             android:id="@+id/eighthFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="48" />
 
         <ImageView
             android:id="@+id/ninthFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="49" />
 
         <ImageView
             android:id="@+id/tenthFifthPosPickHero"
-            style="@style/RecommendedPicksAndBansByPos"
+            style="@style/RecommendedPicksByPos"
             android:tag="50" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

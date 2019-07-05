@@ -24,10 +24,17 @@
         <item name="android:src">@drawable/frame</item>
     </style>
 
-    <style name="RecommendedPicksAndBansByPos">
+    <style name="RecommendedPicksByPos">
         <item name="android:layout_width">65dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:onClick">selectPickHeroWithPos</item>
+        <item name="android:src">@drawable/frame</item>
+    </style>
+
+    <style name="RecommendedBansByPos">
+        <item name="android:layout_width">65dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:onClick">selectBanHeroWithPos</item>
         <item name="android:src">@drawable/frame</item>
     </style>
 </resources>
