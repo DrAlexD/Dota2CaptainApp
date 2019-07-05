@@ -11,58 +11,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageAllyFirstPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-
-            android:onClick="selectHeroOrClear"
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="1" />
 
         <ImageView
             android:id="@+id/imageAllySecondPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="2" />
 
         <ImageView
             android:id="@+id/imageAllyThirdPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="3" />
 
         <ImageView
             android:id="@+id/imageAllyFourthPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="4" />
 
         <ImageView
             android:id="@+id/imageAllyFifthPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="5" />
     </LinearLayout>
 
@@ -71,74 +47,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="65dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toRightOf="@+id/allyPickList"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageAllyFirstBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="6" />
 
         <ImageView
             android:id="@+id/imageAllySecondBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="7" />
 
         <ImageView
             android:id="@+id/imageAllyThirdBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="8" />
 
         <ImageView
             android:id="@+id/imageAllyFourthBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="9" />
 
         <ImageView
             android:id="@+id/imageAllyFifthBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="10" />
 
         <ImageView
             android:id="@+id/imageAllySixthBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="11" />
     </LinearLayout>
 
@@ -146,7 +87,7 @@
         android:id="@+id/enemyPickList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:orientation="vertical"
         app:layout_constraintRight_toRightOf="parent"
@@ -154,56 +95,27 @@
 
         <ImageView
             android:id="@+id/imageEnemyFirstPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="12" />
 
         <ImageView
             android:id="@+id/imageEnemySecondPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="13" />
 
         <ImageView
             android:id="@+id/imageEnemyThirdPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="14" />
 
         <ImageView
             android:id="@+id/imageEnemyFourthPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="15" />
 
         <ImageView
             android:id="@+id/imageEnemyFifthPick"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedPicks"
             android:tag="16" />
     </LinearLayout>
 
@@ -211,7 +123,7 @@
         android:id="@+id/enemyBanList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="65dp"
         android:layout_marginRight="10dp"
         android:orientation="vertical"
         app:layout_constraintRight_toLeftOf="@+id/enemyPickList"
@@ -219,67 +131,32 @@
 
         <ImageView
             android:id="@+id/imageEnemyFirstBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="17" />
 
         <ImageView
             android:id="@+id/imageEnemySecondBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="18" />
 
         <ImageView
             android:id="@+id/imageEnemyThirdBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="19" />
 
         <ImageView
             android:id="@+id/imageEnemyFourthBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="20" />
 
         <ImageView
             android:id="@+id/imageEnemyFifthBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="21" />
 
         <ImageView
             android:id="@+id/imageEnemySixthBan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-            android:onClick="selectHeroOrClear"
-
-            android:src="@drawable/frame"
+            style="@style/SelectedBans"
             android:tag="22" />
     </LinearLayout>
 

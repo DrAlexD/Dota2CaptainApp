@@ -163,7 +163,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                 double heroWinRateToDouble =
                         Double.valueOf(heroWinRate.substring(0, heroWinRate.length() - 1));
 
-                int se = 0;
+                int se;
                 switch (heroName) {
                     case ("Abaddon"):
                         se = R.drawable.abaddon;

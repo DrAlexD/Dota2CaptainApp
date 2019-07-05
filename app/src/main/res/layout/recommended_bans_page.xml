@@ -19,109 +19,59 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="1"
             android:textAlignment="center"
             android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/firstFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="3dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="1" />
 
         <ImageView
             android:id="@+id/secondFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="2" />
 
         <ImageView
             android:id="@+id/thirdFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="3" />
 
         <ImageView
             android:id="@+id/fourthFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="4" />
 
         <ImageView
             android:id="@+id/fifthFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="5" />
 
         <ImageView
             android:id="@+id/sixthFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="6" />
 
         <ImageView
             android:id="@+id/seventhFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="7" />
 
         <ImageView
             android:id="@+id/eighthFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="8" />
 
         <ImageView
             android:id="@+id/ninthFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="9" />
 
         <ImageView
             android:id="@+id/tenthFirstPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="10" />
     </LinearLayout>
 
@@ -138,109 +88,59 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="2"
             android:textAlignment="center"
             android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/firstSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="3dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="11" />
 
         <ImageView
             android:id="@+id/secondSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="12" />
 
         <ImageView
             android:id="@+id/thirdSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="13" />
 
         <ImageView
             android:id="@+id/fourthSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="14" />
 
         <ImageView
             android:id="@+id/fifthSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="15" />
 
         <ImageView
             android:id="@+id/sixthSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="16" />
 
         <ImageView
             android:id="@+id/seventhSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="17" />
 
         <ImageView
             android:id="@+id/eighthSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="18" />
 
         <ImageView
             android:id="@+id/ninthSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="19" />
 
         <ImageView
             android:id="@+id/tenthSecondPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="20" />
     </LinearLayout>
 
@@ -257,109 +157,59 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="3"
             android:textAlignment="center"
             android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/firstThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="3dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="21" />
 
         <ImageView
             android:id="@+id/secondThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="22" />
 
         <ImageView
             android:id="@+id/thirdThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="23" />
 
         <ImageView
             android:id="@+id/fourthThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="24" />
 
         <ImageView
             android:id="@+id/fifthThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="25" />
 
         <ImageView
             android:id="@+id/sixthThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="26" />
 
         <ImageView
             android:id="@+id/seventhThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="27" />
 
         <ImageView
             android:id="@+id/eighthThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="28" />
 
         <ImageView
             android:id="@+id/ninthThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="29" />
 
         <ImageView
             android:id="@+id/tenthThirdPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="30" />
     </LinearLayout>
 
@@ -376,109 +226,59 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="4"
             android:textAlignment="center"
             android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/firstFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="3dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="31" />
 
         <ImageView
             android:id="@+id/secondFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="32" />
 
         <ImageView
             android:id="@+id/thirdFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="33" />
 
         <ImageView
             android:id="@+id/fourthFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="34" />
 
         <ImageView
             android:id="@+id/fifthFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="35" />
 
         <ImageView
             android:id="@+id/sixthFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="36" />
 
         <ImageView
             android:id="@+id/seventhFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="37" />
 
         <ImageView
             android:id="@+id/eighthFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="38" />
 
         <ImageView
             android:id="@+id/ninthFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="39" />
 
         <ImageView
             android:id="@+id/tenthFourthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="40" />
     </LinearLayout>
 
@@ -495,109 +295,59 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="5"
             android:textAlignment="center"
             android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/firstFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="3dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="41" />
 
         <ImageView
             android:id="@+id/secondFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="42" />
 
         <ImageView
             android:id="@+id/thirdFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="43" />
 
         <ImageView
             android:id="@+id/fourthFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="44" />
 
         <ImageView
             android:id="@+id/fifthFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="45" />
 
         <ImageView
             android:id="@+id/sixthFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="46" />
 
         <ImageView
             android:id="@+id/seventhFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="47" />
 
         <ImageView
             android:id="@+id/eighthFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="48" />
 
         <ImageView
             android:id="@+id/ninthFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="49" />
 
         <ImageView
             android:id="@+id/tenthFifthPosBanHero"
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-
-
-            android:onClick="selectBanHeroWithPos"
-            android:src="@drawable/frame"
+            style="@style/RecommendedPicksAndBansByPos"
             android:tag="50" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
