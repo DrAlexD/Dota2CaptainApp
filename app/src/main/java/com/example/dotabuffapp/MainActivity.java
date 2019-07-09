@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
     ArrayList<Heroes> banHeroes;
     ArrayList<HeroInfo> allySortedHeroesWinDif; //отсортированные контрпики союзных героев
     ArrayList<HeroInfo> enemySortedHeroesWinDif;
-    Double sumWinDif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         allySortedHeroesWinDif = new ArrayList<>();
         enemySortedHeroesWinDif = new ArrayList<>();
         heroTier.execute();
-        sumWinDif = 0.0;
     }
 
     public void selectHeroOrClear(View view) {

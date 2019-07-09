@@ -160,10 +160,6 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         return Math.round(sumWinDif * 100.0) / 100.0;
     }
 
-    void setSumWinDif(Double sumWinDif) {
-        this.sumWinDif = sumWinDif;
-    }
-
     void setTier(HeroTier tiers) {
         this.tiers = tiers;
     }
