@@ -160,6 +160,10 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
         return Math.round(sumWinDif * 100.0) / 100.0;
     }
 
+    void setSumWinDif(Double sumWinDif) {
+        this.sumWinDif = sumWinDif;
+    }
+
     void setTier(HeroTier tiers) {
         this.tiers = tiers;
     }
@@ -292,14 +296,19 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                             newKey = "Nature's Prophet";
                             break;
                     }
+                    System.out.println("------ВИНРЕЙТ: " + newKey);
                     int k = 0;
                     if (numberOfHeroes > 0) {
                         for (HeroInfo h : heroesWinDif) {
+                            System.out.println("----ВИНРЕЙТ: " + h.getName() + " {" + newKey + "}");
                             if (h.getName().equals(newKey)) {
+                                System.out.println("--ВИНРЕЙТ: " + h.getName());
                                 double oldWinRateDif = h.getWinRateDif();
                                 heroesWinDif.remove(k);
-                                if (!isAllyCounters)
+                                if (!isAllyCounters) {
                                     sumWinDif += oldWinRateDif;
+                                    System.out.println("-ВИНРЕЙТ: " + sumWinDif);
+                                }
                                 break;
                             }
                             k++;

@@ -83,6 +83,16 @@
             android:tag="11" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/picksWinRateDif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="50dp"
+        android:textSize="22sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/enemyPickList"
         android:layout_width="wrap_content"
