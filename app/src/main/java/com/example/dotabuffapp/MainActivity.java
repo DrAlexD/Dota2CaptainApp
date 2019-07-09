@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         if (isNotAfterEntrance) {
             allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
             enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
-            sumWinDif = heroPicks.getSumWinDif();
         } else
             isNotAfterEntrance = true;
 
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         heroPicks.setEnemyHeroes(enemyHeroes);
         heroPicks.setBanHeroes(banHeroes);
         heroPicks.setSortedHeroesWinDif(allySortedHeroesWinDif, enemySortedHeroesWinDif);
-        heroPicks.setSumWinDif(sumWinDif);
 
         if (isNotFrame[imageViewTagInt - 1]) {
             heroTier.addHero(imageViewHero);
@@ -139,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             if (isNotAfterEntrance) {
                 allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
                 enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
-                sumWinDif = heroPicks.getSumWinDif();
             } else
                 isNotAfterEntrance = true;
 
@@ -150,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             heroPicks.setEnemyHeroes(enemyHeroes);
             heroPicks.setBanHeroes(banHeroes);
             heroPicks.setSortedHeroesWinDif(allySortedHeroesWinDif, enemySortedHeroesWinDif);
-            heroPicks.setSumWinDif(sumWinDif);
 
             allyHeroes.add(currentHero);
             heroPicks.addAllyHero(currentHero);
@@ -202,7 +198,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             if (isNotAfterEntrance) {
                 allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
                 enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
-                sumWinDif = heroPicks.getSumWinDif();
             } else
                 isNotAfterEntrance = true;
 
@@ -213,7 +208,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             heroPicks.setEnemyHeroes(enemyHeroes);
             heroPicks.setBanHeroes(banHeroes);
             heroPicks.setSortedHeroesWinDif(allySortedHeroesWinDif, enemySortedHeroesWinDif);
-            heroPicks.setSumWinDif(sumWinDif);
 
             banHeroes.add(currentHero);
             heroPicks.deleteBanHeroFromLists(currentHero);
@@ -374,10 +368,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
 
     @Override
     public void processFinish() {
-        sumWinDif = heroPicks.getSumWinDif();
+        TextView tv = (TextView) findViewById(R.id.picksWinRateDif);
         if (!heroPicks.isNullAllyHeroes() && !heroPicks.isNullEnemyHeroes()) {
-            TextView tv = (TextView) findViewById(R.id.picksWinRateDif);
-            tv.setText(sumWinDif.toString() + "%");
+            if (heroPicks.getSumWinDif() > 0.0)
+                tv.setText("+" + heroPicks.getSumWinDif().toString() + "%");
+            else
+                tv.setText(heroPicks.getSumWinDif().toString() + "%");
+        } else {
+            tv.setText("");
         }
         for (Integer pos = 1; pos <= 5; pos++) {
             int currentNumberOfHeroesForOnePos = 1;

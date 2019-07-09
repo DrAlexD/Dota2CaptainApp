@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
     private ArrayList<HeroInfo> heroesTier;
+    private ArrayList<HeroInfo> originalTier;
     private ArrayList<HeroInfo> deletedHeroesTier;
     private transient Context context;
 
@@ -22,10 +23,15 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
         this.context = context;
         this.heroesTier = new ArrayList<>();
         this.deletedHeroesTier = new ArrayList<>();
+        this.originalTier = new ArrayList<>();
     }
 
     ArrayList<HeroInfo> getHeroesTier() {
         return heroesTier;
+    }
+
+    ArrayList<HeroInfo> getOriginalTier() {
+        return originalTier;
     }
 
     static void quickSort(ArrayList<HeroInfo> array, int low, int high, boolean isSortByWinRateDif) {
@@ -540,6 +546,7 @@ class HeroTier extends AsyncTask<Void, Void, Void> implements Serializable {
                 IOException e) {
             System.out.println(e.getMessage());
         }
+        originalTier.addAll(heroesTier);
         return null;
     }
 }

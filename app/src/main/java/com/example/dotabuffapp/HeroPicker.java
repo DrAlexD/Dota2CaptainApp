@@ -262,7 +262,7 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                                 }
                             }
                             if (f) {
-                                for (HeroInfo h : tiers.getHeroesTier()) {
+                                for (HeroInfo h : tiers.getOriginalTier()) {
                                     if (h.getName().equals(heroCounterName)) {
                                         heroesWinDif.add(new HeroInfo(h.getImage(), heroCounterName,
                                                 heroCounterWinRateToDouble, h.getTier(),
@@ -296,18 +296,14 @@ public class HeroPicker extends AsyncTask<Void, Void, Void> implements Serializa
                             newKey = "Nature's Prophet";
                             break;
                     }
-                    System.out.println("------ВИНРЕЙТ: " + newKey);
                     int k = 0;
                     if (numberOfHeroes > 0) {
                         for (HeroInfo h : heroesWinDif) {
-                            System.out.println("----ВИНРЕЙТ: " + h.getName() + " {" + newKey + "}");
                             if (h.getName().equals(newKey)) {
-                                System.out.println("--ВИНРЕЙТ: " + h.getName());
                                 double oldWinRateDif = h.getWinRateDif();
                                 heroesWinDif.remove(k);
                                 if (!isAllyCounters) {
                                     sumWinDif += oldWinRateDif;
-                                    System.out.println("-ВИНРЕЙТ: " + sumWinDif);
                                 }
                                 break;
                             }
