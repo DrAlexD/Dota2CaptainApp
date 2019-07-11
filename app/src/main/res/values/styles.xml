@@ -16,16 +16,23 @@
     </style>
 
     <style name="RecommendedPicksByPos">
-        <item name="android:layout_width">65dp</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:onClick">selectPickHeroWithPos</item>
         <item name="android:src">@drawable/frame</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="RecommendedBansByPos">
-        <item name="android:layout_width">65dp</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:onClick">selectBanHeroWithPos</item>
         <item name="android:src">@drawable/frame</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="MainText">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">22sp</item>
     </style>
 </resources>

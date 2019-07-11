@@ -1,353 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/firstPosBanHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="1"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/firstPosBanHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="1" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="2" />
+            <ImageView
+                android:id="@+id/firstFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="1" />
 
-        <ImageView
-            android:id="@+id/thirdFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="3" />
+            <ImageView
+                android:id="@+id/secondFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="2" />
 
-        <ImageView
-            android:id="@+id/fourthFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="4" />
+            <ImageView
+                android:id="@+id/thirdFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="3" />
 
-        <ImageView
-            android:id="@+id/fifthFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="5" />
+            <ImageView
+                android:id="@+id/fourthFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="4" />
 
-        <ImageView
-            android:id="@+id/sixthFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="6" />
+            <ImageView
+                android:id="@+id/fifthFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="5" />
 
-        <ImageView
-            android:id="@+id/seventhFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="7" />
+            <ImageView
+                android:id="@+id/sixthFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="6" />
 
-        <ImageView
-            android:id="@+id/eighthFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="8" />
+            <ImageView
+                android:id="@+id/seventhFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="7" />
 
-        <ImageView
-            android:id="@+id/ninthFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="9" />
+            <ImageView
+                android:id="@+id/eighthFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="8" />
 
-        <ImageView
-            android:id="@+id/tenthFirstPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="10" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ninthFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="9" />
 
-    <LinearLayout
-        android:id="@+id/secondPosBanHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/firstPosBanHeroes"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/tenthFirstPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="10" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="2"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/secondPosBanHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="11" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="12" />
+            <ImageView
+                android:id="@+id/firstSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="11" />
 
-        <ImageView
-            android:id="@+id/thirdSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="13" />
+            <ImageView
+                android:id="@+id/secondSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="12" />
 
-        <ImageView
-            android:id="@+id/fourthSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="14" />
+            <ImageView
+                android:id="@+id/thirdSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="13" />
 
-        <ImageView
-            android:id="@+id/fifthSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="15" />
+            <ImageView
+                android:id="@+id/fourthSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="14" />
 
-        <ImageView
-            android:id="@+id/sixthSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="16" />
+            <ImageView
+                android:id="@+id/fifthSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="15" />
 
-        <ImageView
-            android:id="@+id/seventhSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="17" />
+            <ImageView
+                android:id="@+id/sixthSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="16" />
 
-        <ImageView
-            android:id="@+id/eighthSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="18" />
+            <ImageView
+                android:id="@+id/seventhSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="17" />
 
-        <ImageView
-            android:id="@+id/ninthSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="19" />
+            <ImageView
+                android:id="@+id/eighthSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="18" />
 
-        <ImageView
-            android:id="@+id/tenthSecondPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="20" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ninthSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="19" />
 
-    <LinearLayout
-        android:id="@+id/thirdPosBanHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/secondPosBanHeroes"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/tenthSecondPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="20" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="3"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/thirdPosBanHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="21" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="22" />
+            <ImageView
+                android:id="@+id/firstThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="21" />
 
-        <ImageView
-            android:id="@+id/thirdThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="23" />
+            <ImageView
+                android:id="@+id/secondThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="22" />
 
-        <ImageView
-            android:id="@+id/fourthThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="24" />
+            <ImageView
+                android:id="@+id/thirdThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="23" />
 
-        <ImageView
-            android:id="@+id/fifthThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="25" />
+            <ImageView
+                android:id="@+id/fourthThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="24" />
 
-        <ImageView
-            android:id="@+id/sixthThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="26" />
+            <ImageView
+                android:id="@+id/fifthThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="25" />
 
-        <ImageView
-            android:id="@+id/seventhThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="27" />
+            <ImageView
+                android:id="@+id/sixthThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="26" />
 
-        <ImageView
-            android:id="@+id/eighthThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="28" />
+            <ImageView
+                android:id="@+id/seventhThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="27" />
 
-        <ImageView
-            android:id="@+id/ninthThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="29" />
+            <ImageView
+                android:id="@+id/eighthThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="28" />
 
-        <ImageView
-            android:id="@+id/tenthThirdPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="30" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ninthThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="29" />
 
-    <LinearLayout
-        android:id="@+id/fourthPosBanHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/thirdPosBanHeroes"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/tenthThirdPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="30" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="4"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/fourthPosBanHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="31" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="32" />
+            <ImageView
+                android:id="@+id/firstFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="31" />
 
-        <ImageView
-            android:id="@+id/thirdFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="33" />
+            <ImageView
+                android:id="@+id/secondFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="32" />
 
-        <ImageView
-            android:id="@+id/fourthFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="34" />
+            <ImageView
+                android:id="@+id/thirdFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="33" />
 
-        <ImageView
-            android:id="@+id/fifthFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="35" />
+            <ImageView
+                android:id="@+id/fourthFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="34" />
 
-        <ImageView
-            android:id="@+id/sixthFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="36" />
+            <ImageView
+                android:id="@+id/fifthFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="35" />
 
-        <ImageView
-            android:id="@+id/seventhFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="37" />
+            <ImageView
+                android:id="@+id/sixthFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="36" />
 
-        <ImageView
-            android:id="@+id/eighthFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="38" />
+            <ImageView
+                android:id="@+id/seventhFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="37" />
 
-        <ImageView
-            android:id="@+id/ninthFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="39" />
+            <ImageView
+                android:id="@+id/eighthFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="38" />
 
-        <ImageView
-            android:id="@+id/tenthFourthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="40" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ninthFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="39" />
 
-    <LinearLayout
-        android:id="@+id/fifthPosBanHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/fourthPosBanHeroes"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/tenthFourthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="40" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="5"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/fifthPosBanHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="41" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="42" />
+            <ImageView
+                android:id="@+id/firstFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="41" />
 
-        <ImageView
-            android:id="@+id/thirdFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="43" />
+            <ImageView
+                android:id="@+id/secondFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="42" />
 
-        <ImageView
-            android:id="@+id/fourthFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="44" />
+            <ImageView
+                android:id="@+id/thirdFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="43" />
 
-        <ImageView
-            android:id="@+id/fifthFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="45" />
+            <ImageView
+                android:id="@+id/fourthFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="44" />
 
-        <ImageView
-            android:id="@+id/sixthFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="46" />
+            <ImageView
+                android:id="@+id/fifthFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="45" />
 
-        <ImageView
-            android:id="@+id/seventhFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="47" />
+            <ImageView
+                android:id="@+id/sixthFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="46" />
 
-        <ImageView
-            android:id="@+id/eighthFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="48" />
+            <ImageView
+                android:id="@+id/seventhFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="47" />
 
-        <ImageView
-            android:id="@+id/ninthFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="49" />
+            <ImageView
+                android:id="@+id/eighthFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="48" />
 
-        <ImageView
-            android:id="@+id/tenthFifthPosBanHero"
-            style="@style/RecommendedBansByPos"
-            android:tag="50" />
+            <ImageView
+                android:id="@+id/ninthFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="49" />
+
+            <ImageView
+                android:id="@+id/tenthFifthPosBanHero"
+                style="@style/RecommendedBansByPos"
+                android:tag="50" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

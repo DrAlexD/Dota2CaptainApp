@@ -1,353 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/firstPosPickHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="1"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/firstPosPickHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="1" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="2" />
+            <ImageView
+                android:id="@+id/firstFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="1" />
 
-        <ImageView
-            android:id="@+id/thirdFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="3" />
+            <ImageView
+                android:id="@+id/secondFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="2" />
 
-        <ImageView
-            android:id="@+id/fourthFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="4" />
+            <ImageView
+                android:id="@+id/thirdFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="3" />
 
-        <ImageView
-            android:id="@+id/fifthFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="5" />
+            <ImageView
+                android:id="@+id/fourthFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="4" />
 
-        <ImageView
-            android:id="@+id/sixthFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="6" />
+            <ImageView
+                android:id="@+id/fifthFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="5" />
 
-        <ImageView
-            android:id="@+id/seventhFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="7" />
+            <ImageView
+                android:id="@+id/sixthFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="6" />
 
-        <ImageView
-            android:id="@+id/eighthFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="8" />
+            <ImageView
+                android:id="@+id/seventhFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="7" />
 
-        <ImageView
-            android:id="@+id/ninthFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="9" />
+            <ImageView
+                android:id="@+id/eighthFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="8" />
 
-        <ImageView
-            android:id="@+id/tenthFirstPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="10" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ninthFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="9" />
 
-    <LinearLayout
-        android:id="@+id/secondPosPickHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/firstPosPickHeroes"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/tenthFirstPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="10" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="2"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/secondPosPickHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="11" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="12" />
+            <ImageView
+                android:id="@+id/firstSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="11" />
 
-        <ImageView
-            android:id="@+id/thirdSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="13" />
+            <ImageView
+                android:id="@+id/secondSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="12" />
 
-        <ImageView
-            android:id="@+id/fourthSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="14" />
+            <ImageView
+                android:id="@+id/thirdSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="13" />
 
-        <ImageView
-            android:id="@+id/fifthSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="15" />
+            <ImageView
+                android:id="@+id/fourthSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="14" />
 
-        <ImageView
-            android:id="@+id/sixthSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="16" />
+            <ImageView
+                android:id="@+id/fifthSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="15" />
 
-        <ImageView
-            android:id="@+id/seventhSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="17" />
+            <ImageView
+                android:id="@+id/sixthSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="16" />
 
-        <ImageView
-            android:id="@+id/eighthSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="18" />
+            <ImageView
+                android:id="@+id/seventhSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="17" />
 
-        <ImageView
-            android:id="@+id/ninthSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="19" />
+            <ImageView
+                android:id="@+id/eighthSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="18" />
 
-        <ImageView
-            android:id="@+id/tenthSecondPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="20" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ninthSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="19" />
 
-    <LinearLayout
-        android:id="@+id/thirdPosPickHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/secondPosPickHeroes"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/tenthSecondPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="20" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="3"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/thirdPosPickHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="21" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="22" />
+            <ImageView
+                android:id="@+id/firstThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="21" />
 
-        <ImageView
-            android:id="@+id/thirdThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="23" />
+            <ImageView
+                android:id="@+id/secondThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="22" />
 
-        <ImageView
-            android:id="@+id/fourthThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="24" />
+            <ImageView
+                android:id="@+id/thirdThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="23" />
 
-        <ImageView
-            android:id="@+id/fifthThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="25" />
+            <ImageView
+                android:id="@+id/fourthThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="24" />
 
-        <ImageView
-            android:id="@+id/sixthThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="26" />
+            <ImageView
+                android:id="@+id/fifthThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="25" />
 
-        <ImageView
-            android:id="@+id/seventhThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="27" />
+            <ImageView
+                android:id="@+id/sixthThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="26" />
 
-        <ImageView
-            android:id="@+id/eighthThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="28" />
+            <ImageView
+                android:id="@+id/seventhThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="27" />
 
-        <ImageView
-            android:id="@+id/ninthThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="29" />
+            <ImageView
+                android:id="@+id/eighthThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="28" />
 
-        <ImageView
-            android:id="@+id/tenthThirdPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="30" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ninthThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="29" />
 
-    <LinearLayout
-        android:id="@+id/fourthPosPickHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/thirdPosPickHeroes"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/tenthThirdPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="30" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="4"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/fourthPosPickHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="31" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="32" />
+            <ImageView
+                android:id="@+id/firstFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="31" />
 
-        <ImageView
-            android:id="@+id/thirdFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="33" />
+            <ImageView
+                android:id="@+id/secondFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="32" />
 
-        <ImageView
-            android:id="@+id/fourthFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="34" />
+            <ImageView
+                android:id="@+id/thirdFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="33" />
 
-        <ImageView
-            android:id="@+id/fifthFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="35" />
+            <ImageView
+                android:id="@+id/fourthFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="34" />
 
-        <ImageView
-            android:id="@+id/sixthFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="36" />
+            <ImageView
+                android:id="@+id/fifthFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="35" />
 
-        <ImageView
-            android:id="@+id/seventhFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="37" />
+            <ImageView
+                android:id="@+id/sixthFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="36" />
 
-        <ImageView
-            android:id="@+id/eighthFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="38" />
+            <ImageView
+                android:id="@+id/seventhFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="37" />
 
-        <ImageView
-            android:id="@+id/ninthFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="39" />
+            <ImageView
+                android:id="@+id/eighthFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="38" />
 
-        <ImageView
-            android:id="@+id/tenthFourthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="40" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ninthFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="39" />
 
-    <LinearLayout
-        android:id="@+id/fifthPosPickHeroes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@id/fourthPosPickHeroes"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/tenthFourthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="40" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="5"
-            android:textAlignment="center"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/fifthPosPickHeroes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/firstFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="41" />
+            <TextView
+                style="@style/MainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/secondFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="42" />
+            <ImageView
+                android:id="@+id/firstFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="41" />
 
-        <ImageView
-            android:id="@+id/thirdFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="43" />
+            <ImageView
+                android:id="@+id/secondFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="42" />
 
-        <ImageView
-            android:id="@+id/fourthFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="44" />
+            <ImageView
+                android:id="@+id/thirdFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="43" />
 
-        <ImageView
-            android:id="@+id/fifthFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="45" />
+            <ImageView
+                android:id="@+id/fourthFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="44" />
 
-        <ImageView
-            android:id="@+id/sixthFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="46" />
+            <ImageView
+                android:id="@+id/fifthFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="45" />
 
-        <ImageView
-            android:id="@+id/seventhFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="47" />
+            <ImageView
+                android:id="@+id/sixthFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="46" />
 
-        <ImageView
-            android:id="@+id/eighthFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="48" />
+            <ImageView
+                android:id="@+id/seventhFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="47" />
 
-        <ImageView
-            android:id="@+id/ninthFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="49" />
+            <ImageView
+                android:id="@+id/eighthFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="48" />
 
-        <ImageView
-            android:id="@+id/tenthFifthPosPickHero"
-            style="@style/RecommendedPicksByPos"
-            android:tag="50" />
+            <ImageView
+                android:id="@+id/ninthFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="49" />
+
+            <ImageView
+                android:id="@+id/tenthFifthPosPickHero"
+                style="@style/RecommendedPicksByPos"
+                android:tag="50" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
