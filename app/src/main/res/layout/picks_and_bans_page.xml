@@ -6,168 +6,184 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/allyPickList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageAllyFirstPick"
-            style="@style/SelectedPicks"
-            android:tag="1" />
-
-        <ImageView
-            android:id="@+id/imageAllySecondPick"
-            style="@style/SelectedPicks"
-            android:tag="2" />
-
-        <ImageView
-            android:id="@+id/imageAllyThirdPick"
-            style="@style/SelectedPicks"
-            android:tag="3" />
-
-        <ImageView
-            android:id="@+id/imageAllyFourthPick"
-            style="@style/SelectedPicks"
-            android:tag="4" />
-
-        <ImageView
-            android:id="@+id/imageAllyFifthPick"
-            style="@style/SelectedPicks"
-            android:tag="5" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/allyBanList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="65dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@+id/allyPickList"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageAllyFirstBan"
-            style="@style/SelectedBans"
-            android:tag="6" />
-
-        <ImageView
-            android:id="@+id/imageAllySecondBan"
-            style="@style/SelectedBans"
-            android:tag="7" />
-
-        <ImageView
-            android:id="@+id/imageAllyThirdBan"
-            style="@style/SelectedBans"
-            android:tag="8" />
-
-        <ImageView
-            android:id="@+id/imageAllyFourthBan"
-            style="@style/SelectedBans"
-            android:tag="9" />
-
-        <ImageView
-            android:id="@+id/imageAllyFifthBan"
-            style="@style/SelectedBans"
-            android:tag="10" />
-
-        <ImageView
-            android:id="@+id/imageAllySixthBan"
-            style="@style/SelectedBans"
-            android:tag="11" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/picksWinRateDif"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="15dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
         android:textSize="22sp"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/enemyPickList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="10">
 
-        <ImageView
-            android:id="@+id/imageEnemyFirstPick"
-            style="@style/SelectedPicks"
-            android:tag="12" />
+        <LinearLayout
+            android:id="@+id/allyPickList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="30dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="10dp"
+            android:weightSum="5">
 
-        <ImageView
-            android:id="@+id/imageEnemySecondPick"
-            style="@style/SelectedPicks"
-            android:tag="13" />
+            <ImageView
+                android:id="@+id/imageAllyFirstPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="1" />
 
-        <ImageView
-            android:id="@+id/imageEnemyThirdPick"
-            style="@style/SelectedPicks"
-            android:tag="14" />
+            <ImageView
+                android:id="@+id/imageAllySecondPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="2" />
 
-        <ImageView
-            android:id="@+id/imageEnemyFourthPick"
-            style="@style/SelectedPicks"
-            android:tag="15" />
+            <ImageView
+                android:id="@+id/imageAllyThirdPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="3" />
 
-        <ImageView
-            android:id="@+id/imageEnemyFifthPick"
-            style="@style/SelectedPicks"
-            android:tag="16" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/imageAllyFourthPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="4" />
 
-    <LinearLayout
-        android:id="@+id/enemyBanList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical"
-        app:layout_constraintRight_toLeftOf="@+id/enemyPickList"
-        app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/imageAllyFifthPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="5" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageEnemyFirstBan"
-            style="@style/SelectedBans"
-            android:tag="17" />
+        <LinearLayout
+            android:id="@+id/allyBanList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="60dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="40dp"
+            android:weightSum="6">
 
-        <ImageView
-            android:id="@+id/imageEnemySecondBan"
-            style="@style/SelectedBans"
-            android:tag="18" />
+            <ImageView
+                android:id="@+id/imageAllyFirstBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="6" />
 
-        <ImageView
-            android:id="@+id/imageEnemyThirdBan"
-            style="@style/SelectedBans"
-            android:tag="19" />
+            <ImageView
+                android:id="@+id/imageAllySecondBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="7" />
 
-        <ImageView
-            android:id="@+id/imageEnemyFourthBan"
-            style="@style/SelectedBans"
-            android:tag="20" />
+            <ImageView
+                android:id="@+id/imageAllyThirdBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="8" />
 
-        <ImageView
-            android:id="@+id/imageEnemyFifthBan"
-            style="@style/SelectedBans"
-            android:tag="21" />
+            <ImageView
+                android:id="@+id/imageAllyFourthBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="9" />
 
-        <ImageView
-            android:id="@+id/imageEnemySixthBan"
-            style="@style/SelectedBans"
-            android:tag="22" />
+            <ImageView
+                android:id="@+id/imageAllyFifthBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="10" />
+
+            <ImageView
+                android:id="@+id/imageAllySixthBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="11" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/enemyBanList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="60dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="40dp"
+            android:weightSum="6">
+
+            <ImageView
+                android:id="@+id/imageEnemyFirstBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="17" />
+
+            <ImageView
+                android:id="@+id/imageEnemySecondBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="18" />
+
+            <ImageView
+                android:id="@+id/imageEnemyThirdBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="19" />
+
+            <ImageView
+                android:id="@+id/imageEnemyFourthBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="20" />
+
+            <ImageView
+                android:id="@+id/imageEnemyFifthBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="21" />
+
+            <ImageView
+                android:id="@+id/imageEnemySixthBan"
+                style="@style/SelectedPicksAndBans"
+                android:tag="22" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/enemyPickList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="30dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:weightSum="5">
+
+            <ImageView
+                android:id="@+id/imageEnemyFirstPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="12" />
+
+            <ImageView
+                android:id="@+id/imageEnemySecondPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="13" />
+
+            <ImageView
+                android:id="@+id/imageEnemyThirdPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="14" />
+
+            <ImageView
+                android:id="@+id/imageEnemyFourthPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="15" />
+
+            <ImageView
+                android:id="@+id/imageEnemyFifthPick"
+                style="@style/SelectedPicksAndBans"
+                android:tag="16" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
