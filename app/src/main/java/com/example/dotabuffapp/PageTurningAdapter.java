@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-public class MyAdapter extends FragmentPagerAdapter {
+public class PageTurningAdapter extends FragmentPagerAdapter {
     private Context context;
 
-    public MyAdapter(Context context, FragmentManager mgr) {
+    public PageTurningAdapter(Context context, FragmentManager mgr) {
         super(mgr);
         this.context = context;
     }

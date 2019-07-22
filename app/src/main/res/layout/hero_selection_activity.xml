@@ -9,8 +9,7 @@
         android:id="@+id/autocomplete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:completionThreshold="1"
-        android:hint="Введите имя героя" />
+        android:completionThreshold="1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/heroesInfoList"

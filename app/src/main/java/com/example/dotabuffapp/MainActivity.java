@@ -14,19 +14,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse, Serializable {
-    HeroPicker heroPicks;
-    HeroTier heroTier;
+    HeroesCounters heroPicks;
+    HeroesWithTiers heroesWithTiers;
     boolean[] isNotFrame = new boolean[22];
-    Heroes[] heroesPlaces = new Heroes[22];
-    Heroes[][] heroesPickPlaces = new Heroes[5][10];
-    Heroes[][] heroesBanPlaces = new Heroes[5][10];
+    HeroesPool[] heroesPlaces = new HeroesPool[22];
+    HeroesPool[][] heroesPickPlaces = new HeroesPool[5][10];
+    HeroesPool[][] heroesBanPlaces = new HeroesPool[5][10];
     int imageViewTagInt;
     boolean isNotAfterEntrance;
-    ArrayList<Heroes> allyHeroes; //союзные герои
-    ArrayList<Heroes> enemyHeroes;
-    ArrayList<Heroes> banHeroes;
-    ArrayList<HeroInfo> allySortedHeroesWinDif; //отсортированные контрпики союзных героев
-    ArrayList<HeroInfo> enemySortedHeroesWinDif;
+    ArrayList<HeroesPool> allyHeroes; //союзные герои
+    ArrayList<HeroesPool> enemyHeroes;
+    ArrayList<HeroesPool> banHeroes;
+    ArrayList<Hero> allySortedHeroesWinDif; //отсортированные контрпики союзных героев
+    ArrayList<Hero> enemySortedHeroesWinDif;
+    int remainingPickUpdateProcessesNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,40 +35,41 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         setContentView(R.layout.main_activity);
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new MyAdapter(this, getSupportFragmentManager()));
+        pager.setAdapter(new PageTurningAdapter(this, getSupportFragmentManager()));
         pager.setCurrentItem(1);
         pager.setOffscreenPageLimit(2);
 
-        heroTier = new HeroTier(getApplicationContext());
+        heroesWithTiers = new HeroesWithTiers(getApplicationContext());
         allyHeroes = new ArrayList<>();
         enemyHeroes = new ArrayList<>();
         banHeroes = new ArrayList<>();
         allySortedHeroesWinDif = new ArrayList<>();
         enemySortedHeroesWinDif = new ArrayList<>();
-        heroTier.execute();
+        heroesWithTiers.execute();
     }
 
     public void selectHeroOrClear(View view) {
         String imageViewTagString = (String) view.getTag();
         imageViewTagInt = Integer.parseInt(imageViewTagString);
-        Heroes imageViewHero = heroesPlaces[imageViewTagInt - 1];
+        HeroesPool imageViewHero = heroesPlaces[imageViewTagInt - 1];
 
         if (isNotAfterEntrance) {
-            allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
-            enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
+            allySortedHeroesWinDif = heroPicks.getCounters(true);
+            enemySortedHeroesWinDif = heroPicks.getCounters(false);
         } else
             isNotAfterEntrance = true;
 
-        heroPicks = new HeroPicker();
+        heroPicks = new HeroesCounters();
         heroPicks.delegate = this;
-        heroPicks.setTier(heroTier);
+        heroPicks.setTier(heroesWithTiers);
         heroPicks.setAllyHeroes(allyHeroes);
         heroPicks.setEnemyHeroes(enemyHeroes);
         heroPicks.setBanHeroes(banHeroes);
-        heroPicks.setSortedHeroesWinDif(allySortedHeroesWinDif, enemySortedHeroesWinDif);
+        heroPicks.setCounters(allySortedHeroesWinDif, enemySortedHeroesWinDif);
 
         if (isNotFrame[imageViewTagInt - 1]) {
-            heroTier.addHero(imageViewHero);
+            remainingPickUpdateProcessesNumber += 1;
+            heroesWithTiers.addHero(imageViewHero);
             if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
                 allyHeroes.remove(imageViewHero);
                 heroPicks.deleteAllyHero(imageViewHero);
@@ -85,8 +87,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             heroPicks.execute();
         } else {
             Intent intent = new Intent(this, HeroSelectionActivity.class);
-            intent.putExtra("HeroesTier", heroTier);
-            intent.putExtra("Heroes", heroPicks);
+            intent.putExtra("HeroesWithTiers", heroesWithTiers);
+            intent.putExtra("HeroesCounters", heroPicks);
             if (imageViewTagInt >= 1 && imageViewTagInt <= 5)
                 intent.putExtra("PickOrBan", 0);
             else if (imageViewTagInt >= 6 && imageViewTagInt <= 11)
@@ -103,9 +105,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
 
         String imageViewTagString = (String) view.getTag();
         int imageViewTagIntForPick = Integer.parseInt(imageViewTagString);
-        Heroes currentHero = heroesPickPlaces[(imageViewTagIntForPick - 1) / 10][(imageViewTagIntForPick - 1) % 10];
+        HeroesPool currentHero = heroesPickPlaces[(imageViewTagIntForPick - 1) / 10][(imageViewTagIntForPick - 1) % 10];
 
         if (currentHero != null) {
+            remainingPickUpdateProcessesNumber += 1;
 
             if (!isNotFrame[0]) {
                 currentImage = (ImageView) findViewById(R.id.imageAllyFirstPick);
@@ -133,24 +136,24 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             pressedImage.setImageResource(R.drawable.frame);
 
             if (isNotAfterEntrance) {
-                allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
-                enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
+                allySortedHeroesWinDif = heroPicks.getCounters(true);
+                enemySortedHeroesWinDif = heroPicks.getCounters(false);
             } else
                 isNotAfterEntrance = true;
 
-            heroPicks = new HeroPicker();
+            heroPicks = new HeroesCounters();
             heroPicks.delegate = this;
-            heroPicks.setTier(heroTier);
+            heroPicks.setTier(heroesWithTiers);
             heroPicks.setAllyHeroes(allyHeroes);
             heroPicks.setEnemyHeroes(enemyHeroes);
             heroPicks.setBanHeroes(banHeroes);
-            heroPicks.setSortedHeroesWinDif(allySortedHeroesWinDif, enemySortedHeroesWinDif);
+            heroPicks.setCounters(allySortedHeroesWinDif, enemySortedHeroesWinDif);
 
             allyHeroes.add(currentHero);
             heroPicks.addAllyHero(currentHero);
             heroPicks.execute();
 
-            heroTier.deleteHero(currentHero);
+            heroesWithTiers.deleteHero(currentHero);
         }
     }
 
@@ -160,9 +163,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
 
         String imageViewTagString = (String) view.getTag();
         int imageViewTagIntForPick = Integer.parseInt(imageViewTagString);
-        Heroes currentHero = heroesBanPlaces[(imageViewTagIntForPick - 1) / 10][(imageViewTagIntForPick - 1) % 10];
+        HeroesPool currentHero = heroesBanPlaces[(imageViewTagIntForPick - 1) / 10][(imageViewTagIntForPick - 1) % 10];
 
         if (currentHero != null) {
+            remainingPickUpdateProcessesNumber += 1;
 
             if (!isNotFrame[5]) {
                 currentImage = (ImageView) findViewById(R.id.imageAllyFirstBan);
@@ -194,24 +198,24 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             pressedImage.setImageResource(R.drawable.frame);
 
             if (isNotAfterEntrance) {
-                allySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(true);
-                enemySortedHeroesWinDif = heroPicks.getSortedHeroesWinDif(false);
+                allySortedHeroesWinDif = heroPicks.getCounters(true);
+                enemySortedHeroesWinDif = heroPicks.getCounters(false);
             } else
                 isNotAfterEntrance = true;
 
-            heroPicks = new HeroPicker();
+            heroPicks = new HeroesCounters();
             heroPicks.delegate = this;
-            heroPicks.setTier(heroTier);
+            heroPicks.setTier(heroesWithTiers);
             heroPicks.setAllyHeroes(allyHeroes);
             heroPicks.setEnemyHeroes(enemyHeroes);
             heroPicks.setBanHeroes(banHeroes);
-            heroPicks.setSortedHeroesWinDif(allySortedHeroesWinDif, enemySortedHeroesWinDif);
+            heroPicks.setCounters(allySortedHeroesWinDif, enemySortedHeroesWinDif);
 
             banHeroes.add(currentHero);
             heroPicks.deleteBanHeroFromLists(currentHero);
             processFinish();
 
-            heroTier.deleteHero(currentHero);
+            heroesWithTiers.deleteHero(currentHero);
         }
     }
 
@@ -219,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+                remainingPickUpdateProcessesNumber += 1;
                 int imageRes;
                 String heroName;
                 ImageView currentImage;
@@ -242,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                         break;
                 }
 
-                Heroes currentHero = Heroes.valueOf(changedHeroName);
+                HeroesPool currentHero = HeroesPool.valueOf(changedHeroName);
                 if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
                     if (!isNotFrame[0]) {
                         currentImage = (ImageView) findViewById(R.id.imageAllyFirstPick);
@@ -356,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                     heroPicks.deleteBanHeroFromLists(currentHero);
                     processFinish();
                 }
-                heroTier.deleteHero(currentHero);
+                heroesWithTiers.deleteHero(currentHero);
                 currentImage.setImageResource(imageRes);
             }
         } else {
@@ -378,7 +383,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         for (Integer pos = 1; pos <= 5; pos++) {
             int currentNumberOfHeroesForOnePos = 1;
 
-            for (HeroInfo h : heroPicks.getSortedHeroesWinDif(true)) {
+            for (Hero h : heroPicks.getCounters(true)) {
                 if (currentNumberOfHeroesForOnePos <= 10) {
                     String key = h.getName();
                     String newKey = key.replace(" ", "");
@@ -399,10 +404,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
 
                     try {
                         //HeroPool.valueOf(newKey);
-                        double valueDif = h.getWinRateDif();
+                        double valueDif = h.getWinRateDiff();
                         double valueWinRate = h.getNewWinRate();
 
-                        if (Heroes.valueOf(newKey).pos.contains(pos.toString())) {
+                        if (HeroesPool.valueOf(newKey).pos.contains(pos.toString())) {
                             ImageView currentImage;
                             if (pos.toString().equals("1")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
@@ -567,7 +572,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                             }
                             if (valueDif >= -1.0) {
                                 currentImage.setImageResource(h.getImage());
-                                heroesBanPlaces[pos - 1][currentNumberOfHeroesForOnePos - 1] = Heroes.valueOf(newKey);
+                                heroesBanPlaces[pos - 1][currentNumberOfHeroesForOnePos - 1] = HeroesPool.valueOf(newKey);
                             } else {
                                 currentImage.setImageResource(R.drawable.frame);
                                 heroesBanPlaces[pos - 1][currentNumberOfHeroesForOnePos - 1] = null;
@@ -585,7 +590,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         for (Integer pos = 1; pos <= 5; pos++) {
             int currentNumberOfHeroesForOnePos = 1;
 
-            for (HeroInfo h : heroPicks.getSortedHeroesWinDif(false)) {
+            for (Hero h : heroPicks.getCounters(false)) {
                 if (currentNumberOfHeroesForOnePos <= 10) {
                     String key = h.getName();
                     String newKey = key.replace(" ", "");
@@ -605,11 +610,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                     }
 
                     try {
-                        //HeroPool.valueOf(newKey);
-                        double valueDif = h.getWinRateDif();
+                        double valueDif = h.getWinRateDiff();
                         double valueWinRate = h.getNewWinRate();
 
-                        if (Heroes.valueOf(newKey).pos.contains(pos.toString())) {
+                        if (TeamHeroesPool.valueOf(newKey).pos.contains(pos.toString())) {
                             ImageView currentImage;
                             if (pos.toString().equals("1")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
@@ -774,7 +778,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                             }
                             if (valueDif >= -1.0) {
                                 currentImage.setImageResource(h.getImage());
-                                heroesPickPlaces[pos - 1][currentNumberOfHeroesForOnePos - 1] = Heroes.valueOf(newKey);
+                                heroesPickPlaces[pos - 1][currentNumberOfHeroesForOnePos - 1] = HeroesPool.valueOf(newKey);
                             } else {
                                 currentImage.setImageResource(R.drawable.frame);
                                 heroesPickPlaces[pos - 1][currentNumberOfHeroesForOnePos - 1] = null;
@@ -789,6 +793,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             }
         }
 
-        Toast.makeText(this, "Пики обновлены", Toast.LENGTH_SHORT).show();
+        remainingPickUpdateProcessesNumber -= 1;
+        if (remainingPickUpdateProcessesNumber > 0)
+            Toast.makeText(this, "Пики обновлены (" + remainingPickUpdateProcessesNumber + ")", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Пики обновлены", Toast.LENGTH_SHORT).show();
     }
 }

@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class HeroSelectionActivity extends AppCompatActivity {
-    private Intent intent;
-    private HeroInfoAdapter heroInfoAdapter;
     private String lastSearch = "";
 
     @Override
@@ -20,76 +18,70 @@ public class HeroSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hero_selection_activity);
 
-        HeroPicker heroPicks;
-        HeroTier heroesTier;
-
         Bundle arguments = getIntent().getExtras();
-        boolean isNullAllyFlag;
-        boolean isNullEnemyFlag;
-
-        RecyclerView heroesInfoView = (RecyclerView) findViewById(R.id.heroesInfoList);
-        SearchView searchView = (SearchView) findViewById(R.id.autocomplete);
 
         if (arguments != null) {
-            int mode = (int) arguments.get("PickOrBan");
-            heroPicks = (HeroPicker) arguments.getSerializable("Heroes");
-            heroesTier = (HeroTier) arguments.getSerializable("HeroesTier");
+            HeroesAdapter heroesAdapter;
+            RecyclerView heroesView = findViewById(R.id.heroesInfoList);
+            SearchView searchView = findViewById(R.id.autocomplete);
 
-            if (!heroPicks.isNullAllyHeroes() && !heroPicks.isNullEnemyHeroes()) {
-                isNullAllyFlag = false;
-                isNullEnemyFlag = false;
-                heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, heroPicks.getSortedHeroesWinDif(true), heroPicks.getSortedHeroesWinDif(false), heroesTier);
-            } else if (heroPicks.isNullAllyHeroes() && heroPicks.isNullEnemyHeroes()) {
-                isNullAllyFlag = true;
-                isNullEnemyFlag = true;
-                heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, null, null, heroesTier);
-            } else if (!heroPicks.isNullEnemyHeroes()) {
-                isNullAllyFlag = true;
-                isNullEnemyFlag = false;
-                heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, null, heroPicks.getSortedHeroesWinDif(false), heroesTier);
+            int mode = (int) arguments.get("PickOrBan");
+            HeroesCounters heroesCounters = (HeroesCounters) arguments.getSerializable("HeroesCounters");
+            HeroesWithTiers heroesWithTiers = (HeroesWithTiers) arguments.getSerializable("HeroesWithTiers");
+
+            boolean isAllyCountersWorkingWith;
+            boolean isEnemyCountersWorkingWith;
+            boolean isNullAllyHeroes = heroesCounters.isNullAllyHeroes();
+            boolean isNullEnemyHeroes = heroesCounters.isNullEnemyHeroes();
+            ArrayList<Hero> allyCountersByWinRateDiff = heroesCounters.getCounters(true);
+            ArrayList<Hero> enemyCountersByWinRateDiff = heroesCounters.getCounters(false);
+            ArrayList<Hero> heroes = heroesWithTiers.getCurrentHeroesWithTiers();
+
+            if (!isNullAllyHeroes && !isNullEnemyHeroes) {
+                isAllyCountersWorkingWith = mode == 1;
+                isEnemyCountersWorkingWith = mode == 0;
+            } else if (isNullAllyHeroes && isNullEnemyHeroes) {
+                isAllyCountersWorkingWith = false;
+                isEnemyCountersWorkingWith = false;
+            } else if (!isNullEnemyHeroes) {
+                isAllyCountersWorkingWith = false;
+                isEnemyCountersWorkingWith = mode == 0;
             } else {
-                isNullAllyFlag = false;
-                isNullEnemyFlag = true;
-                heroInfoAdapter = new HeroInfoAdapter(this, isNullAllyFlag, isNullEnemyFlag, mode, heroPicks.getSortedHeroesWinDif(true), null, heroesTier);
+                isAllyCountersWorkingWith = mode == 1;
+                isEnemyCountersWorkingWith = false;
             }
 
-            heroesInfoView.setAdapter(heroInfoAdapter);
-            heroesInfoView.addOnItemTouchListener(
-                    new RecyclerItemClickListener(this, heroesInfoView, new RecyclerItemClickListener.OnItemClickListener() {
+            heroesAdapter = new HeroesAdapter(this, isAllyCountersWorkingWith, isEnemyCountersWorkingWith, allyCountersByWinRateDiff, enemyCountersByWinRateDiff, heroesWithTiers);
+
+            heroesView.setAdapter(heroesAdapter);
+            heroesView.addOnItemTouchListener(
+                    new RecyclerItemClickListener(this, heroesView, new RecyclerItemClickListener.OnItemClickListener() {
+
                         @Override
                         public void onItemClick(View view, int position) {
-                            ArrayList<HeroInfo> currentList = new ArrayList<>();
-                            intent = new Intent();
-                            if (mode == 0 && !isNullEnemyFlag) {
-                                if (!lastSearch.equals("")) {
-                                    for (HeroInfo h : heroPicks.getSortedHeroesWinDif(false)) {
-                                        if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
-                                            currentList.add(h);
-                                        }
-                                    }
-                                } else
-                                    currentList = heroPicks.getSortedHeroesWinDif(false);
-                            } else if (mode == 1 && !isNullAllyFlag) {
-                                if (!lastSearch.equals("")) {
-                                    for (HeroInfo h : heroPicks.getSortedHeroesWinDif(true)) {
-                                        if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
-                                            currentList.add(h);
-                                        }
-                                    }
-                                } else
-                                    currentList = heroPicks.getSortedHeroesWinDif(true);
+                            ArrayList<Hero> currentFilteredHeroes = new ArrayList<>();
+
+                            ArrayList<Hero> heroesOrCounters;
+                            if (isEnemyCountersWorkingWith) {
+                                heroesOrCounters = enemyCountersByWinRateDiff;
+                            } else if (isAllyCountersWorkingWith) {
+                                heroesOrCounters = allyCountersByWinRateDiff;
                             } else {
-                                if (!lastSearch.equals("")) {
-                                    for (HeroInfo h : heroesTier.getHeroesTier()) {
-                                        if (h.getName().toLowerCase().contains(lastSearch.toLowerCase())) {
-                                            currentList.add(h);
-                                        }
-                                    }
-                                } else
-                                    currentList = heroesTier.getHeroesTier();
+                                heroesOrCounters = heroes;
                             }
-                            intent.putExtra("ImageId", currentList.get(position).getImage());
-                            intent.putExtra("HeroName", currentList.get(position).getName());
+
+                            if (!lastSearch.equals("")) {
+                                for (Hero hero : heroesOrCounters) {
+                                    if ((hero.getName().toLowerCase()).contains(lastSearch.toLowerCase())) {
+                                        currentFilteredHeroes.add(hero);
+                                    }
+                                }
+                            } else
+                                currentFilteredHeroes = heroesOrCounters;
+
+                            Intent intent = new Intent();
+                            intent.putExtra("ImageId", currentFilteredHeroes.get(position).getImage());
+                            intent.putExtra("HeroName", currentFilteredHeroes.get(position).getName());
                             setResult(RESULT_OK, intent);
                             finish();
                         }
@@ -100,19 +92,21 @@ public class HeroSelectionActivity extends AppCompatActivity {
                     })
             );
 
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    return false;
-                }
+            searchView.setOnQueryTextListener(
+                    new SearchView.OnQueryTextListener() {
 
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    lastSearch = newText;
-                    heroInfoAdapter.getFilter().filter(newText);
-                    return true;
-                }
-            });
+                        @Override
+                        public boolean onQueryTextSubmit(String s) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onQueryTextChange(String newText) {
+                            lastSearch = newText;
+                            heroesAdapter.getFilter().filter(newText);
+                            return true;
+                        }
+                    });
         }
     }
 }
