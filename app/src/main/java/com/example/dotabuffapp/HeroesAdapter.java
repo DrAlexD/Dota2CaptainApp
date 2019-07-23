@@ -24,7 +24,7 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
 
     private ArrayList<Hero> originalHeroesOrCounters;
 
-    HeroesAdapter(Context context, boolean isAllyCountersWorkingWith, boolean isEnemyCountersWorkingWith, ArrayList<Hero> allyCountersByWinRateDiff, ArrayList<Hero> enemyCountersByWinRateDiff, HeroesWithTiers heroesTier) {
+    HeroesAdapter(Context context, boolean isAllyCountersWorkingWith, boolean isEnemyCountersWorkingWith, ArrayList<Hero> allyCountersByWinRateDiff, ArrayList<Hero> enemyCountersByWinRateDiff, ArrayList<Hero> heroes) {
         this.inflater = LayoutInflater.from(context);
         this.isAllyCountersWorkingWith = isAllyCountersWorkingWith;
         this.isEnemyCountersWorkingWith = isEnemyCountersWorkingWith;
@@ -34,7 +34,7 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
         } else if (isAllyCountersWorkingWith) {
             this.allyCountersByWinRateDiff = allyCountersByWinRateDiff;
         } else {
-            this.heroes = heroesTier.getCurrentHeroesWithTiers();
+            this.heroes = heroes;
         }
     }
 

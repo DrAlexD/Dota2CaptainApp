@@ -27,15 +27,14 @@ public class HeroSelectionActivity extends AppCompatActivity {
 
             int mode = (int) arguments.get("PickOrBan");
             HeroesCounters heroesCounters = (HeroesCounters) arguments.getSerializable("HeroesCounters");
-            HeroesWithTiers heroesWithTiers = (HeroesWithTiers) arguments.getSerializable("HeroesWithTiers");
 
             boolean isAllyCountersWorkingWith;
             boolean isEnemyCountersWorkingWith;
-            boolean isNullAllyHeroes = heroesCounters.isNullAllyHeroes();
-            boolean isNullEnemyHeroes = heroesCounters.isNullEnemyHeroes();
-            ArrayList<Hero> allyCountersByWinRateDiff = heroesCounters.getCounters(true);
-            ArrayList<Hero> enemyCountersByWinRateDiff = heroesCounters.getCounters(false);
-            ArrayList<Hero> heroes = heroesWithTiers.getCurrentHeroesWithTiers();
+            boolean isNullAllyHeroes = heroesCounters.getAllyHeroes().isEmpty();
+            boolean isNullEnemyHeroes = heroesCounters.getEnemyHeroes().isEmpty();
+            ArrayList<Hero> allyCountersByWinRateDiff = heroesCounters.getAllyCountersByWinRateDiff();
+            ArrayList<Hero> enemyCountersByWinRateDiff = heroesCounters.getEnemyCountersByWinRateDiff();
+            ArrayList<Hero> heroes = heroesCounters.getHeroesWithTiers().getCurrentHeroesWithTiers();
 
             if (!isNullAllyHeroes && !isNullEnemyHeroes) {
                 isAllyCountersWorkingWith = mode == 1;
@@ -51,7 +50,7 @@ public class HeroSelectionActivity extends AppCompatActivity {
                 isEnemyCountersWorkingWith = false;
             }
 
-            heroesAdapter = new HeroesAdapter(this, isAllyCountersWorkingWith, isEnemyCountersWorkingWith, allyCountersByWinRateDiff, enemyCountersByWinRateDiff, heroesWithTiers);
+            heroesAdapter = new HeroesAdapter(this, isAllyCountersWorkingWith, isEnemyCountersWorkingWith, allyCountersByWinRateDiff, enemyCountersByWinRateDiff, heroes);
 
             heroesView.setAdapter(heroesAdapter);
             heroesView.addOnItemTouchListener(

@@ -11,22 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse, Serializable {
-    HeroesCounters heroPicks;
-    HeroesWithTiers heroesWithTiers;
+    HeroesCountersTask heroCountersTask;
+    HeroesCounters heroCounters;
     boolean[] isNotFrame = new boolean[22];
     HeroesPool[] heroesPlaces = new HeroesPool[22];
     HeroesPool[][] heroesPickPlaces = new HeroesPool[5][10];
     HeroesPool[][] heroesBanPlaces = new HeroesPool[5][10];
     int imageViewTagInt;
     boolean isNotAfterEntrance;
-    ArrayList<HeroesPool> allyHeroes; //союзные герои
-    ArrayList<HeroesPool> enemyHeroes;
-    ArrayList<HeroesPool> banHeroes;
-    ArrayList<Hero> allySortedHeroesWinDif; //отсортированные контрпики союзных героев
-    ArrayList<Hero> enemySortedHeroesWinDif;
     int remainingPickUpdateProcessesNumber;
 
     @Override
@@ -34,18 +28,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        ViewPager pager = findViewById(R.id.pager);
         pager.setAdapter(new PageTurningAdapter(this, getSupportFragmentManager()));
         pager.setCurrentItem(1);
         pager.setOffscreenPageLimit(2);
 
-        heroesWithTiers = new HeroesWithTiers(getApplicationContext());
-        allyHeroes = new ArrayList<>();
-        enemyHeroes = new ArrayList<>();
-        banHeroes = new ArrayList<>();
-        allySortedHeroesWinDif = new ArrayList<>();
-        enemySortedHeroesWinDif = new ArrayList<>();
-        heroesWithTiers.execute();
+        heroCounters = new HeroesCounters();
+        heroCounters.getHeroesWithTiers().onPostExecuteResponse = this;
+        heroCounters.getHeroesWithTiers().execute();
     }
 
     public void selectHeroOrClear(View view) {
@@ -54,47 +44,47 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         HeroesPool imageViewHero = heroesPlaces[imageViewTagInt - 1];
 
         if (isNotAfterEntrance) {
-            allySortedHeroesWinDif = heroPicks.getCounters(true);
-            enemySortedHeroesWinDif = heroPicks.getCounters(false);
+            heroCounters.setAllyCountersByWinRateDiff(
+                    heroCountersTask.getHeroesCounters().getAllyCountersByWinRateDiff());
+            heroCounters.setEnemyCountersByWinRateDiff(
+                    heroCountersTask.getHeroesCounters().getEnemyCountersByWinRateDiff());
+            heroCounters.setWinRateDiffBetweenAllyAndEnemyPicks(
+                    heroCountersTask.getHeroesCounters().getWinRateDiffBetweenAllyAndEnemyPicks());
         } else
             isNotAfterEntrance = true;
 
-        heroPicks = new HeroesCounters();
-        heroPicks.delegate = this;
-        heroPicks.setTier(heroesWithTiers);
-        heroPicks.setAllyHeroes(allyHeroes);
-        heroPicks.setEnemyHeroes(enemyHeroes);
-        heroPicks.setBanHeroes(banHeroes);
-        heroPicks.setCounters(allySortedHeroesWinDif, enemySortedHeroesWinDif);
-
         if (isNotFrame[imageViewTagInt - 1]) {
             remainingPickUpdateProcessesNumber += 1;
-            heroesWithTiers.addHero(imageViewHero);
-            if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
-                allyHeroes.remove(imageViewHero);
-                heroPicks.deleteAllyHero(imageViewHero);
-            } else if (imageViewTagInt >= 12 && imageViewTagInt <= 16) {
-                enemyHeroes.remove(imageViewHero);
-                heroPicks.deleteEnemyHero(imageViewHero);
-            } else {
-                banHeroes.remove(imageViewHero);
-                heroPicks.deleteBanHero(imageViewHero);
-            }
+
             ImageView currentImage = (ImageView) view;
             currentImage.setImageResource(R.drawable.frame);
             isNotFrame[imageViewTagInt - 1] = false;
             heroesPlaces[imageViewTagInt - 1] = null;
-            heroPicks.execute();
+
+            if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
+                heroCounters.getAllyHeroes().remove(imageViewHero);
+            } else if (imageViewTagInt >= 12 && imageViewTagInt <= 16) {
+                heroCounters.getEnemyHeroes().remove(imageViewHero);
+            } else {
+                heroCounters.getBanHeroes().remove(imageViewHero);
+            }
+            heroCounters.getHeroesWithTiers().addHero(imageViewHero);
+
+            heroCountersTask = new HeroesCountersTask();
+            heroCountersTask.onPostExecuteResponse = this;
+            heroCountersTask.setHeroesCounters(heroCounters);
+            heroCountersTask.execute();
         } else {
             Intent intent = new Intent(this, HeroSelectionActivity.class);
-            intent.putExtra("HeroesWithTiers", heroesWithTiers);
-            intent.putExtra("HeroesCounters", heroPicks);
+
+            intent.putExtra("HeroesCounters", heroCounters);
             if (imageViewTagInt >= 1 && imageViewTagInt <= 5)
                 intent.putExtra("PickOrBan", 0);
             else if (imageViewTagInt >= 6 && imageViewTagInt <= 11)
                 intent.putExtra("PickOrBan", 1);
             else if (imageViewTagInt >= 12 && imageViewTagInt <= 22)
                 intent.putExtra("PickOrBan", 2);
+
             startActivityForResult(intent, 1);
         }
     }
@@ -111,23 +101,23 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             remainingPickUpdateProcessesNumber += 1;
 
             if (!isNotFrame[0]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllyFirstPick);
+                currentImage = findViewById(R.id.imageAllyFirstPick);
                 isNotFrame[0] = true;
                 heroesPlaces[0] = currentHero;
             } else if (!isNotFrame[1]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllySecondPick);
+                currentImage = findViewById(R.id.imageAllySecondPick);
                 isNotFrame[1] = true;
                 heroesPlaces[1] = currentHero;
             } else if (!isNotFrame[2]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllyThirdPick);
+                currentImage = findViewById(R.id.imageAllyThirdPick);
                 isNotFrame[2] = true;
                 heroesPlaces[2] = currentHero;
             } else if (!isNotFrame[3]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllyFourthPick);
+                currentImage = findViewById(R.id.imageAllyFourthPick);
                 isNotFrame[3] = true;
                 heroesPlaces[3] = currentHero;
             } else {
-                currentImage = (ImageView) findViewById(R.id.imageAllyFifthPick);
+                currentImage = findViewById(R.id.imageAllyFifthPick);
                 isNotFrame[4] = true;
                 heroesPlaces[4] = currentHero;
             }
@@ -136,24 +126,22 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             pressedImage.setImageResource(R.drawable.frame);
 
             if (isNotAfterEntrance) {
-                allySortedHeroesWinDif = heroPicks.getCounters(true);
-                enemySortedHeroesWinDif = heroPicks.getCounters(false);
+                heroCounters.setAllyCountersByWinRateDiff(
+                        heroCountersTask.getHeroesCounters().getAllyCountersByWinRateDiff());
+                heroCounters.setEnemyCountersByWinRateDiff(
+                        heroCountersTask.getHeroesCounters().getEnemyCountersByWinRateDiff());
+                heroCounters.setWinRateDiffBetweenAllyAndEnemyPicks(
+                        heroCountersTask.getHeroesCounters().getWinRateDiffBetweenAllyAndEnemyPicks());
             } else
                 isNotAfterEntrance = true;
 
-            heroPicks = new HeroesCounters();
-            heroPicks.delegate = this;
-            heroPicks.setTier(heroesWithTiers);
-            heroPicks.setAllyHeroes(allyHeroes);
-            heroPicks.setEnemyHeroes(enemyHeroes);
-            heroPicks.setBanHeroes(banHeroes);
-            heroPicks.setCounters(allySortedHeroesWinDif, enemySortedHeroesWinDif);
+            heroCounters.getAllyHeroes().add(currentHero);
+            heroCounters.getHeroesWithTiers().deleteHero(currentHero);
 
-            allyHeroes.add(currentHero);
-            heroPicks.addAllyHero(currentHero);
-            heroPicks.execute();
-
-            heroesWithTiers.deleteHero(currentHero);
+            heroCountersTask = new HeroesCountersTask();
+            heroCountersTask.onPostExecuteResponse = this;
+            heroCountersTask.setHeroesCounters(heroCounters);
+            heroCountersTask.execute();
         }
     }
 
@@ -169,27 +157,27 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             remainingPickUpdateProcessesNumber += 1;
 
             if (!isNotFrame[5]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllyFirstBan);
+                currentImage = findViewById(R.id.imageAllyFirstBan);
                 isNotFrame[5] = true;
                 heroesPlaces[5] = currentHero;
             } else if (!isNotFrame[6]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllySecondBan);
+                currentImage = findViewById(R.id.imageAllySecondBan);
                 isNotFrame[6] = true;
                 heroesPlaces[6] = currentHero;
             } else if (!isNotFrame[7]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllyThirdBan);
+                currentImage = findViewById(R.id.imageAllyThirdBan);
                 isNotFrame[7] = true;
                 heroesPlaces[7] = currentHero;
             } else if (!isNotFrame[8]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllyFourthBan);
+                currentImage = findViewById(R.id.imageAllyFourthBan);
                 isNotFrame[8] = true;
                 heroesPlaces[8] = currentHero;
             } else if (!isNotFrame[9]) {
-                currentImage = (ImageView) findViewById(R.id.imageAllyFifthBan);
+                currentImage = findViewById(R.id.imageAllyFifthBan);
                 isNotFrame[9] = true;
                 heroesPlaces[9] = currentHero;
             } else {
-                currentImage = (ImageView) findViewById(R.id.imageAllySixthBan);
+                currentImage = findViewById(R.id.imageAllySixthBan);
                 isNotFrame[10] = true;
                 heroesPlaces[10] = currentHero;
             }
@@ -198,24 +186,20 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             pressedImage.setImageResource(R.drawable.frame);
 
             if (isNotAfterEntrance) {
-                allySortedHeroesWinDif = heroPicks.getCounters(true);
-                enemySortedHeroesWinDif = heroPicks.getCounters(false);
+                heroCounters.setAllyCountersByWinRateDiff(
+                        heroCountersTask.getHeroesCounters().getAllyCountersByWinRateDiff());
+                heroCounters.setEnemyCountersByWinRateDiff(
+                        heroCountersTask.getHeroesCounters().getEnemyCountersByWinRateDiff());
+                heroCounters.setWinRateDiffBetweenAllyAndEnemyPicks(
+                        heroCountersTask.getHeroesCounters().getWinRateDiffBetweenAllyAndEnemyPicks());
             } else
                 isNotAfterEntrance = true;
 
-            heroPicks = new HeroesCounters();
-            heroPicks.delegate = this;
-            heroPicks.setTier(heroesWithTiers);
-            heroPicks.setAllyHeroes(allyHeroes);
-            heroPicks.setEnemyHeroes(enemyHeroes);
-            heroPicks.setBanHeroes(banHeroes);
-            heroPicks.setCounters(allySortedHeroesWinDif, enemySortedHeroesWinDif);
+            heroCounters.getBanHeroes().add(currentHero);
+            heroCounters.getHeroesWithTiers().deleteHero(currentHero);
 
-            banHeroes.add(currentHero);
-            heroPicks.deleteBanHeroFromLists(currentHero);
-            processFinish();
-
-            heroesWithTiers.deleteHero(currentHero);
+            heroCountersTask.getHeroesCounters().deleteBanHeroFromLists(currentHero);
+            heroesCountersProcessFinish();
         }
     }
 
@@ -248,120 +232,120 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                 }
 
                 HeroesPool currentHero = HeroesPool.valueOf(changedHeroName);
+                heroCounters.getHeroesWithTiers().deleteHero(currentHero);
                 if (imageViewTagInt >= 1 && imageViewTagInt <= 5) {
                     if (!isNotFrame[0]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllyFirstPick);
+                        currentImage = findViewById(R.id.imageAllyFirstPick);
                         isNotFrame[0] = true;
                         heroesPlaces[0] = currentHero;
                     } else if (!isNotFrame[1]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllySecondPick);
+                        currentImage = findViewById(R.id.imageAllySecondPick);
                         isNotFrame[1] = true;
                         heroesPlaces[1] = currentHero;
                     } else if (!isNotFrame[2]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllyThirdPick);
+                        currentImage = findViewById(R.id.imageAllyThirdPick);
                         isNotFrame[2] = true;
                         heroesPlaces[2] = currentHero;
                     } else if (!isNotFrame[3]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllyFourthPick);
+                        currentImage = findViewById(R.id.imageAllyFourthPick);
                         isNotFrame[3] = true;
                         heroesPlaces[3] = currentHero;
                     } else {
-                        currentImage = (ImageView) findViewById(R.id.imageAllyFifthPick);
+                        currentImage = findViewById(R.id.imageAllyFifthPick);
                         isNotFrame[4] = true;
                         heroesPlaces[4] = currentHero;
                     }
 
-                    allyHeroes.add(currentHero);
-                    heroPicks.addAllyHero(currentHero);
-                    heroPicks.execute();
+                    heroCounters.getAllyHeroes().add(currentHero);
+                    heroCountersTask.setHeroesCounters(heroCounters);
+                    heroCountersTask.execute();
                 } else if (imageViewTagInt >= 6 && imageViewTagInt <= 11) {
                     if (!isNotFrame[5]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllyFirstBan);
+                        currentImage = findViewById(R.id.imageAllyFirstBan);
                         isNotFrame[5] = true;
                         heroesPlaces[5] = currentHero;
                     } else if (!isNotFrame[6]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllySecondBan);
+                        currentImage = findViewById(R.id.imageAllySecondBan);
                         isNotFrame[6] = true;
                         heroesPlaces[6] = currentHero;
                     } else if (!isNotFrame[7]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllyThirdBan);
+                        currentImage = findViewById(R.id.imageAllyThirdBan);
                         isNotFrame[7] = true;
                         heroesPlaces[7] = currentHero;
                     } else if (!isNotFrame[8]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllyFourthBan);
+                        currentImage = findViewById(R.id.imageAllyFourthBan);
                         isNotFrame[8] = true;
                         heroesPlaces[8] = currentHero;
                     } else if (!isNotFrame[9]) {
-                        currentImage = (ImageView) findViewById(R.id.imageAllyFifthBan);
+                        currentImage = findViewById(R.id.imageAllyFifthBan);
                         isNotFrame[9] = true;
                         heroesPlaces[9] = currentHero;
                     } else {
-                        currentImage = (ImageView) findViewById(R.id.imageAllySixthBan);
+                        currentImage = findViewById(R.id.imageAllySixthBan);
                         isNotFrame[10] = true;
                         heroesPlaces[10] = currentHero;
                     }
 
-                    banHeroes.add(currentHero);
-                    heroPicks.deleteBanHeroFromLists(currentHero);
-                    processFinish();
+                    heroCounters.getBanHeroes().add(currentHero);
+                    heroCountersTask.getHeroesCounters().deleteBanHeroFromLists(currentHero);
+                    heroesCountersProcessFinish();
                 } else if (imageViewTagInt >= 12 && imageViewTagInt <= 16) {
                     if (!isNotFrame[11]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemyFirstPick);
+                        currentImage = findViewById(R.id.imageEnemyFirstPick);
                         isNotFrame[11] = true;
                         heroesPlaces[11] = currentHero;
                     } else if (!isNotFrame[12]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemySecondPick);
+                        currentImage = findViewById(R.id.imageEnemySecondPick);
                         isNotFrame[12] = true;
                         heroesPlaces[12] = currentHero;
                     } else if (!isNotFrame[13]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemyThirdPick);
+                        currentImage = findViewById(R.id.imageEnemyThirdPick);
                         isNotFrame[13] = true;
                         heroesPlaces[13] = currentHero;
                     } else if (!isNotFrame[14]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemyFourthPick);
+                        currentImage = findViewById(R.id.imageEnemyFourthPick);
                         isNotFrame[14] = true;
                         heroesPlaces[14] = currentHero;
                     } else {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemyFifthPick);
+                        currentImage = findViewById(R.id.imageEnemyFifthPick);
                         isNotFrame[15] = true;
                         heroesPlaces[15] = currentHero;
                     }
 
-                    enemyHeroes.add(currentHero);
-                    heroPicks.addEnemyHero(currentHero);
-                    heroPicks.execute();
+                    heroCounters.getEnemyHeroes().add(currentHero);
+                    heroCountersTask.setHeroesCounters(heroCounters);
+                    heroCountersTask.execute();
                 } else {
                     if (!isNotFrame[16]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemyFirstBan);
+                        currentImage = findViewById(R.id.imageEnemyFirstBan);
                         isNotFrame[16] = true;
                         heroesPlaces[16] = currentHero;
                     } else if (!isNotFrame[17]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemySecondBan);
+                        currentImage = findViewById(R.id.imageEnemySecondBan);
                         isNotFrame[17] = true;
                         heroesPlaces[17] = currentHero;
                     } else if (!isNotFrame[18]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemyThirdBan);
+                        currentImage = findViewById(R.id.imageEnemyThirdBan);
                         isNotFrame[18] = true;
                         heroesPlaces[18] = currentHero;
                     } else if (!isNotFrame[19]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemyFourthBan);
+                        currentImage = findViewById(R.id.imageEnemyFourthBan);
                         isNotFrame[19] = true;
                         heroesPlaces[19] = currentHero;
                     } else if (!isNotFrame[20]) {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemyFifthBan);
+                        currentImage = findViewById(R.id.imageEnemyFifthBan);
                         isNotFrame[20] = true;
                         heroesPlaces[20] = currentHero;
                     } else {
-                        currentImage = (ImageView) findViewById(R.id.imageEnemySixthBan);
+                        currentImage = findViewById(R.id.imageEnemySixthBan);
                         isNotFrame[21] = true;
                         heroesPlaces[21] = currentHero;
                     }
 
-                    banHeroes.add(currentHero);
-                    heroPicks.deleteBanHeroFromLists(currentHero);
-                    processFinish();
+                    heroCounters.getBanHeroes().add(currentHero);
+                    heroCountersTask.getHeroesCounters().deleteBanHeroFromLists(currentHero);
+                    heroesCountersProcessFinish();
                 }
-                heroesWithTiers.deleteHero(currentHero);
                 currentImage.setImageResource(imageRes);
             }
         } else {
@@ -370,20 +354,26 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
     }
 
     @Override
-    public void processFinish() {
-        TextView tv = (TextView) findViewById(R.id.picksWinRateDif);
-        if (!heroPicks.isNullAllyHeroes() && !heroPicks.isNullEnemyHeroes()) {
-            if (heroPicks.getSumWinDif() > 0.0)
-                tv.setText("+" + heroPicks.getSumWinDif().toString() + "%");
+    public void heroesWithTiersProcessFinish() {
+        Toast.makeText(this, "Винрейты героев загружены", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void heroesCountersProcessFinish() {
+        TextView tv = findViewById(R.id.picksWinRateDif);
+        if (!heroCountersTask.getHeroesCounters().getAllyHeroes().isEmpty() &&
+                !heroCountersTask.getHeroesCounters().getEnemyHeroes().isEmpty()) {
+            if (heroCountersTask.getHeroesCounters().getWinRateDiffBetweenAllyAndEnemyPicks() > 0.0)
+                tv.setText("+" + heroCountersTask.getHeroesCounters().getWinRateDiffBetweenAllyAndEnemyPicks().toString() + "%");
             else
-                tv.setText(heroPicks.getSumWinDif().toString() + "%");
+                tv.setText(heroCountersTask.getHeroesCounters().getWinRateDiffBetweenAllyAndEnemyPicks().toString() + "%");
         } else {
             tv.setText("");
         }
         for (Integer pos = 1; pos <= 5; pos++) {
             int currentNumberOfHeroesForOnePos = 1;
 
-            for (Hero h : heroPicks.getCounters(true)) {
+            for (Hero h : heroCountersTask.getHeroesCounters().getAllyCountersByWinRateDiff()) {
                 if (currentNumberOfHeroesForOnePos <= 10) {
                     String key = h.getName();
                     String newKey = key.replace(" ", "");
@@ -411,162 +401,162 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                             ImageView currentImage;
                             if (pos.toString().equals("1")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstFirstPosBanHero);
+                                    currentImage = findViewById(R.id.firstFirstPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondFirstPosBanHero);
+                                    currentImage = findViewById(R.id.secondFirstPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdFirstPosBanHero);
+                                    currentImage = findViewById(R.id.thirdFirstPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthFirstPosBanHero);
+                                    currentImage = findViewById(R.id.fourthFirstPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthFirstPosBanHero);
+                                    currentImage = findViewById(R.id.fifthFirstPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthFirstPosBanHero);
+                                    currentImage = findViewById(R.id.sixthFirstPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhFirstPosBanHero);
+                                    currentImage = findViewById(R.id.seventhFirstPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthFirstPosBanHero);
+                                    currentImage = findViewById(R.id.eighthFirstPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthFirstPosBanHero);
+                                    currentImage = findViewById(R.id.ninthFirstPosBanHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthFirstPosBanHero);
+                                    currentImage = findViewById(R.id.tenthFirstPosBanHero);
 
                                 }
                             } else if (pos.toString().equals("2")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstSecondPosBanHero);
+                                    currentImage = findViewById(R.id.firstSecondPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondSecondPosBanHero);
+                                    currentImage = findViewById(R.id.secondSecondPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdSecondPosBanHero);
+                                    currentImage = findViewById(R.id.thirdSecondPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthSecondPosBanHero);
+                                    currentImage = findViewById(R.id.fourthSecondPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthSecondPosBanHero);
+                                    currentImage = findViewById(R.id.fifthSecondPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthSecondPosBanHero);
+                                    currentImage = findViewById(R.id.sixthSecondPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhSecondPosBanHero);
+                                    currentImage = findViewById(R.id.seventhSecondPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthSecondPosBanHero);
+                                    currentImage = findViewById(R.id.eighthSecondPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthSecondPosBanHero);
+                                    currentImage = findViewById(R.id.ninthSecondPosBanHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthSecondPosBanHero);
+                                    currentImage = findViewById(R.id.tenthSecondPosBanHero);
 
                                 }
                             } else if (pos.toString().equals("3")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstThirdPosBanHero);
+                                    currentImage = findViewById(R.id.firstThirdPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondThirdPosBanHero);
+                                    currentImage = findViewById(R.id.secondThirdPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdThirdPosBanHero);
+                                    currentImage = findViewById(R.id.thirdThirdPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthThirdPosBanHero);
+                                    currentImage = findViewById(R.id.fourthThirdPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthThirdPosBanHero);
+                                    currentImage = findViewById(R.id.fifthThirdPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthThirdPosBanHero);
+                                    currentImage = findViewById(R.id.sixthThirdPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhThirdPosBanHero);
+                                    currentImage = findViewById(R.id.seventhThirdPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthThirdPosBanHero);
+                                    currentImage = findViewById(R.id.eighthThirdPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthThirdPosBanHero);
+                                    currentImage = findViewById(R.id.ninthThirdPosBanHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthThirdPosBanHero);
+                                    currentImage = findViewById(R.id.tenthThirdPosBanHero);
 
                                 }
                             } else if (pos.toString().equals("4")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstFourthPosBanHero);
+                                    currentImage = findViewById(R.id.firstFourthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondFourthPosBanHero);
+                                    currentImage = findViewById(R.id.secondFourthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdFourthPosBanHero);
+                                    currentImage = findViewById(R.id.thirdFourthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthFourthPosBanHero);
+                                    currentImage = findViewById(R.id.fourthFourthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthFourthPosBanHero);
+                                    currentImage = findViewById(R.id.fifthFourthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthFourthPosBanHero);
+                                    currentImage = findViewById(R.id.sixthFourthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhFourthPosBanHero);
+                                    currentImage = findViewById(R.id.seventhFourthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthFourthPosBanHero);
+                                    currentImage = findViewById(R.id.eighthFourthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthFourthPosBanHero);
+                                    currentImage = findViewById(R.id.ninthFourthPosBanHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthFourthPosBanHero);
+                                    currentImage = findViewById(R.id.tenthFourthPosBanHero);
 
                                 }
                             } else {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstFifthPosBanHero);
+                                    currentImage = findViewById(R.id.firstFifthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondFifthPosBanHero);
+                                    currentImage = findViewById(R.id.secondFifthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdFifthPosBanHero);
+                                    currentImage = findViewById(R.id.thirdFifthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthFifthPosBanHero);
+                                    currentImage = findViewById(R.id.fourthFifthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthFifthPosBanHero);
+                                    currentImage = findViewById(R.id.fifthFifthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthFifthPosBanHero);
+                                    currentImage = findViewById(R.id.sixthFifthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhFifthPosBanHero);
+                                    currentImage = findViewById(R.id.seventhFifthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthFifthPosBanHero);
+                                    currentImage = findViewById(R.id.eighthFifthPosBanHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthFifthPosBanHero);
+                                    currentImage = findViewById(R.id.ninthFifthPosBanHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthFifthPosBanHero);
+                                    currentImage = findViewById(R.id.tenthFifthPosBanHero);
 
                                 }
                             }
@@ -590,7 +580,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         for (Integer pos = 1; pos <= 5; pos++) {
             int currentNumberOfHeroesForOnePos = 1;
 
-            for (Hero h : heroPicks.getCounters(false)) {
+            for (Hero h : heroCountersTask.getHeroesCounters().getEnemyCountersByWinRateDiff()) {
                 if (currentNumberOfHeroesForOnePos <= 10) {
                     String key = h.getName();
                     String newKey = key.replace(" ", "");
@@ -617,162 +607,162 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                             ImageView currentImage;
                             if (pos.toString().equals("1")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstFirstPosPickHero);
+                                    currentImage = findViewById(R.id.firstFirstPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondFirstPosPickHero);
+                                    currentImage = findViewById(R.id.secondFirstPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdFirstPosPickHero);
+                                    currentImage = findViewById(R.id.thirdFirstPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthFirstPosPickHero);
+                                    currentImage = findViewById(R.id.fourthFirstPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthFirstPosPickHero);
+                                    currentImage = findViewById(R.id.fifthFirstPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthFirstPosPickHero);
+                                    currentImage = findViewById(R.id.sixthFirstPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhFirstPosPickHero);
+                                    currentImage = findViewById(R.id.seventhFirstPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthFirstPosPickHero);
+                                    currentImage = findViewById(R.id.eighthFirstPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthFirstPosPickHero);
+                                    currentImage = findViewById(R.id.ninthFirstPosPickHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthFirstPosPickHero);
+                                    currentImage = findViewById(R.id.tenthFirstPosPickHero);
 
                                 }
                             } else if (pos.toString().equals("2")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstSecondPosPickHero);
+                                    currentImage = findViewById(R.id.firstSecondPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondSecondPosPickHero);
+                                    currentImage = findViewById(R.id.secondSecondPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdSecondPosPickHero);
+                                    currentImage = findViewById(R.id.thirdSecondPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthSecondPosPickHero);
+                                    currentImage = findViewById(R.id.fourthSecondPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthSecondPosPickHero);
+                                    currentImage = findViewById(R.id.fifthSecondPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthSecondPosPickHero);
+                                    currentImage = findViewById(R.id.sixthSecondPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhSecondPosPickHero);
+                                    currentImage = findViewById(R.id.seventhSecondPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthSecondPosPickHero);
+                                    currentImage = findViewById(R.id.eighthSecondPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthSecondPosPickHero);
+                                    currentImage = findViewById(R.id.ninthSecondPosPickHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthSecondPosPickHero);
+                                    currentImage = findViewById(R.id.tenthSecondPosPickHero);
 
                                 }
                             } else if (pos.toString().equals("3")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstThirdPosPickHero);
+                                    currentImage = findViewById(R.id.firstThirdPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondThirdPosPickHero);
+                                    currentImage = findViewById(R.id.secondThirdPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdThirdPosPickHero);
+                                    currentImage = findViewById(R.id.thirdThirdPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthThirdPosPickHero);
+                                    currentImage = findViewById(R.id.fourthThirdPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthThirdPosPickHero);
+                                    currentImage = findViewById(R.id.fifthThirdPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthThirdPosPickHero);
+                                    currentImage = findViewById(R.id.sixthThirdPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhThirdPosPickHero);
+                                    currentImage = findViewById(R.id.seventhThirdPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthThirdPosPickHero);
+                                    currentImage = findViewById(R.id.eighthThirdPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthThirdPosPickHero);
+                                    currentImage = findViewById(R.id.ninthThirdPosPickHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthThirdPosPickHero);
+                                    currentImage = findViewById(R.id.tenthThirdPosPickHero);
 
                                 }
                             } else if (pos.toString().equals("4")) {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstFourthPosPickHero);
+                                    currentImage = findViewById(R.id.firstFourthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondFourthPosPickHero);
+                                    currentImage = findViewById(R.id.secondFourthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdFourthPosPickHero);
+                                    currentImage = findViewById(R.id.thirdFourthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthFourthPosPickHero);
+                                    currentImage = findViewById(R.id.fourthFourthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthFourthPosPickHero);
+                                    currentImage = findViewById(R.id.fifthFourthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthFourthPosPickHero);
+                                    currentImage = findViewById(R.id.sixthFourthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhFourthPosPickHero);
+                                    currentImage = findViewById(R.id.seventhFourthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthFourthPosPickHero);
+                                    currentImage = findViewById(R.id.eighthFourthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthFourthPosPickHero);
+                                    currentImage = findViewById(R.id.ninthFourthPosPickHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthFourthPosPickHero);
+                                    currentImage = findViewById(R.id.tenthFourthPosPickHero);
 
                                 }
                             } else {
                                 if (currentNumberOfHeroesForOnePos == 1) {
-                                    currentImage = (ImageView) findViewById(R.id.firstFifthPosPickHero);
+                                    currentImage = findViewById(R.id.firstFifthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 2) {
-                                    currentImage = (ImageView) findViewById(R.id.secondFifthPosPickHero);
+                                    currentImage = findViewById(R.id.secondFifthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 3) {
-                                    currentImage = (ImageView) findViewById(R.id.thirdFifthPosPickHero);
+                                    currentImage = findViewById(R.id.thirdFifthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 4) {
-                                    currentImage = (ImageView) findViewById(R.id.fourthFifthPosPickHero);
+                                    currentImage = findViewById(R.id.fourthFifthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 5) {
-                                    currentImage = (ImageView) findViewById(R.id.fifthFifthPosPickHero);
+                                    currentImage = findViewById(R.id.fifthFifthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 6) {
-                                    currentImage = (ImageView) findViewById(R.id.sixthFifthPosPickHero);
+                                    currentImage = findViewById(R.id.sixthFifthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 7) {
-                                    currentImage = (ImageView) findViewById(R.id.seventhFifthPosPickHero);
+                                    currentImage = findViewById(R.id.seventhFifthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 8) {
-                                    currentImage = (ImageView) findViewById(R.id.eighthFifthPosPickHero);
+                                    currentImage = findViewById(R.id.eighthFifthPosPickHero);
 
                                 } else if (currentNumberOfHeroesForOnePos == 9) {
-                                    currentImage = (ImageView) findViewById(R.id.ninthFifthPosPickHero);
+                                    currentImage = findViewById(R.id.ninthFifthPosPickHero);
 
                                 } else {
-                                    currentImage = (ImageView) findViewById(R.id.tenthFifthPosPickHero);
+                                    currentImage = findViewById(R.id.tenthFifthPosPickHero);
 
                                 }
                             }

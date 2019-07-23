@@ -1,8 +1,6 @@
 package com.example.dotabuffapp;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,16 +12,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 class HeroesWithTiers extends AsyncTask<Void, Void, Void> implements Serializable {
-    private transient Context context;
     private ArrayList<Hero> originalHeroesWithTiers;
     private ArrayList<Hero> currentHeroesWithTiers;
     private ArrayList<Hero> deletedHeroesWithTiers;
+    AsyncResponse onPostExecuteResponse;
 
-    HeroesWithTiers(Context context) {
-        this.context = context;
+    HeroesWithTiers() {
         this.originalHeroesWithTiers = new ArrayList<>();
         this.currentHeroesWithTiers = new ArrayList<>();
         this.deletedHeroesWithTiers = new ArrayList<>();
+        onPostExecuteResponse = null;
     }
 
     ArrayList<Hero> getCurrentHeroesWithTiers() {
@@ -63,7 +61,7 @@ class HeroesWithTiers extends AsyncTask<Void, Void, Void> implements Serializabl
 
     @Override
     protected void onPostExecute(Void unused) {
-        Toast.makeText(context, "Винрейты героев загружены", Toast.LENGTH_SHORT).show();
+        onPostExecuteResponse.heroesWithTiersProcessFinish();
     }
 
     @Override
