@@ -10,7 +10,7 @@
     <style name="SelectedPicksAndBans">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:onClick">selectHeroOrClear</item>
+        <item name="android:onClick">selectOrClearHero</item>
         <item name="android:src">@drawable/frame</item>
         <item name="android:layout_weight">1</item>
     </style>
@@ -18,7 +18,7 @@
     <style name="RecommendedPicksByPos">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:onClick">selectPickHeroWithPos</item>
+        <item name="android:onClick">selectHeroFromRecommendedPicks</item>
         <item name="android:src">@drawable/frame</item>
         <item name="android:layout_weight">1</item>
     </style>
@@ -26,7 +26,7 @@
     <style name="RecommendedBansByPos">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:onClick">selectBanHeroWithPos</item>
+        <item name="android:onClick">selectHeroFromRecommendedBans</item>
         <item name="android:src">@drawable/frame</item>
         <item name="android:layout_weight">1</item>
     </style>

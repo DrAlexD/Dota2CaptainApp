@@ -3,7 +3,7 @@ package com.example.dotabuffapp;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class HeroesCounters implements Serializable {
+class HeroesCounters implements Serializable {
     private HeroesWithTiers heroesWithTiers;
     private ArrayList<HeroesPool> allyHeroes;
     private ArrayList<HeroesPool> enemyHeroes;
@@ -50,22 +50,6 @@ public class HeroesCounters implements Serializable {
         return this.winRateDiffBetweenAllyAndEnemyPicks;
     }
 
-    void setHeroesWithTiers(HeroesWithTiers heroesWithTiers) {
-        this.heroesWithTiers = heroesWithTiers;
-    }
-
-    void setAllyHeroes(ArrayList<HeroesPool> allyHeroes) {
-        this.allyHeroes = allyHeroes;
-    }
-
-    void setEnemyHeroes(ArrayList<HeroesPool> enemyHeroes) {
-        this.enemyHeroes = enemyHeroes;
-    }
-
-    void setBanHeroes(ArrayList<HeroesPool> banHeroes) {
-        this.banHeroes = banHeroes;
-    }
-
     void setAllyCountersByWinRateDiff(ArrayList<Hero> allyCountersByWinRateDiff) {
         this.allyCountersByWinRateDiff = allyCountersByWinRateDiff;
     }
@@ -76,51 +60,6 @@ public class HeroesCounters implements Serializable {
 
     void setWinRateDiffBetweenAllyAndEnemyPicks(double winRateDiffBetweenAllyAndEnemyPicks) {
         this.winRateDiffBetweenAllyAndEnemyPicks = winRateDiffBetweenAllyAndEnemyPicks;
-    }
-
-    void addAllyHero(HeroesPool heroesPoolHero) {
-        allyHeroes.add(heroesPoolHero);
-    }
-
-    void deleteAllyHero(HeroesPool heroesPoolHero) {
-        if (!allyHeroes.isEmpty()) {
-            int i = 0;
-            for (HeroesPool hero : allyHeroes) {
-                if (hero.toString().equals(heroesPoolHero.toString())) {
-                    allyHeroes.remove(i);
-                    break;
-                }
-                i++;
-            }
-        }
-    }
-
-    void addEnemyHero(HeroesPool heroesPoolHero) {
-        enemyHeroes.add(heroesPoolHero);
-    }
-
-    void deleteEnemyHero(HeroesPool heroesPoolHero) {
-        if (!enemyHeroes.isEmpty()) {
-            int i = 0;
-            for (HeroesPool hero : enemyHeroes) {
-                if (hero.toString().equals(heroesPoolHero.toString())) {
-                    enemyHeroes.remove(i);
-                    break;
-                }
-                i++;
-            }
-        }
-    }
-
-    void deleteBanHero(HeroesPool heroesPoolHero) {
-        int i = 0;
-        for (HeroesPool hero : banHeroes) {
-            if (hero.toString().equals(heroesPoolHero.toString())) {
-                banHeroes.remove(i);
-                break;
-            }
-            i++;
-        }
     }
 
     void deleteBanHeroFromLists(HeroesPool heroesPoolHero) {

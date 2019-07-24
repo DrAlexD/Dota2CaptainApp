@@ -13,11 +13,10 @@ import java.util.ArrayList;
 
 public class HeroesCountersTask extends AsyncTask<Void, Void, Void> implements Serializable {
     private HeroesCounters heroesCounters;
-    AsyncResponse onPostExecuteResponse;
+    private AsyncResponse onPostExecuteResponse;
 
-    HeroesCountersTask() {
-        heroesCounters = new HeroesCounters();
-        onPostExecuteResponse = null;
+    HeroesCountersTask(MainActivity onPostExecuteResponse) {
+        this.onPostExecuteResponse = onPostExecuteResponse;
     }
 
     HeroesCounters getHeroesCounters() {

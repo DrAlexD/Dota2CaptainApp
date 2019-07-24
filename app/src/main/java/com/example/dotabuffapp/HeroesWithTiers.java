@@ -21,7 +21,7 @@ class HeroesWithTiers extends AsyncTask<Void, Void, Void> implements Serializabl
         this.originalHeroesWithTiers = new ArrayList<>();
         this.currentHeroesWithTiers = new ArrayList<>();
         this.deletedHeroesWithTiers = new ArrayList<>();
-        onPostExecuteResponse = null;
+        this.onPostExecuteResponse = null;
     }
 
     ArrayList<Hero> getCurrentHeroesWithTiers() {

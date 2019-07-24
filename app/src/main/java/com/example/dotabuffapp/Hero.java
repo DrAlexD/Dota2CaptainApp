@@ -22,16 +22,8 @@ public class Hero implements Serializable {
         return this.image;
     }
 
-    void setImage(int image) {
-        this.image = image;
-    }
-
     String getName() {
         return this.name;
-    }
-
-    void setName(String name) {
-        this.name = name;
     }
 
     double getWinRateDiff() {
@@ -46,9 +38,6 @@ public class Hero implements Serializable {
         return this.tier;
     }
 
-    void setTier(String tier) {
-        this.tier = tier;
-    }
 
     double getNewWinRate() {
         return this.newWinRate;
@@ -61,6 +50,29 @@ public class Hero implements Serializable {
     @Override
     public String toString() {
         return getTier() + " | " + getName() + " | " + getWinRateDiff() + " | " + getNewWinRate();
+    }
+
+    static String toHeroesPoolHeroName(String heroName) {
+        String heroNameWithOutSeparators;
+
+        switch (heroName) {
+            case "Anti-Mage":
+                heroNameWithOutSeparators = "AntiMage";
+                break;
+            case "Keeper of the Light":
+                heroNameWithOutSeparators = "KeeperOfTheLight";
+                break;
+            case "Queen of Pain":
+                heroNameWithOutSeparators = "QueenOfPain";
+                break;
+            case "Nature's Prophet":
+                heroNameWithOutSeparators = "NaturesProphet";
+                break;
+            default:
+                heroNameWithOutSeparators = heroName.replace(" ", "");
+        }
+
+        return heroNameWithOutSeparators;
     }
 
     static void sortHeroes(ArrayList<Hero> heroes, int startPos, int endPos, boolean isSortByWinRateDiff) {
