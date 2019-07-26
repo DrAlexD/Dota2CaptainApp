@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 class HeroesCounters implements Serializable {
-    private HeroesWithTiers heroesWithTiers;
+    private HeroesInitialization heroesInitialization;
     private ArrayList<HeroesPool> allyHeroes;
     private ArrayList<HeroesPool> enemyHeroes;
     private ArrayList<HeroesPool> banHeroes;
@@ -13,7 +13,6 @@ class HeroesCounters implements Serializable {
     private Double winRateDiffBetweenAllyAndEnemyPicks;
 
     HeroesCounters() {
-        heroesWithTiers = new HeroesWithTiers();
         allyHeroes = new ArrayList<>();
         enemyHeroes = new ArrayList<>();
         banHeroes = new ArrayList<>();
@@ -22,8 +21,12 @@ class HeroesCounters implements Serializable {
         winRateDiffBetweenAllyAndEnemyPicks = 0.0;
     }
 
-    HeroesWithTiers getHeroesWithTiers() {
-        return this.heroesWithTiers;
+    HeroesInitialization getHeroesInitialization() {
+        return this.heroesInitialization;
+    }
+
+    void setHeroesInitialization(HeroesInitialization heroesInitialization) {
+        this.heroesInitialization = heroesInitialization;
     }
 
     ArrayList<HeroesPool> getAllyHeroes() {
@@ -59,7 +62,7 @@ class HeroesCounters implements Serializable {
     }
 
     void setWinRateDiffBetweenAllyAndEnemyPicks(double winRateDiffBetweenAllyAndEnemyPicks) {
-        this.winRateDiffBetweenAllyAndEnemyPicks = winRateDiffBetweenAllyAndEnemyPicks;
+        this.winRateDiffBetweenAllyAndEnemyPicks = Math.round(winRateDiffBetweenAllyAndEnemyPicks * 100.0) / 100.0;
     }
 
     void deleteBanHeroFromLists(HeroesPool heroesPoolHero) {

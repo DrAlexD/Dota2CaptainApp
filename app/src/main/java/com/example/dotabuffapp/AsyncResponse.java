@@ -3,5 +3,5 @@ package com.example.dotabuffapp;
 public interface AsyncResponse {
     void heroesCountersProcessFinish();
 
-    void heroesWithTiersProcessFinish();
+    void heroesInitializationProcessFinish();
 }

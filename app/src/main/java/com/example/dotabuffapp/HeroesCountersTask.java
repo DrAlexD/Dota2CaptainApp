@@ -35,6 +35,7 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, Void> implements S
     @Override
     protected Void doInBackground(Void... unused) {
         boolean isAllyCounters = false;
+        heroesCounters.setWinRateDiffBetweenAllyAndEnemyPicks(0.0);
 
         for (int mode = 0; mode < 2; mode++, isAllyCounters = true) {
             if ((mode == 0 && !heroesCounters.getEnemyHeroes().isEmpty()) ||
@@ -79,7 +80,7 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, Void> implements S
                                 }
                             }
                             if (isNewHeroForAdding) {
-                                for (Hero hero : heroesCounters.getHeroesWithTiers().getOriginalHeroesWithTiers()) {
+                                for (Hero hero : heroesCounters.getHeroesInitialization().getOriginal()) {
                                     if (heroCounterName.equals(hero.getName())) {
                                         countersByWinRateDiff.add(new Hero(hero.getImage(), heroCounterName,
                                                 heroCounterWinRateToDouble, hero.getTier(),
@@ -94,49 +95,7 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, Void> implements S
                     System.out.println(e.getMessage());
                 }
 
-                for (HeroesPool heroesPoolHero : heroesCounters.getAllyHeroes()) {
-                    String heroName = heroesPoolHero.toHeroName();
-
-                    int i = 0;
-                    for (Hero hero : countersByWinRateDiff) {
-                        if (heroName.equals(hero.getName())) {
-                            if (!isAllyCounters) {
-                                heroesCounters.setWinRateDiffBetweenAllyAndEnemyPicks(
-                                        heroesCounters.getWinRateDiffBetweenAllyAndEnemyPicks()
-                                                + hero.getWinRateDiff());
-                            }
-                            countersByWinRateDiff.remove(i);
-                            break;
-                        }
-                        i++;
-                    }
-                }
-
-                for (HeroesPool heroesPoolHero : heroesCounters.getEnemyHeroes()) {
-                    String heroName = heroesPoolHero.toHeroName();
-
-                    int i = 0;
-                    for (Hero hero : countersByWinRateDiff) {
-                        if (heroName.equals(hero.getName())) {
-                            countersByWinRateDiff.remove(i);
-                            break;
-                        }
-                        i++;
-                    }
-                }
-
-                for (HeroesPool heroesPoolHero : heroesCounters.getBanHeroes()) {
-                    String heroName = heroesPoolHero.toHeroName();
-
-                    int i = 0;
-                    for (Hero hero : countersByWinRateDiff) {
-                        if (heroName.equals(hero.getName())) {
-                            countersByWinRateDiff.remove(i);
-                            break;
-                        }
-                        i++;
-                    }
-                }
+                deleteSelectedHeroes(isAllyCounters, countersByWinRateDiff);
 
                 Hero.sortHeroes(countersByWinRateDiff, 0, countersByWinRateDiff.size() - 1, true);
 
@@ -147,5 +106,51 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, Void> implements S
             }
         }
         return null;
+    }
+
+    private void deleteSelectedHeroes(boolean isAllyCounters, ArrayList<Hero> countersByWinRateDiff) {
+        for (HeroesPool heroesPoolHero : heroesCounters.getAllyHeroes()) {
+            String heroName = heroesPoolHero.toHeroName();
+
+            int i = 0;
+            for (Hero hero : countersByWinRateDiff) {
+                if (heroName.equals(hero.getName())) {
+                    if (!isAllyCounters) {
+                        heroesCounters.setWinRateDiffBetweenAllyAndEnemyPicks(
+                                heroesCounters.getWinRateDiffBetweenAllyAndEnemyPicks()
+                                        + hero.getWinRateDiff());
+                    }
+                    countersByWinRateDiff.remove(i);
+                    break;
+                }
+                i++;
+            }
+        }
+
+        for (HeroesPool heroesPoolHero : heroesCounters.getEnemyHeroes()) {
+            String heroName = heroesPoolHero.toHeroName();
+
+            int i = 0;
+            for (Hero hero : countersByWinRateDiff) {
+                if (heroName.equals(hero.getName())) {
+                    countersByWinRateDiff.remove(i);
+                    break;
+                }
+                i++;
+            }
+        }
+
+        for (HeroesPool heroesPoolHero : heroesCounters.getBanHeroes()) {
+            String heroName = heroesPoolHero.toHeroName();
+
+            int i = 0;
+            for (Hero hero : countersByWinRateDiff) {
+                if (heroName.equals(hero.getName())) {
+                    countersByWinRateDiff.remove(i);
+                    break;
+                }
+                i++;
+            }
+        }
     }
 }
