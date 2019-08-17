@@ -1,12 +1,16 @@
 package com.example.dotabuffapp;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -35,6 +39,32 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         HeroesInitializationTask heroesInitializationTask = new HeroesInitializationTask(this);
         heroesCounters.setHeroesInitialization(heroesInitializationTask.getHeroesInitialization());
         heroesInitializationTask.execute();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getTitle().toString()) {
+            case "Picker":
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); //Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent);
+                return true;
+            case "Items":
+
+                return true;
+            case "Settings":
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void selectOrClearHero(View view) {
@@ -71,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
 
         heroesCounters.getHeroesInitialization().addDeletedHero(pressedHeroImage);
 
-        heroesCountersTask.setHeroesCounters(heroesCounters);
+        heroesCountersTask.setHeroesCounters(new HeroesCounters(heroesCounters));
         heroesCountersTask.execute();
     }
 
@@ -106,13 +136,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         if (currentHero != null) {
             numberOfRemainingPickUpdateProcesses += 1;
 
+            ImageView pressedImage = (ImageView) view;
+            Drawable pressedImageDrawable = pressedImage.getDrawable();
+            pressedImage.setImageResource(R.drawable.frame);
+
             heroesCounters.getHeroesInitialization().deleteHero(currentHero);
             heroesCountersTask = new HeroesCountersTask(this);
             ImageView currentImage = addHeroToAllyPicks(currentHero);
-
-            ImageView pressedImage = (ImageView) view;
-            currentImage.setImageDrawable(pressedImage.getDrawable());
-            pressedImage.setImageResource(R.drawable.frame);
+            currentImage.setImageDrawable(pressedImageDrawable);
         }
     }
 
@@ -125,12 +156,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         if (currentHero != null) {
             numberOfRemainingPickUpdateProcesses += 1;
 
-            heroesCounters.getHeroesInitialization().deleteHero(currentHero);
-            ImageView currentImage = addHeroToAllyBans(currentHero);
-
             ImageView pressedImage = (ImageView) view;
-            currentImage.setImageDrawable(pressedImage.getDrawable());
+            Drawable pressedImageDrawable = pressedImage.getDrawable();
             pressedImage.setImageResource(R.drawable.frame);
+
+            heroesCounters.getHeroesInitialization().deleteHero(currentHero);
+            heroesCountersTask = new HeroesCountersTask(this);
+            ImageView currentImage = addHeroToAllyBans(currentHero);
+            currentImage.setImageDrawable(pressedImageDrawable);
         }
     }
 
@@ -194,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
         }
 
         heroesCounters.getAllyHeroes().add(currentHero);
-        heroesCountersTask.setHeroesCounters(heroesCounters);
+        heroesCountersTask.setHeroesCounters(new HeroesCounters(heroesCounters));
         heroesCountersTask.execute();
 
         return currentImage;
@@ -225,9 +258,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
 
         heroesCounters.getBanHeroes().add(currentHero);
 
-        heroesCountersTask.setHeroesCounters(heroesCounters);
-        heroesCountersTask.getHeroesCounters().deleteBanHeroFromLists(currentHero);
-        heroesCountersProcessFinish();
+        HeroesCounters heroesCountersClone = new HeroesCounters(heroesCounters);
+        heroesCountersClone.deleteBanHeroFromLists(currentHero);
+        heroesCountersProcessFinish(heroesCountersClone);
 
         return currentImage;
     }
@@ -254,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
 
         heroesCounters.getEnemyHeroes().add(currentHero);
 
-        heroesCountersTask.setHeroesCounters(heroesCounters);
+        heroesCountersTask.setHeroesCounters(new HeroesCounters(heroesCounters));
         heroesCountersTask.execute();
 
         return currentImage;
@@ -285,9 +318,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
 
         heroesCounters.getBanHeroes().add(currentHero);
 
-        heroesCountersTask.setHeroesCounters(heroesCounters);
-        heroesCountersTask.getHeroesCounters().deleteBanHeroFromLists(currentHero);
-        heroesCountersProcessFinish();
+        HeroesCounters heroesCountersClone = new HeroesCounters(heroesCounters);
+        heroesCountersClone.deleteBanHeroFromLists(currentHero);
+        heroesCountersProcessFinish(heroesCountersClone);
 
         return currentImage;
     }
@@ -298,8 +331,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
     }
 
     @Override
-    public void heroesCountersProcessFinish() {
-        updateLocalHeroesCounters();
+    public void heroesCountersProcessFinish(HeroesCounters heroesCountersResult) {
+        updateLocalHeroesCounters(heroesCountersResult);
         displayWinRateDiffBetweenPicks();
         displayRecommendedPicks();
         displayRecommendedBans();
@@ -312,13 +345,13 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
             Toast.makeText(this, "Пики обновлены", Toast.LENGTH_SHORT).show();
     }
 
-    private void updateLocalHeroesCounters() {
+    private void updateLocalHeroesCounters(HeroesCounters heroesCountersResult) {
         heroesCounters.setAllyCountersByWinRateDiff(
-                heroesCountersTask.getHeroesCounters().getAllyCountersByWinRateDiff());
+                heroesCountersResult.getAllyCountersByWinRateDiff());
         heroesCounters.setEnemyCountersByWinRateDiff(
-                heroesCountersTask.getHeroesCounters().getEnemyCountersByWinRateDiff());
+                heroesCountersResult.getEnemyCountersByWinRateDiff());
         heroesCounters.setWinRateDiffBetweenAllyAndEnemyPicks(
-                heroesCountersTask.getHeroesCounters().getWinRateDiffBetweenAllyAndEnemyPicks());
+                heroesCountersResult.getWinRateDiffBetweenAllyAndEnemyPicks());
     }
 
     private void displayWinRateDiffBetweenPicks() {
@@ -380,7 +413,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                                     currentImage = getImageForFifthPosRecommendedPicks(currentNumberOfHeroesForOnePos);
                                 }
 
-                                if (h.getWinRateDiff() >= -1.0) {
+                                if (h.getWinRateDiff() >= 0.0) {
                                     currentImage.setImageResource(h.getImage());
                                     recommendedHeroesPicks[pos - 1][currentNumberOfHeroesForOnePos - 1] =
                                             HeroesPool.valueOf(heroesPoolHeroName);
@@ -446,7 +479,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse, Se
                                 currentImage = getImageForFifthPosRecommendedBans(currentNumberOfHeroesForOnePos);
                             }
 
-                            if (h.getWinRateDiff() >= -1.0) {
+                            if (h.getWinRateDiff() >= 0.0) {
                                 currentImage.setImageResource(h.getImage());
                                 recommendedHeroesBans[pos - 1][currentNumberOfHeroesForOnePos - 1] =
                                         HeroesPool.valueOf(heroesPoolHeroName);

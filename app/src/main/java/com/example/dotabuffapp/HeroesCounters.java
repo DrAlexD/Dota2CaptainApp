@@ -21,6 +21,16 @@ class HeroesCounters implements Serializable {
         winRateDiffBetweenAllyAndEnemyPicks = 0.0;
     }
 
+    HeroesCounters(HeroesCounters heroesCounters) {
+        this.heroesInitialization = heroesCounters.getHeroesInitialization();
+        this.allyHeroes = heroesCounters.getAllyHeroes();
+        this.enemyHeroes = heroesCounters.getEnemyHeroes();
+        this.banHeroes = heroesCounters.getBanHeroes();
+        this.allyCountersByWinRateDiff = heroesCounters.getAllyCountersByWinRateDiff();
+        this.enemyCountersByWinRateDiff = heroesCounters.getEnemyCountersByWinRateDiff();
+        this.winRateDiffBetweenAllyAndEnemyPicks = heroesCounters.getWinRateDiffBetweenAllyAndEnemyPicks();
+    }
+
     HeroesInitialization getHeroesInitialization() {
         return this.heroesInitialization;
     }

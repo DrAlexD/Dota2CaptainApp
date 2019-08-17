@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class HeroesCountersTask extends AsyncTask<Void, Void, Void> implements Serializable {
+public class HeroesCountersTask extends AsyncTask<Void, Void, HeroesCounters> implements Serializable {
     private HeroesCounters heroesCounters;
     private AsyncResponse onPostExecuteResponse;
 
@@ -19,27 +19,25 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, Void> implements S
         this.onPostExecuteResponse = onPostExecuteResponse;
     }
 
-    HeroesCounters getHeroesCounters() {
-        return this.heroesCounters;
-    }
-
     void setHeroesCounters(HeroesCounters heroesCounters) {
         this.heroesCounters = heroesCounters;
     }
 
     @Override
-    protected void onPostExecute(Void unused) {
-        onPostExecuteResponse.heroesCountersProcessFinish();
+    protected void onPostExecute(HeroesCounters heroesCounters) {
+        onPostExecuteResponse.heroesCountersProcessFinish(heroesCounters);
     }
 
     @Override
-    protected Void doInBackground(Void... unused) {
-        boolean isAllyCounters = false;
+    protected HeroesCounters doInBackground(Void... unused) {
         heroesCounters.setWinRateDiffBetweenAllyAndEnemyPicks(0.0);
 
+        boolean isAllyCounters = false;
         for (int mode = 0; mode < 2; mode++, isAllyCounters = true) {
+
             if ((mode == 0 && !heroesCounters.getEnemyHeroes().isEmpty()) ||
                     (mode == 1 && !heroesCounters.getAllyHeroes().isEmpty())) {
+
                 ArrayList<String> heroesNames = new ArrayList<>();
                 ArrayList<String> heroesLinks = new ArrayList<>();
                 ArrayList<Hero> countersByWinRateDiff = new ArrayList<>();
@@ -105,7 +103,7 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, Void> implements S
                     heroesCounters.setEnemyCountersByWinRateDiff(countersByWinRateDiff);
             }
         }
-        return null;
+        return heroesCounters;
     }
 
     private void deleteSelectedHeroes(boolean isAllyCounters, ArrayList<Hero> countersByWinRateDiff) {
