@@ -41,24 +41,24 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
     @Override
     @NonNull
     public HeroesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.hero_info_item, parent, false);
+        View view = inflater.inflate(R.layout.hero_holder, parent, false);
         return new ViewHolder(view);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView heroImageView;
-        final TextView tierView;
-        final TextView nameView;
-        final TextView winRateDiffView;
-        final TextView newWinRateView;
+        final TextView heroTierView;
+        final TextView heroNameView;
+        final TextView heroWinRateDiffView;
+        final TextView heroNewWinRateView;
 
         ViewHolder(View view) {
             super(view);
-            tierView = view.findViewById(R.id.tier);
+            heroTierView = view.findViewById(R.id.heroTier);
             heroImageView = view.findViewById(R.id.heroImage);
-            nameView = view.findViewById(R.id.name);
-            winRateDiffView = view.findViewById(R.id.winRateDiff);
-            newWinRateView = view.findViewById(R.id.newWinRate);
+            heroNameView = view.findViewById(R.id.heroName);
+            heroWinRateDiffView = view.findViewById(R.id.heroWinRateDiff);
+            heroNewWinRateView = view.findViewById(R.id.heroNewWinRate);
         }
     }
 
@@ -68,18 +68,18 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
 
         if (isEnemyCountersWorkingWith) {
             hero = enemyCountersByWinRateDiff.get(position);
-            holder.winRateDiffView.setText(textForWinRateDiffView(hero));
+            holder.heroWinRateDiffView.setText(textForWinRateDiffView(hero));
         } else if (isAllyCountersWorkingWith) {
             hero = allyCountersByWinRateDiff.get(position);
-            holder.winRateDiffView.setText(textForWinRateDiffView(hero));
+            holder.heroWinRateDiffView.setText(textForWinRateDiffView(hero));
         } else {
             hero = heroes.get(position);
         }
 
-        holder.tierView.setText(hero.getTier());
+        holder.heroTierView.setText(hero.getTier());
         holder.heroImageView.setImageResource(hero.getImage());
-        holder.nameView.setText(hero.getName());
-        holder.newWinRateView.setText(hero.getNewWinRate() + "%");
+        holder.heroNameView.setText(hero.getName());
+        holder.heroNewWinRateView.setText(hero.getNewWinRate() + "%");
     }
 
     private String textForWinRateDiffView(Hero hero) {

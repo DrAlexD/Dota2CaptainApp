@@ -1,6 +1,6 @@
 package com.example.dotabuffapp;
 
-public interface AsyncResponse {
+public interface HeroesAsyncResponse {
     void heroesCountersProcessFinish(HeroesCounters heroesCounters);
 
     void heroesInitializationProcessFinish();

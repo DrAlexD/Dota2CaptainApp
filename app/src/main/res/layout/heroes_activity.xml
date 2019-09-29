@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <SearchView
-        android:id="@+id/autocomplete"
+        android:id="@+id/autoCompleteHeroesSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:completionThreshold="1" />

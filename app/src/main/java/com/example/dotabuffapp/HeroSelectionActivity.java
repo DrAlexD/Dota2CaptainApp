@@ -23,7 +23,7 @@ public class HeroSelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hero_selection_activity);
+        setContentView(R.layout.heroes_activity);
 
         Bundle arguments = getIntent().getExtras();
 
@@ -59,7 +59,7 @@ public class HeroSelectionActivity extends AppCompatActivity {
 
             heroesView.addOnItemTouchListener(getClickListener());
 
-            SearchView searchView = findViewById(R.id.autocomplete);
+            SearchView searchView = findViewById(R.id.autoCompleteHeroesSearch);
             searchView.setOnQueryTextListener(getSearchTextUpdateListener());
         }
     }

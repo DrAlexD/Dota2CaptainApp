@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
 public class PageTurningAdapter extends FragmentPagerAdapter {
     private Context context;
 
-    public PageTurningAdapter(Context context, FragmentManager mgr) {
+    PageTurningAdapter(Context context, FragmentManager mgr) {
         super(mgr);
         this.context = context;
     }
@@ -19,6 +21,7 @@ public class PageTurningAdapter extends FragmentPagerAdapter {
         return (3);
     }
 
+    @NotNull
     @Override
     public Fragment getItem(int position) {
         return (PageFragment.newInstance(position));

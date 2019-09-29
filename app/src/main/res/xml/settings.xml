@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="personalHeroesPool"
+        android:summary="Предлагать героев из вашего личного пула"
+        android:title="Личный пул" />
+    <SwitchPreference
+        android:key="bestHeroItems"
+        android:summary="Предлагать только лучшие итемы для героя"
+        android:title="Лучшие итемы для героя" />
+</PreferenceScreen>

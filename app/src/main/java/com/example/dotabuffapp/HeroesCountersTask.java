@@ -13,7 +13,9 @@ import java.util.ArrayList;
 
 public class HeroesCountersTask extends AsyncTask<Void, Void, HeroesCounters> implements Serializable {
     private HeroesCounters heroesCounters;
-    private AsyncResponse onPostExecuteResponse;
+    private HeroesAsyncResponse onPostExecuteResponse;
+
+    private final String INTERVAL_OF_COLLECTED_COUNTERS_DATA = "week"; //week, month, 3month, patch_7.22, season_3
 
     HeroesCountersTask(MainActivity onPostExecuteResponse) {
         this.onPostExecuteResponse = onPostExecuteResponse;
@@ -47,7 +49,8 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, HeroesCounters> im
                     heroesNames.add(hero.title);
                 }
                 for (String heroName : heroesNames) {
-                    heroesLinks.add("https://ru.dotabuff.com/heroes/" + heroName + "/counters?date=week"); //week, month, patch_7.22
+                    heroesLinks.add("https://ru.dotabuff.com/heroes/" + heroName + "/counters?date=" +
+                            INTERVAL_OF_COLLECTED_COUNTERS_DATA);
                 }
 
                 int numberOfHeroes = heroes.size();
@@ -71,7 +74,7 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, HeroesCounters> im
                             boolean isNewHeroForAdding = true;
                             for (Hero hero : countersByWinRateDiff) {
                                 if (heroCounterName.equals(hero.getName())) {
-                                    hero.setWinRateDif(heroCounterWinRateToDouble + hero.getWinRateDiff());
+                                    hero.setWinRateDiff(heroCounterWinRateToDouble + hero.getWinRateDiff());
                                     hero.setNewWinRate(heroCounterWinRateToDouble + hero.getNewWinRate());
                                     isNewHeroForAdding = false;
                                     break;
@@ -80,9 +83,9 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, HeroesCounters> im
                             if (isNewHeroForAdding) {
                                 for (Hero hero : heroesCounters.getHeroesInitialization().getOriginal()) {
                                     if (heroCounterName.equals(hero.getName())) {
-                                        countersByWinRateDiff.add(new Hero(hero.getImage(), heroCounterName,
-                                                heroCounterWinRateToDouble, hero.getTier(),
-                                                heroCounterWinRateToDouble + hero.getNewWinRate()));
+                                        countersByWinRateDiff.add(new Hero(hero.getTier(), hero.getImage(), heroCounterName,
+                                                heroCounterWinRateToDouble, heroCounterWinRateToDouble + hero.getNewWinRate(),
+                                                hero.getAllMatches()));
                                         break;
                                     }
                                 }

@@ -6,10 +6,10 @@
         android:title="Picker" />
     <item
         android:id="@+id/items"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         android:title="Items" />
     <item
         android:id="@+id/settings"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="Settings" />
 </menu>

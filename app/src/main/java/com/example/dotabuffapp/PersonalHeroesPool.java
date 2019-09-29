@@ -1,6 +1,6 @@
 package com.example.dotabuffapp;
 
-enum TeamHeroesPool {
+enum PersonalHeroesPool {
     Abaddon("3"),
     Alchemist("2"),
     AncientApparition("5"),
@@ -101,7 +101,7 @@ enum TeamHeroesPool {
 
     String pos;
 
-    TeamHeroesPool(String pos) {
+    PersonalHeroesPool(String pos) {
         this.pos = pos;
     }
 }

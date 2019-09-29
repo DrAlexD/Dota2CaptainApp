@@ -1,21 +1,29 @@
 package com.example.dotabuffapp;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Hero implements Serializable {
+    private String tier;
     private int image;
     private String name;
     private double winRateDiff;
-    private String tier;
     private double newWinRate;
+    private int allMatches;
 
-    Hero(int image, String name, double winRateDif, String tier, double newWinRate) {
+    Hero(String tier, int image, String name, double winRateDiff, double newWinRate, int allMatches) {
+        this.tier = tier;
         this.image = image;
         this.name = name;
-        this.winRateDiff = Math.round(winRateDif * 100.0) / 100.0;
-        this.tier = tier;
+        this.winRateDiff = Math.round(winRateDiff * 100.0) / 100.0;
         this.newWinRate = Math.round(newWinRate * 100.0) / 100.0;
+        this.allMatches = allMatches;
+    }
+
+    String getTier() {
+        return this.tier;
     }
 
     int getImage() {
@@ -30,14 +38,9 @@ public class Hero implements Serializable {
         return this.winRateDiff;
     }
 
-    void setWinRateDif(double winRateDif) {
-        this.winRateDiff = Math.round(winRateDif * 100.0) / 100.0;
+    void setWinRateDiff(double winRateDiff) {
+        this.winRateDiff = Math.round(winRateDiff * 100.0) / 100.0;
     }
-
-    String getTier() {
-        return this.tier;
-    }
-
 
     double getNewWinRate() {
         return this.newWinRate;
@@ -47,32 +50,18 @@ public class Hero implements Serializable {
         this.newWinRate = Math.round(newWinRate * 100.0) / 100.0;
     }
 
-    @Override
-    public String toString() {
-        return getTier() + " | " + getName() + " | " + getWinRateDiff() + " | " + getNewWinRate();
+    int getAllMatches() {
+        return this.allMatches;
     }
 
-    static String toHeroesPoolHeroName(String heroName) {
-        String heroNameWithOutSeparators;
+    void setAllMatches(int allMatches) {
+        this.allMatches = allMatches;
+    }
 
-        switch (heroName) {
-            case "Anti-Mage":
-                heroNameWithOutSeparators = "AntiMage";
-                break;
-            case "Keeper of the Light":
-                heroNameWithOutSeparators = "KeeperOfTheLight";
-                break;
-            case "Queen of Pain":
-                heroNameWithOutSeparators = "QueenOfPain";
-                break;
-            case "Nature's Prophet":
-                heroNameWithOutSeparators = "NaturesProphet";
-                break;
-            default:
-                heroNameWithOutSeparators = heroName.replace(" ", "");
-        }
-
-        return heroNameWithOutSeparators;
+    @NotNull
+    @Override
+    public String toString() {
+        return this.tier + " | " + this.name + " | " + this.winRateDiff + " | " + this.newWinRate;
     }
 
     static void sortHeroes(ArrayList<Hero> heroes, int startPos, int endPos, boolean isSortByWinRateDiff) {
@@ -124,6 +113,29 @@ public class Hero implements Serializable {
 
         if (endPos > i)
             sortHeroes(heroes, i, endPos, isSortByWinRateDiff);
+    }
+
+    static String toHeroesPoolHeroName(String heroName) {
+        String heroNameWithOutSeparators;
+
+        switch (heroName) {
+            case "Anti-Mage":
+                heroNameWithOutSeparators = "AntiMage";
+                break;
+            case "Keeper of the Light":
+                heroNameWithOutSeparators = "KeeperOfTheLight";
+                break;
+            case "Queen of Pain":
+                heroNameWithOutSeparators = "QueenOfPain";
+                break;
+            case "Nature's Prophet":
+                heroNameWithOutSeparators = "NaturesProphet";
+                break;
+            default:
+                heroNameWithOutSeparators = heroName.replace(" ", "");
+        }
+
+        return heroNameWithOutSeparators;
     }
 
     static int getHeroImageByName(String heroName) {
@@ -363,7 +375,7 @@ public class Hero implements Serializable {
             case ("Zeus"):
                 return R.drawable.zeus;
             default:
-                return R.drawable.frame;
+                return R.drawable.hero_frame;
         }
     }
 }

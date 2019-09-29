@@ -12,7 +12,10 @@ import java.io.Serializable;
 
 class HeroesInitializationTask extends AsyncTask<Void, Void, Void> implements Serializable {
     private HeroesInitialization heroesInitialization;
-    private AsyncResponse onPostExecuteResponse;
+    private HeroesAsyncResponse onPostExecuteResponse;
+
+    private final String INTERVAL_OF_COLLECTED_INITIALIZATION_DATA = "week"; //week, month, 3month, patch_7.22, season_3
+    private final String INTERVAL_OF_COLLECTED_ITEMS_DATA = "month"; //week, month, 3month, patch_7.22, season_3
 
     HeroesInitializationTask(MainActivity onPostExecuteResponse) {
         this.heroesInitialization = new HeroesInitialization();
@@ -31,10 +34,16 @@ class HeroesInitializationTask extends AsyncTask<Void, Void, Void> implements Se
     @Override
     protected Void doInBackground(Void... unused) {
         try {
-            Document heroesDoc = Jsoup.connect("https://ru.dotabuff.com/heroes/trends").get();
+            Document heroesDoc = Jsoup.connect("https://ru.dotabuff.com/heroes/trends?date=" +
+                    INTERVAL_OF_COLLECTED_INITIALIZATION_DATA).get();
+
+            Document heroesMatchesDoc = Jsoup.connect("https://ru.dotabuff.com/heroes/played?date=" +
+                    INTERVAL_OF_COLLECTED_ITEMS_DATA).get();
 
             Elements heroes = heroesDoc.getElementsByTag("tr");
+            Elements heroesMatches = heroesMatchesDoc.getElementsByTag("tr");
 
+            heroesMatches.remove(0);
             for (int j = 0; j < 3; j++) {
                 heroes.remove(0);
             }
@@ -47,35 +56,48 @@ class HeroesInitializationTask extends AsyncTask<Void, Void, Void> implements Se
                 addingHeroToTierListByWinRateDiff(heroName, heroWinRateToDouble);
             }
 
-            Hero.sortHeroes(heroesInitialization.getOriginal(), 0, heroesInitialization.getOriginal().size() - 1, false);
-            heroesInitialization.getCurrent().addAll(heroesInitialization.getOriginal());
+            for (Element heroMatches : heroesMatches) {
+                String heroName = heroMatches.children().remove(1).text();
+                String heroAllMatches = heroMatches.children().remove(2).text();
+                int heroAllMatchesToInt = Integer.valueOf(heroAllMatches.replace(",", ""));
+
+                for (Hero hero : heroesInitialization.getOriginal()) {
+                    if (heroName.equals(hero.getName())) {
+                        hero.setAllMatches(heroAllMatchesToInt);
+                    }
+                }
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
+        Hero.sortHeroes(heroesInitialization.getOriginal(), 0, heroesInitialization.getOriginal().size() - 1, false);
+        heroesInitialization.getCurrent().addAll(heroesInitialization.getOriginal());
+
         return null;
     }
 
     private void addingHeroToTierListByWinRateDiff(String heroName, double heroWinRateToDouble) {
         if (heroWinRateToDouble > 55.0)
             heroesInitialization.getOriginal().add(
-                    new Hero(Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, "S", heroWinRateToDouble));
+                    new Hero("S", Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, heroWinRateToDouble, 0));
         else if (heroWinRateToDouble > 53.0)
             heroesInitialization.getOriginal().add(
-                    new Hero(Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, "A", heroWinRateToDouble));
+                    new Hero("A", Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, heroWinRateToDouble, 0));
         else if (heroWinRateToDouble > 51.0)
             heroesInitialization.getOriginal().add(
-                    new Hero(Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, "B", heroWinRateToDouble));
+                    new Hero("B", Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, heroWinRateToDouble, 0));
         else if (heroWinRateToDouble > 49.0)
             heroesInitialization.getOriginal().add(
-                    new Hero(Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, "C", heroWinRateToDouble));
+                    new Hero("C", Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, heroWinRateToDouble, 0));
         else if (heroWinRateToDouble > 47.0)
             heroesInitialization.getOriginal().add(
-                    new Hero(Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, "D", heroWinRateToDouble));
+                    new Hero("D", Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, heroWinRateToDouble, 0));
         else if (heroWinRateToDouble > 45.0)
             heroesInitialization.getOriginal().add(
-                    new Hero(Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, "E", heroWinRateToDouble));
+                    new Hero("E", Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, heroWinRateToDouble, 0));
         else
             heroesInitialization.getOriginal().add(
-                    new Hero(Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, "F", heroWinRateToDouble));
+                    new Hero("F", Hero.getHeroImageByName(heroName), heroName, heroWinRateToDouble, heroWinRateToDouble, 0));
     }
 }

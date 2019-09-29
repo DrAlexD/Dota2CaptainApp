@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import org.jetbrains.annotations.NotNull;
+
 public class PageFragment extends Fragment {
 
     private int pageNumber;
@@ -39,7 +41,7 @@ public class PageFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View result;
         if (pageNumber == 0) {

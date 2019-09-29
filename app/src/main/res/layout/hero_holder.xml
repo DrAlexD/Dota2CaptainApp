@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="51dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/heroTier"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingLeft="5dp"
+        android:paddingTop="14dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/heroImage"
+        android:layout_width="51dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="5dp" />
+
+    <TextView
+        android:id="@+id/heroName"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:paddingLeft="5dp"
+        android:paddingTop="14dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/heroWinRateDiff"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:paddingLeft="15dp"
+        android:paddingTop="14dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/heroNewWinRate"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:paddingLeft="10dp"
+        android:paddingTop="14dp"
+        android:paddingRight="5dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+</LinearLayout>
