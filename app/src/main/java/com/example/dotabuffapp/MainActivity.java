@@ -487,32 +487,35 @@ public class MainActivity extends AppCompatActivity implements HeroesAsyncRespon
                 for (Hero h : heroesCounters.getAllyCountersByWinRateDiff()) {
                     if (currentNumberOfHeroesForOnePos <= NUMBER_OF_HEROES_FOR_EVERY_POS) {
                         String heroesPoolHeroName = Hero.toHeroesPoolHeroName(h.getName());
+                        try {
+                            if (HeroesPool.valueOf(heroesPoolHeroName).pos.contains(pos.toString())) {
+                                ImageView currentImage;
 
-                        if (HeroesPool.valueOf(heroesPoolHeroName).pos.contains(pos.toString())) {
-                            ImageView currentImage;
+                                if (pos.toString().equals("1")) {
+                                    currentImage = getImageForFirstPosRecommendedBans(currentNumberOfHeroesForOnePos);
+                                } else if (pos.toString().equals("2")) {
+                                    currentImage = getImageForSecondPosRecommendedBans(currentNumberOfHeroesForOnePos);
+                                } else if (pos.toString().equals("3")) {
+                                    currentImage = getImageForThirdPosRecommendedBans(currentNumberOfHeroesForOnePos);
+                                } else if (pos.toString().equals("4")) {
+                                    currentImage = getImageForFourthPosRecommendedBans(currentNumberOfHeroesForOnePos);
+                                } else {
+                                    currentImage = getImageForFifthPosRecommendedBans(currentNumberOfHeroesForOnePos);
+                                }
 
-                            if (pos.toString().equals("1")) {
-                                currentImage = getImageForFirstPosRecommendedBans(currentNumberOfHeroesForOnePos);
-                            } else if (pos.toString().equals("2")) {
-                                currentImage = getImageForSecondPosRecommendedBans(currentNumberOfHeroesForOnePos);
-                            } else if (pos.toString().equals("3")) {
-                                currentImage = getImageForThirdPosRecommendedBans(currentNumberOfHeroesForOnePos);
-                            } else if (pos.toString().equals("4")) {
-                                currentImage = getImageForFourthPosRecommendedBans(currentNumberOfHeroesForOnePos);
-                            } else {
-                                currentImage = getImageForFifthPosRecommendedBans(currentNumberOfHeroesForOnePos);
+                                if (h.getWinRateDiff() >= 0.0) {
+                                    currentImage.setImageResource(h.getImage());
+                                    recommendedHeroesBans[pos - 1][currentNumberOfHeroesForOnePos - 1] =
+                                            HeroesPool.valueOf(heroesPoolHeroName);
+                                } else {
+                                    currentImage.setImageResource(R.drawable.hero_frame);
+                                    recommendedHeroesBans[pos - 1][currentNumberOfHeroesForOnePos - 1] = null;
+                                }
+
+                                currentNumberOfHeroesForOnePos++;
                             }
-
-                            if (h.getWinRateDiff() >= 0.0) {
-                                currentImage.setImageResource(h.getImage());
-                                recommendedHeroesBans[pos - 1][currentNumberOfHeroesForOnePos - 1] =
-                                        HeroesPool.valueOf(heroesPoolHeroName);
-                            } else {
-                                currentImage.setImageResource(R.drawable.hero_frame);
-                                recommendedHeroesBans[pos - 1][currentNumberOfHeroesForOnePos - 1] = null;
-                            }
-
-                            currentNumberOfHeroesForOnePos++;
+                        } catch (IllegalArgumentException e) {
+                            //
                         }
                     } else
                         break;

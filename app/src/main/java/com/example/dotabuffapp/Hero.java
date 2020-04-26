@@ -316,6 +316,8 @@ public class Hero implements Serializable {
                 return R.drawable.slardar;
             case ("Slark"):
                 return R.drawable.slark;
+            case ("Snapfire"):
+                return R.drawable.snapfire;
             case ("Sniper"):
                 return R.drawable.sniper;
             case ("Spectre"):
@@ -360,6 +362,8 @@ public class Hero implements Serializable {
                 return R.drawable.viper;
             case ("Visage"):
                 return R.drawable.visage;
+            case ("Void Spirit"):
+                return R.drawable.void_spirit;
             case ("Warlock"):
                 return R.drawable.warlock;
             case ("Weaver"):
