@@ -13,9 +13,8 @@ import java.util.ArrayList;
 
 public class HeroesCountersTask extends AsyncTask<Void, Void, HeroesCounters> implements Serializable {
     private HeroesCounters heroesCounters;
-    private HeroesAsyncResponse onPostExecuteResponse;
-
-    private final String INTERVAL_OF_COLLECTED_COUNTERS_DATA = "week"; //week, month, 3month, patch_7.22, season_3
+    private static final String INTERVAL_OF_COLLECTED_COUNTERS_DATA = "week"; //week, month, 3month, patch_7.22, season_3
+    private transient HeroesAsyncResponse onPostExecuteResponse;
 
     HeroesCountersTask(MainActivity onPostExecuteResponse) {
         this.onPostExecuteResponse = onPostExecuteResponse;

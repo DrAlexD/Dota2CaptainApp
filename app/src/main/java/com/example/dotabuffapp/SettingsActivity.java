@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
 
         Bundle arguments = getIntent().getExtras();
-        heroesCounters = (HeroesCounters) arguments.getSerializable("HeroesCounters");
+        heroesCounters = (HeroesCounters) arguments.getSerializable(MainActivity.HEROES_COUNTERS_KEY);
 
         getFragmentManager()
                 .beginTransaction()
@@ -54,13 +54,13 @@ public class SettingsActivity extends AppCompatActivity {
             case "Items":
                 Intent itemsIntent = new Intent(this, HeroForItemsSelectionActivity.class);
                 itemsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                itemsIntent.putExtra("HeroesCounters", heroesCounters);
+                itemsIntent.putExtra(MainActivity.HEROES_COUNTERS_KEY, heroesCounters);
                 startActivity(itemsIntent);
                 return true;
             case "Settings":
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 settingsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                settingsIntent.putExtra("HeroesCounters", heroesCounters);
+                settingsIntent.putExtra(MainActivity.HEROES_COUNTERS_KEY, heroesCounters);
                 startActivity(settingsIntent);
                 return true;
         }

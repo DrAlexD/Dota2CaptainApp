@@ -12,10 +12,9 @@ import java.io.Serializable;
 
 class HeroesInitializationTask extends AsyncTask<Void, Void, Void> implements Serializable {
     private HeroesInitialization heroesInitialization;
-    private HeroesAsyncResponse onPostExecuteResponse;
-
-    private final String INTERVAL_OF_COLLECTED_INITIALIZATION_DATA = "week"; //week, month, 3month, patch_7.22, season_3
-    private final String INTERVAL_OF_COLLECTED_ITEMS_DATA = "month"; //week, month, 3month, patch_7.22, season_3
+    private static final String INTERVAL_OF_COLLECTED_INITIALIZATION_DATA = "week"; //week, month, 3month, patch_7.22, season_3
+    private static final String INTERVAL_OF_COLLECTED_ITEMS_DATA = "month"; //week, month, 3month, patch_7.22, season_3
+    private transient HeroesAsyncResponse onPostExecuteResponse;
 
     HeroesInitializationTask(MainActivity onPostExecuteResponse) {
         this.heroesInitialization = new HeroesInitialization();

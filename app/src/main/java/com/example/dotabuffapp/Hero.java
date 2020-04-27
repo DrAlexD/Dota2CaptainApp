@@ -65,7 +65,7 @@ public class Hero implements Serializable {
     }
 
     static void sortHeroes(ArrayList<Hero> heroes, int startPos, int endPos, boolean isSortByWinRateDiff) {
-        if (heroes.size() == 0)
+        if (heroes.isEmpty())
             return;
 
         if (startPos >= endPos)
@@ -81,7 +81,9 @@ public class Hero implements Serializable {
             centerHeroName = heroes.get(centerPos).getName();
         }
 
-        int i = startPos, j = endPos;
+        int i = startPos;
+        int j = endPos;
+
         while (i <= j) {
             if (isSortByWinRateDiff) {
                 while (heroes.get(i).getWinRateDiff() > centerWinRateDiff) {

@@ -13,9 +13,8 @@ import java.util.ArrayList;
 
 public class ItemsInitializationTask extends AsyncTask<Void, Void, HeroItems> implements Serializable {
     private HeroItems heroItems;
-    private HeroItemsAsyncResponse onPostExecuteResponse;
-
-    private final String INTERVAL_OF_COLLECTED_ITEMS_DATA = "month"; //week, month, 3month, patch_7.22, season_3
+    private static final String INTERVAL_OF_COLLECTED_ITEMS_DATA = "month"; //week, month, 3month, patch_7.22, season_3
+    private transient HeroItemsAsyncResponse onPostExecuteResponse;
 
     ItemsInitializationTask(HeroForItemsSelectionActivity onPostExecuteResponse, HeroItems heroItems) {
         this.onPostExecuteResponse = onPostExecuteResponse;

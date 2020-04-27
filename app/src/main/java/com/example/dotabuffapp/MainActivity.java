@@ -19,9 +19,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity implements HeroesAsyncResponse, Serializable {
-    private final int NUMBER_OF_PICKS_PLUS_BANS = 22;
-    private final int NUMBER_OF_POSITIONS = 5;
-    private final int NUMBER_OF_HEROES_FOR_EVERY_POS = 10;
+    static final String HEROES_COUNTERS_KEY = "HeroesCounters";
+    private static final int NUMBER_OF_PICKS_PLUS_BANS = 22;
+    private static final int NUMBER_OF_POSITIONS = 5;
+    private static final int NUMBER_OF_HEROES_FOR_EVERY_POS = 10;
 
     private Settings settings;
     private HeroesCountersTask heroesCountersTask;
@@ -79,13 +80,13 @@ public class MainActivity extends AppCompatActivity implements HeroesAsyncRespon
             case "Items":
                 Intent itemsIntent = new Intent(this, HeroForItemsSelectionActivity.class);
                 itemsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                itemsIntent.putExtra("HeroesCounters", heroesCounters);
+                itemsIntent.putExtra(HEROES_COUNTERS_KEY, heroesCounters);
                 startActivity(itemsIntent);
                 return true;
             case "Settings":
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 settingsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                settingsIntent.putExtra("HeroesCounters", heroesCounters);
+                settingsIntent.putExtra(HEROES_COUNTERS_KEY, heroesCounters);
                 startActivity(settingsIntent);
                 return true;
         }
@@ -130,21 +131,20 @@ public class MainActivity extends AppCompatActivity implements HeroesAsyncRespon
     private void startActivityForSelectHero() {
         Intent intent = new Intent(this, HeroSelectionActivity.class);
 
-        intent.putExtra("HeroesCounters", heroesCounters);
+        intent.putExtra(HEROES_COUNTERS_KEY, heroesCounters);
 
+        int value = -1;
         if (numberOfPressedImageOfPicksAndBansHeroes >= 1 &&
                 numberOfPressedImageOfPicksAndBansHeroes <= 5) {
-            intent.putExtra("AllyPickOrAllyBanOrEnemyPickAndBan", 0);
-
+            value=0;
         } else if (numberOfPressedImageOfPicksAndBansHeroes >= 6 &&
                 numberOfPressedImageOfPicksAndBansHeroes <= 11) {
-            intent.putExtra("AllyPickOrAllyBanOrEnemyPickAndBan", 1);
-
+            value=1;
         } else if (numberOfPressedImageOfPicksAndBansHeroes >= 12 &&
                 numberOfPressedImageOfPicksAndBansHeroes <= 22) {
-            intent.putExtra("AllyPickOrAllyBanOrEnemyPickAndBan", 2);
+            value =2;
         }
-
+        intent.putExtra("AllyPickOrAllyBanOrEnemyPickAndBan", value);
         startActivityForResult(intent, 1);
     }
 

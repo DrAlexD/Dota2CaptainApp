@@ -99,6 +99,7 @@ public class HeroSelectionActivity extends AppCompatActivity {
 
             @Override
             public void onLongItemClick(View view, int position) {
+                //not used
             }
         });
     }

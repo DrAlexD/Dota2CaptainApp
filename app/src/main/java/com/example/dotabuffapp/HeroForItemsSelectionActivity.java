@@ -31,10 +31,10 @@ public class HeroForItemsSelectionActivity extends AppCompatActivity implements 
         Bundle arguments = getIntent().getExtras();
 
         if (arguments != null) {
-            heroesCounters = (HeroesCounters) arguments.getSerializable("HeroesCounters");
+            heroesCounters = (HeroesCounters) arguments.getSerializable(MainActivity.HEROES_COUNTERS_KEY);
 
-            HeroItems heroItems = new HeroItems();
-            ItemsInitializationTask itemsInitializationTask = new ItemsInitializationTask(this, heroItems);
+            HeroItems heroItemsEmpty = new HeroItems();
+            ItemsInitializationTask itemsInitializationTask = new ItemsInitializationTask(this, heroItemsEmpty);
             itemsInitializationTask.execute();
         }
     }
@@ -75,13 +75,13 @@ public class HeroForItemsSelectionActivity extends AppCompatActivity implements 
             case "Items":
                 Intent itemsIntent = new Intent(this, HeroForItemsSelectionActivity.class);
                 itemsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                itemsIntent.putExtra("HeroesCounters", heroesCounters);
+                itemsIntent.putExtra(MainActivity.HEROES_COUNTERS_KEY, heroesCounters);
                 startActivity(itemsIntent);
                 return true;
             case "Settings":
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 settingsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                settingsIntent.putExtra("HeroesCounters", heroesCounters);
+                settingsIntent.putExtra(MainActivity.HEROES_COUNTERS_KEY, heroesCounters);
                 startActivity(settingsIntent);
                 return true;
         }
@@ -116,6 +116,7 @@ public class HeroForItemsSelectionActivity extends AppCompatActivity implements 
 
             @Override
             public void onLongItemClick(View view, int position) {
+                //not used
             }
         });
     }

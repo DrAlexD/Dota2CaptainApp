@@ -47,7 +47,7 @@ public class Item implements Serializable {
     }
 
     static void sortItems(ArrayList<Item> items, int startPos, int endPos, boolean isSortByWinRateDiff) {
-        if (items.size() == 0)
+        if (items.isEmpty())
             return;
 
         if (startPos >= endPos)
@@ -63,7 +63,9 @@ public class Item implements Serializable {
             centerItemName = items.get(centerPos).getName();
         }
 
-        int i = startPos, j = endPos;
+        int i = startPos;
+        int j = endPos;
+
         while (i <= j) {
             if (isSortByWinRateDiff) {
                 while (items.get(i).getWinRateDiff() > centerWinRateDiff) {

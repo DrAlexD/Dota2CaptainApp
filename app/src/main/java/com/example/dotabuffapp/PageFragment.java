@@ -22,6 +22,7 @@ public class PageFragment extends Fragment {
     }
 
     public PageFragment() {
+        //not used
     }
 
     @Override
