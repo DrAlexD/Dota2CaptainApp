@@ -1,6 +1,5 @@
 package com.example.dotabuffapp;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +30,7 @@ public class PageFragment extends Fragment {
         pageNumber = getArguments() != null ? getArguments().getInt("num") : 1;
     }
 
-    static String getTitle(Context context, int position) {
+    static String getTitle(int position) {
         if (position == 0)
             return "RecommendedPicks";
         else if (position == 1)

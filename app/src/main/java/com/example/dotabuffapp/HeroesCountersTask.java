@@ -61,15 +61,13 @@ public class HeroesCountersTask extends AsyncTask<Void, Void, HeroesCounters> im
 
                         Elements heroCounters = heroDoc.getElementsByTag("tr");
 
-                        for (int j = 0; j < 18; j++) {
-                            heroCounters.remove(0);
-                        }
+                        heroCounters.subList(0, 18).clear();
 
                         for (Element heroCounter : heroCounters) {
                             String heroCounterName = heroCounter.children().remove(1).text();
                             String heroCounterWinRate = heroCounter.children().remove(2).text();
                             double heroCounterWinRateToDouble =
-                                    Double.valueOf(heroCounterWinRate.substring(0, heroCounterWinRate.length() - 1));
+                                    Double.parseDouble(heroCounterWinRate.substring(0, heroCounterWinRate.length() - 1));
 
                             boolean isNewHeroForAdding = true;
                             for (Hero hero : countersByWinRateDiff) {

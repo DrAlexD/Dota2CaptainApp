@@ -6,8 +6,9 @@ import android.preference.PreferenceFragment;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.jetbrains.annotations.NotNull;
 
 public class SettingsActivity extends AppCompatActivity {
     private HeroesCounters heroesCounters;
@@ -42,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NotNull MenuItem item) {
 
         switch (item.getTitle().toString()) {
             case "Picker":

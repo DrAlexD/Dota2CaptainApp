@@ -44,14 +44,12 @@ class HeroesInitializationTask extends AsyncTask<Void, Void, Void> implements Se
             Elements heroesMatches = heroesMatchesDoc.getElementsByTag("tr");
 
             heroesMatches.remove(0);
-            for (int j = 0; j < 3; j++) {
-                heroes.remove(0);
-            }
+            heroes.subList(0, 3).clear();
 
             for (Element hero : heroes) {
                 String heroName = hero.children().remove(0).text();
                 String heroWinRate = hero.children().remove(2).text();
-                double heroWinRateToDouble = Double.valueOf(heroWinRate.substring(0, heroWinRate.length() - 1));
+                double heroWinRateToDouble = Double.parseDouble(heroWinRate.substring(0, heroWinRate.length() - 1));
 
                 addingHeroToTierListByWinRateDiff(heroName, heroWinRateToDouble);
             }
@@ -59,7 +57,7 @@ class HeroesInitializationTask extends AsyncTask<Void, Void, Void> implements Se
             for (Element heroMatches : heroesMatches) {
                 String heroName = heroMatches.children().remove(1).text();
                 String heroAllMatches = heroMatches.children().remove(2).text();
-                int heroAllMatchesToInt = Integer.valueOf(heroAllMatches.replace(",", ""));
+                int heroAllMatchesToInt = Integer.parseInt(heroAllMatches.replace(",", ""));
 
                 for (Hero hero : heroesInitialization.getOriginal()) {
                     if (heroName.equals(hero.getName())) {

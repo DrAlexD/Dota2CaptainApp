@@ -9,8 +9,9 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -26,13 +27,23 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     }
 
     @Override
-    @NonNull
-    public ItemsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    @NotNull
+    public ItemsAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_holder, parent, false);
         return new ViewHolder(view);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onBindViewHolder(@NotNull ItemsAdapter.ViewHolder holder, int position) {
+        Item item = items.get(position);
+
+        holder.itemImageView.setImageResource(item.getImage());
+        holder.itemNameView.setText(item.getName());
+        holder.itemWinRateDiffView.setText(textForWinRateDiffView(item));
+        holder.itemNewWinRateView.setText(item.getNewWinRate() + "%");
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView itemImageView;
         final TextView itemNameView;
         final TextView itemWinRateDiffView;
@@ -45,16 +56,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             itemWinRateDiffView = view.findViewById(R.id.itemWinRateDiff);
             itemNewWinRateView = view.findViewById(R.id.itemNewWinRate);
         }
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ItemsAdapter.ViewHolder holder, int position) {
-        Item item = items.get(position);
-
-        holder.itemImageView.setImageResource(item.getImage());
-        holder.itemNameView.setText(item.getName());
-        holder.itemWinRateDiffView.setText(textForWinRateDiffView(item));
-        holder.itemNewWinRateView.setText(item.getNewWinRate() + "%");
     }
 
     private String textForWinRateDiffView(Item item) {

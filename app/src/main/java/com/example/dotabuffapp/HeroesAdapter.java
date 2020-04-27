@@ -9,8 +9,9 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -38,32 +39,15 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
         }
     }
 
+    @NotNull
     @Override
-    @NonNull
-    public HeroesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HeroesAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.hero_holder, parent, false);
         return new ViewHolder(view);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        final ImageView heroImageView;
-        final TextView heroTierView;
-        final TextView heroNameView;
-        final TextView heroWinRateDiffView;
-        final TextView heroNewWinRateView;
-
-        ViewHolder(View view) {
-            super(view);
-            heroTierView = view.findViewById(R.id.heroTier);
-            heroImageView = view.findViewById(R.id.heroImage);
-            heroNameView = view.findViewById(R.id.heroName);
-            heroWinRateDiffView = view.findViewById(R.id.heroWinRateDiff);
-            heroNewWinRateView = view.findViewById(R.id.heroNewWinRate);
-        }
-    }
-
     @Override
-    public void onBindViewHolder(@NonNull HeroesAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull HeroesAdapter.ViewHolder holder, int position) {
         Hero hero;
 
         if (isEnemyCountersWorkingWith) {
@@ -80,6 +64,23 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
         holder.heroImageView.setImageResource(hero.getImage());
         holder.heroNameView.setText(hero.getName());
         holder.heroNewWinRateView.setText(hero.getNewWinRate() + "%");
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        final ImageView heroImageView;
+        final TextView heroTierView;
+        final TextView heroNameView;
+        final TextView heroWinRateDiffView;
+        final TextView heroNewWinRateView;
+
+        ViewHolder(View view) {
+            super(view);
+            heroTierView = view.findViewById(R.id.heroTier);
+            heroImageView = view.findViewById(R.id.heroImage);
+            heroNameView = view.findViewById(R.id.heroName);
+            heroWinRateDiffView = view.findViewById(R.id.heroWinRateDiff);
+            heroNewWinRateView = view.findViewById(R.id.heroNewWinRate);
+        }
     }
 
     private String textForWinRateDiffView(Hero hero) {

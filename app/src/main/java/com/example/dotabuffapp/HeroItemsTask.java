@@ -46,9 +46,7 @@ public class HeroItemsTask extends AsyncTask<Void, Void, HeroItems> implements S
 
             Elements heroItemsElements = heroItemsDoc.getElementsByTag("tr");
 
-            for (int i = 0; i < 6; i++) {
-                heroItemsElements.remove(0);
-            }
+            heroItemsElements.subList(0, 6).clear();
 
             boolean bootsOfTravelsFlag = false;
             for (Element heroItem : heroItemsElements) {
@@ -67,8 +65,8 @@ public class HeroItemsTask extends AsyncTask<Void, Void, HeroItems> implements S
                     if (heroItemName.replace(" уровень", "").equals(item.getName())) {
                         String heroItemGames = heroItem.children().remove(2).text();
                         String heroItemWinRate = heroItem.children().remove(3).text();
-                        int heroItemGamesToInt = Integer.valueOf(heroItemGames.replace(",", ""));
-                        double heroItemWinRateToDouble = Double.valueOf(heroItemWinRate.substring(0, heroItemWinRate.length() - 1));
+                        int heroItemGamesToInt = Integer.parseInt(heroItemGames.replace(",", ""));
+                        double heroItemWinRateToDouble = Double.parseDouble(heroItemWinRate.substring(0, heroItemWinRate.length() - 1));
 
                         if (settings.getBestHeroItems()) {
                             if (heroItemGamesToInt > (int) ((double) (heroItems.getHero().getAllMatches()) * (item.getUseFrequency() / 100.0))) {

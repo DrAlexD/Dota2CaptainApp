@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class HeroItemsActivity extends AppCompatActivity implements HeroItemsAsyncResponse {
-    private HeroItems heroItems;
     private ItemsAdapter itemsAdapter;
 
     @Override
@@ -21,7 +20,7 @@ public class HeroItemsActivity extends AppCompatActivity implements HeroItemsAsy
         Bundle arguments = getIntent().getExtras();
 
         if (arguments != null) {
-            heroItems = (HeroItems) arguments.getSerializable("HeroItems");
+            HeroItems heroItems = (HeroItems) arguments.getSerializable("HeroItems");
 
             TextView heroTierOnItemsPage = findViewById(R.id.heroTierOnItemsPage);
             ImageView heroImageOnItemsPage = findViewById(R.id.heroImageOnItemsPage);

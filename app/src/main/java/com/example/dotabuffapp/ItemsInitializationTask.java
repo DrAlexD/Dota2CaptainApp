@@ -56,8 +56,8 @@ public class ItemsInitializationTask extends AsyncTask<Void, Void, HeroItems> im
 
                     String itemUseFrequency = item.children().remove(3).text();
                     String itemWinRate = item.children().remove(4).text();
-                    double itemUseFrequencyToDouble = Double.valueOf(itemUseFrequency.substring(0, itemUseFrequency.length() - 1));
-                    double itemWinRateToDouble = Double.valueOf(itemWinRate.substring(0, itemWinRate.length() - 1));
+                    double itemUseFrequencyToDouble = Double.parseDouble(itemUseFrequency.substring(0, itemUseFrequency.length() - 1));
+                    double itemWinRateToDouble = Double.parseDouble(itemWinRate.substring(0, itemWinRate.length() - 1));
 
                     allItems.add(new Item(Item.getItemImageByName(itemName),
                             itemName.replace(" уровень", ""),

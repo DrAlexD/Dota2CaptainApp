@@ -11,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements HeroesAsyncRespon
         setContentView(R.layout.main_activity);
 
         ViewPager pager = findViewById(R.id.pager);
-        pager.setAdapter(new PageTurningAdapter(this, getSupportFragmentManager()));
+        pager.setAdapter(new PageTurningAdapter(getSupportFragmentManager()));
         pager.setCurrentItem(1);
         pager.setOffscreenPageLimit(2);
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements HeroesAsyncRespon
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NotNull MenuItem item) {
 
         switch (item.getTitle().toString()) {
             case "Picker":
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements HeroesAsyncRespon
         currentImage.setImageResource(R.drawable.hero_frame);
         pickAndBansHeroes[numberOfPressedImageOfPicksAndBansHeroes - 1] = null;
 
-        if (numberOfPressedImageOfPicksAndBansHeroes >= 1 && numberOfPressedImageOfPicksAndBansHeroes <= 5) {
+        if (numberOfPressedImageOfPicksAndBansHeroes <= 5) {
             heroesCounters.getAllyHeroes().remove(pressedHeroImage);
         } else if (numberOfPressedImageOfPicksAndBansHeroes >= 12 && numberOfPressedImageOfPicksAndBansHeroes <= 16) {
             heroesCounters.getEnemyHeroes().remove(pressedHeroImage);
