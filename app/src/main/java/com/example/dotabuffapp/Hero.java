@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Hero implements Serializable {
-    private String tier;
-    private int image;
-    private String name;
+    private final String tier;
+    private final int image;
+    private final String name;
     private double winRateDiff;
     private double newWinRate;
     private int allMatches;
@@ -20,48 +20,6 @@ public class Hero implements Serializable {
         this.winRateDiff = Math.round(winRateDiff * 100.0) / 100.0;
         this.newWinRate = Math.round(newWinRate * 100.0) / 100.0;
         this.allMatches = allMatches;
-    }
-
-    String getTier() {
-        return this.tier;
-    }
-
-    int getImage() {
-        return this.image;
-    }
-
-    String getName() {
-        return this.name;
-    }
-
-    double getWinRateDiff() {
-        return this.winRateDiff;
-    }
-
-    void setWinRateDiff(double winRateDiff) {
-        this.winRateDiff = Math.round(winRateDiff * 100.0) / 100.0;
-    }
-
-    double getNewWinRate() {
-        return this.newWinRate;
-    }
-
-    void setNewWinRate(double newWinRate) {
-        this.newWinRate = Math.round(newWinRate * 100.0) / 100.0;
-    }
-
-    int getAllMatches() {
-        return this.allMatches;
-    }
-
-    void setAllMatches(int allMatches) {
-        this.allMatches = allMatches;
-    }
-
-    @NotNull
-    @Override
-    public String toString() {
-        return this.tier + " | " + this.name + " | " + this.winRateDiff + " | " + this.newWinRate;
     }
 
     static void sortHeroes(ArrayList<Hero> heroes, int startPos, int endPos, boolean isSortByWinRateDiff) {
@@ -186,6 +144,8 @@ public class Hero implements Serializable {
                 return R.drawable.dark_seer;
             case ("Dark Willow"):
                 return R.drawable.dark_willow;
+            case ("Dawnbreaker"):
+                return R.drawable.dawnbreaker;
             case ("Dazzle"):
                 return R.drawable.dazzle;
             case ("Death Prophet"):
@@ -216,6 +176,8 @@ public class Hero implements Serializable {
                 return R.drawable.grimstroke;
             case ("Gyrocopter"):
                 return R.drawable.gyrocopter;
+            case ("Hoodwink"):
+                return R.drawable.hoodwink;
             case ("Huskar"):
                 return R.drawable.huskar;
             case ("Invoker"):
@@ -250,6 +212,8 @@ public class Hero implements Serializable {
                 return R.drawable.lycan;
             case ("Magnus"):
                 return R.drawable.magnus;
+            case ("Marci"):
+                return R.drawable.marci;
             case ("Mars"):
                 return R.drawable.mars;
             case ("Medusa"):
@@ -383,5 +347,47 @@ public class Hero implements Serializable {
             default:
                 return R.drawable.hero_frame;
         }
+    }
+
+    String getTier() {
+        return this.tier;
+    }
+
+    int getImage() {
+        return this.image;
+    }
+
+    String getName() {
+        return this.name;
+    }
+
+    double getWinRateDiff() {
+        return this.winRateDiff;
+    }
+
+    void setWinRateDiff(double winRateDiff) {
+        this.winRateDiff = Math.round(winRateDiff * 100.0) / 100.0;
+    }
+
+    double getNewWinRate() {
+        return this.newWinRate;
+    }
+
+    void setNewWinRate(double newWinRate) {
+        this.newWinRate = Math.round(newWinRate * 100.0) / 100.0;
+    }
+
+    int getAllMatches() {
+        return this.allMatches;
+    }
+
+    void setAllMatches(int allMatches) {
+        this.allMatches = allMatches;
+    }
+
+    @NotNull
+    @Override
+    public String toString() {
+        return this.tier + " | " + this.name + " | " + this.winRateDiff + " | " + this.newWinRate;
     }
 }
