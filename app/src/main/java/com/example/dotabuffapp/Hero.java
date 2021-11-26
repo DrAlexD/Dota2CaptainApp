@@ -242,8 +242,8 @@ public class Hero implements Serializable {
                 return R.drawable.omniknight;
             case ("Oracle"):
                 return R.drawable.oracle;
-            case ("Outworld Devourer"):
-                return R.drawable.outworld_devourer;
+            case ("Outworld Destroyer"):
+                return R.drawable.outworld_destroyer;
             case ("Pangolier"):
                 return R.drawable.pangolier;
             case ("Phantom Assassin"):

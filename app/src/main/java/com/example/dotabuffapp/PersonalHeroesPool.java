@@ -60,7 +60,7 @@ enum PersonalHeroesPool {
     OgreMagi("5"),
     Omniknight("3"),
     Oracle("5"),
-    OutworldDevourer("2"),
+    OutworldDestroyer("2"),
     Pangolier("1|2|3"),
     PhantomAssassin("1"),
     PhantomLancer("1"),
